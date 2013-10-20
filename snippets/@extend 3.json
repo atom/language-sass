@@ -1,0 +1,6 @@
+{
+  "content": "@extend $0;",
+  "name": "@extend",
+  "scope": "source.css.scss",
+  "tabTrigger": "extend"
+}

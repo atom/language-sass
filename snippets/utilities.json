@@ -1,0 +1,6 @@
+{
+  "content": "@import \"compass/utilities\";$0",
+  "name": "utilities",
+  "scope": "source.css.scss",
+  "tabTrigger": "import"
+}

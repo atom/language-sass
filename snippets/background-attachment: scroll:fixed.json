@@ -1,0 +1,6 @@
+{
+  "content": "background-attachment:${TM_CSS_SPACE}${1|scroll,fixed|}${2:;}$0",
+  "name": "background-attachment: scroll/fixed",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

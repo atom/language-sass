@@ -1,0 +1,6 @@
+{
+  "content": "background-color:${TM_CSS_SPACE}rgb(${1:255},${2:255},${3:255})${4:;}$0",
+  "name": "background-color: rgb",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

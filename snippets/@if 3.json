@@ -1,0 +1,6 @@
+{
+  "content": "@if ${1:conditions} {\n\t$0\n}",
+  "name": "@if",
+  "scope": "source.css.scss",
+  "tabTrigger": "if"
+}

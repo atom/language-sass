@@ -1,0 +1,6 @@
+{
+  "content": "@mixin text-shadow(\\$x: 1px, \\$y: 1px, \\$color: #333, \\$blur: 0) {\n\tfilter: \"progid:DXImageTransform.Microsoft.DropShadow(color='#{\\$color}', offx='#{\\$x}', offy='#{\\$y}')\";\n\t-ms-filter: \"progid:DXImageTransform.Microsoft.DropShadow(color='#{\\$color}', offx='#{\\$x}', offy='#{\\$y}')\";\n\ttext-shadow: \\$x+px \\$y+px \\$b+px \\$color;\n}",
+  "name": "text-shadow",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

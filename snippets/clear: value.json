@@ -1,0 +1,6 @@
+{
+  "content": "clear:${TM_CSS_SPACE}${1:both}${2:;}$0",
+  "name": "clear: value",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "clear"
+}

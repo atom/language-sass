@@ -1,0 +1,6 @@
+{
+  "content": "background-image:${TM_CSS_SPACE}url($1)${2:;}$0",
+  "name": "background-image: url",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

@@ -1,0 +1,6 @@
+{
+  "content": "letter-spacing:${TM_CSS_SPACE}${1:1}em${2:;}$0",
+  "name": "letter-spacing: em",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "letter"
+}

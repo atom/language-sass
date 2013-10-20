@@ -1,0 +1,6 @@
+{
+  "content": "text-align:${TM_CSS_SPACE}${1|left,right,center,justify|}${2:;}$0",
+  "name": "text-align: left/center/right",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "text"
+}

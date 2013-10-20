@@ -1,0 +1,6 @@
+{
+  "content": "@mixin font-face( \\$font-name, \\$font-url ) {\n\t@font-face {\n\t\tfont-family: '#{\\$font-name}';\n\t\tsrc: url('#{\\$font-url}.eot?#iefix') format('embedded-opentype'),\n\t\t\turl('#{\\$font-url}.woff') format('woff'),\n\t\t\turl('#{\\$font-url}.ttf')  format('truetype'),\n\t\t\turl('#{\\$font-url}.svg#svg#{\\$font-name}') format('svg');\n\t}\n}",
+  "name": "font-face",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

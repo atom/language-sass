@@ -1,0 +1,6 @@
+{
+  "content": "vertical-align:${TM_CSS_SPACE}${1|baseline,sub,super,top,text-top,middle,bottom,text-bottom,length,%|}${2:;}$0",
+  "name": "vertical-align: type",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "vertical"
+}

@@ -1,0 +1,6 @@
+{
+  "content": "@mixin clear() {\n\tclear: both;\n\tdisplay: block;\n\toverflow: hidden;\n\tvisibility: hidden;\n\twidth: 0;\n\theight: 0;\n}",
+  "name": "clear",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

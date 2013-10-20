@@ -1,0 +1,7 @@
+{
+  "name": "Symbol List: Selector",
+  "scope": "source.sass entity.other.attribute-name.class.css, source.css.scss entity.other.attribute-name.class.css",
+  "settings": {
+    "showInSymbolList": 1
+  }
+}

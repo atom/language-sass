@@ -1,0 +1,6 @@
+{
+  "content": "display:${TM_CSS_SPACE}inline${1:;}$0",
+  "name": "display: inline",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "display"
+}

@@ -1,0 +1,6 @@
+{
+  "content": "@mixin linear-gradient( \\$color: #ccc, \\$start: #000, \\$stop: #fff, \\$point: 'top' ) {\n\tbackground: \\$color;\n\tbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%, \\$start), color-stop(100%, \\$stop)); /* Safari 4+, old Chrome */\n\tbackground: -webkit-linear-gradient(\\$point, \\$start, \\$stop); /* Safari 5.1+, Chrome */\n\tbackground: -moz-linear-gradient(\\$point, \\$start, \\$stop); /* FF 3.6+ */\n\tbackground: -ms-linear-gradient(\\$point, \\$start, \\$stop); /* IE10 */\n\tbackground: -o-linear-gradient(\\$point, \\$start, \\$stop); /* Opera */\n\tfilter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{\\$start}', endColorstr='#{\\$stop}'); /* IE6 & IE7 */\n\t-ms-filter: \"progid:DXImageTransform.Microsoft.gradient(startColorstr='#{\\$start}', endColorstr='#{\\$stop}')\"; /* IE8+ */\n\tbackground: linear-gradient(\\$point, \\$start, \\$stop);\n}",
+  "name": "linear-gradient",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

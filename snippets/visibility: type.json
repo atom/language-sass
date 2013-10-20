@@ -1,0 +1,6 @@
+{
+  "content": "visibility:${TM_CSS_SPACE}${1|visible,hidden,collapse|}${2:;}$0",
+  "name": "visibility: type",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "visibility"
+}

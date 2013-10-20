@@ -1,0 +1,6 @@
+{
+  "content": "@import \"$0\"",
+  "name": "@import",
+  "scope": "source.sass",
+  "tabTrigger": "import"
+}

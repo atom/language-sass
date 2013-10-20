@@ -1,0 +1,14 @@
+{
+  "beforeRunningCommand": "nop",
+  "command": "#!/usr/bin/env bash\n[[ -f \"${TM_SUPPORT_PATH}/lib/bash_init.sh\" ]] && . \"${TM_SUPPORT_PATH}/lib/bash_init.sh\"\n\nrequire_cmd sass-convert\n\necho \"$TM_SELECTED_TEXT\" | sass-convert --from sass --to scss\n",
+  "fallbackInput": "word",
+  "input": "selection",
+  "inputFormat": "text",
+  "keyEquivalent": "^@c",
+  "name": "SASS to SCSS",
+  "outputCaret": "heuristic",
+  "outputFormat": "text",
+  "outputLocation": "replaceSelection",
+  "scope": "source.css.scss, source.sass",
+  "version": "2"
+}

@@ -1,0 +1,6 @@
+{
+  "content": "@mixin text-gradient(\\$start, \\$stop) {\n\tbackground:-webkit-linear-gradient(top,\\$start,\\$stop);\n\t-webkit-text-fill-color: transparent;\n\t-webkit-background-clip: text;\n}",
+  "name": "text-gradient",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

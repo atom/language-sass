@@ -1,0 +1,6 @@
+{
+  "content": "marker-offset:${TM_CSS_SPACE}${1:10px}${2:;}$0",
+  "name": "marker-offset: length",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "marker"
+}

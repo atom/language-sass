@@ -1,0 +1,6 @@
+{
+  "content": "border-right-width:${TM_CSS_SPACE}${1:1}px${2:;}",
+  "name": "border-right-width: size",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "border"
+}

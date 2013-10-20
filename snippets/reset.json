@@ -1,0 +1,6 @@
+{
+  "content": "@import \"compass/reset\";$0",
+  "name": "reset",
+  "scope": "source.css.scss",
+  "tabTrigger": "import"
+}

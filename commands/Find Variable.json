@@ -1,0 +1,14 @@
+{
+  "beforeRunningCommand": "nop",
+  "command": "#!/usr/bin/env ruby\n\nrequire ENV['TM_BUNDLE_SUPPORT'] + '/lib/env'\n\nTextMate::require_env_var 'TM_COMPASS_PATH'\n\nTextMate::exit_show_tool_tip \"Require line with variable\" if CURRENT_WORD.empty?\n\nresult = Compass::Reader::find_variable CURRENT_WORD.strip\nTextMate::exit_show_tool_tip \"Cannot find #{CURRENT_WORD}\" if result == nil\n\nTextMate::go_to result\n",
+  "fallbackInput": "word",
+  "input": "word",
+  "inputFormat": "text",
+  "keyEquivalent": "^@k",
+  "name": "Find Variable",
+  "outputCaret": "afterOutput",
+  "outputFormat": "html",
+  "outputLocation": "discard",
+  "scope": "source.css.scss",
+  "version": "2"
+}

@@ -1,0 +1,6 @@
+{
+  "content": "margin:${TM_CSS_SPACE}${1:10px}${2:;}$0",
+  "name": "margin: all",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "margin"
+}

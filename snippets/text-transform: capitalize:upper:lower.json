@@ -1,0 +1,6 @@
+{
+  "content": "text-transform:${TM_CSS_SPACE}${1|capitalize,uppercase,lowercase|}${2:;}$0",
+  "name": "text-transform: capitalize/upper/lower",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "text"
+}

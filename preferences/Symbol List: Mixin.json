@@ -1,0 +1,8 @@
+{
+  "name": "Symbol List: Mixin",
+  "scope": "source.sass meta.variable-declaration.sass.mixin variable.other.sass, source.css.scss meta.variable-declaration.scss.mixin variable.other.scss",
+  "settings": {
+    "showInSymbolList": 1,
+    "symbolTransformation": "s/^/= /"
+  }
+}

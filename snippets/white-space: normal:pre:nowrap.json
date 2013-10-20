@@ -1,0 +1,6 @@
+{
+  "content": "white-space:${TM_CSS_SPACE}${1|normal,pre,nowrap|}${2:;}$0",
+  "name": "white-space: normal/pre/nowrap",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "white"
+}

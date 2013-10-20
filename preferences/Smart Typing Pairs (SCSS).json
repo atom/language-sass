@@ -1,0 +1,12 @@
+{
+  "name": "Smart Typing Pairs (SCSS)",
+  "scope": "source.css.scss",
+  "settings": {
+    "smartTypingPairs": [
+      [
+        ":",
+        ";"
+      ]
+    ]
+  }
+}

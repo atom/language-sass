@@ -1,0 +1,6 @@
+{
+  "content": "word-spacing:${TM_CSS_SPACE}${1:10px}${2:;}$0",
+  "name": "word-spacing: length",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "word"
+}

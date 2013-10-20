@@ -1,0 +1,6 @@
+{
+  "content": "@import \"compass/css3\";$0",
+  "name": "css3",
+  "scope": "source.css.scss",
+  "tabTrigger": "import"
+}

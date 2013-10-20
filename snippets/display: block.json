@@ -1,0 +1,6 @@
+{
+  "content": "display:${TM_CSS_SPACE}block${1:;}$0",
+  "name": "display: block",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "display"
+}

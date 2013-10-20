@@ -1,0 +1,6 @@
+{
+  "content": "@mixin box-glow(\\$color: #fff, \\$blur: 5px, \\$spread: 0, \\$opacity: 0.5) {\n\t-webkit-box-shadow: \\$x \\$y \\$blur \\$spread rgba(0, 0, 0, \\$opacity);\n\t-moz-box-shadow: \\$x \\$y \\$blur \\$spread rgba(0, 0, 0, \\$opacity);\n\tbox-shadow: \\$x \\$y \\$blur \\$spread rgba(0, 0, 0, \\$opacity);\n}\n\n@mixin inner-box-glow(\\$color: #fff, \\$blur: 5px, \\$spread: 0, \\$opacity: 0.5) {\n\t-webkit-box-shadow: inset \\$x \\$y \\$blur \\$spread rgba(0, 0, 0, \\$opacity);\n\t-moz-box-shadow: inset \\$x \\$y \\$blur \\$spread rgba(0, 0, 0, \\$opacity);\n\tbox-shadow: inset \\$x \\$y \\$blur \\$spread rgba(0, 0, 0, \\$opacity);\n}\n\n",
+  "name": "box-glow",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

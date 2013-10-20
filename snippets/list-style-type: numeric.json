@@ -1,0 +1,6 @@
+{
+  "content": "list-style-type:${TM_CSS_SPACE}${1|decimal,decimal-leading-zero,zero|}${2:;}$0",
+  "name": "list-style-type: numeric",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "list"
+}

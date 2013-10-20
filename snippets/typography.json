@@ -1,0 +1,6 @@
+{
+  "content": "@import \"compass/typography\";$0",
+  "name": "typography",
+  "scope": "source.css.scss",
+  "tabTrigger": "import"
+}

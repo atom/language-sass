@@ -1,0 +1,6 @@
+{
+  "content": "margin-left:${TM_CSS_SPACE}${1:10px}${2:;}$0",
+  "name": "margin-left: length",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "margin"
+}

@@ -1,0 +1,6 @@
+{
+  "content": "list-style-type:${TM_CSS_SPACE}${1|hebrew,armenian,georgian|}${2:;}$0",
+  "name": "list-style-type: other",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "list"
+}

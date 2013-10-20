@@ -1,0 +1,6 @@
+{
+  "content": "background-color:${TM_CSS_SPACE}transparent${1:;}$0",
+  "name": "background-color: transparent",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

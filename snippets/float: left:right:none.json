@@ -1,0 +1,6 @@
+{
+  "content": "float:${TM_CSS_SPACE}${1|left,right,none|}${2:;}$0",
+  "name": "float: left/right/none",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "float"
+}

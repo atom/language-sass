@@ -1,0 +1,6 @@
+{
+  "content": "text-shadow:${TM_CSS_SPACE}#${1:DDD} ${2:10px} ${3:10px} ${4:2px}${5:;}$0",
+  "name": "text-shadow: color-hex x y blur",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "text"
+}

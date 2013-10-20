@@ -1,0 +1,6 @@
+{
+  "content": "border-bottom:${TM_CSS_SPACE}${1:1}px ${2|none,hidden,dotted,dashed,solid,double,groove,ridge,inset,outset|} #${3:999}${4:;}$0",
+  "name": "border-bottom: size style color",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "border"
+}

@@ -1,0 +1,6 @@
+{
+  "content": "display:${TM_CSS_SPACE}${1|table,inline-table,table-row-group,table-header-group,table-footer-group,table-row,table-column-group,table-column,table-cell,table-caption|}${2:;}$0",
+  "name": "display: table-types",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "display"
+}

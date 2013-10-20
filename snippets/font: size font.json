@@ -1,0 +1,6 @@
+{
+  "content": "font:${TM_CSS_SPACE}${1:75%} ${2:\"Helvetica Neue\", Helvetica, Arial,} ${3:sans-}serif${4:;}$0",
+  "name": "font: size font",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "font"
+}

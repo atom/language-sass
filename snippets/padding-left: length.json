@@ -1,0 +1,6 @@
+{
+  "content": "padding-left:${TM_CSS_SPACE}${1:20px}${2:;}$0",
+  "name": "padding-left: length",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "padding"
+}

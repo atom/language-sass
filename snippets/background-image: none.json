@@ -1,0 +1,6 @@
+{
+  "content": "background-image:${TM_CSS_SPACE}none${1:;}$0",
+  "name": "background-image: none",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

@@ -1,0 +1,14 @@
+{
+  "beforeRunningCommand": "saveActiveFile",
+  "command": "#!/usr/bin/env ruby\n\nrequire File.join(ENV['TM_BUNDLE_SUPPORT'], \"lib/env\")\n\nSASS::Writer::render(\"Compile file\", SASS::Reader::compile_file(FILEPATH, PROJECT))\n",
+  "input": "none",
+  "inputFormat": "text",
+  "keyEquivalent": "@s",
+  "name": "Compile File",
+  "output": "showAsHTML",
+  "outputCaret": "afterOutput",
+  "outputFormat": "html",
+  "outputLocation": "newWindow",
+  "scope": "source.css.scss, source.sass",
+  "version": "2"
+}

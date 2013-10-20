@@ -1,0 +1,9 @@
+{
+  "isDisabled": false,
+  "name": "Symbol List: Group",
+  "scope": "source.sass comment.block.sass -source.css.embedded, source.css.scss comment.block.scss -source.css.embedded",
+  "settings": {
+    "showInSymbolList": 1,
+    "symbolTransformation": "s/\\/\\*\\*\\s*(.*?)\\s*\\*\\//** $1 **/; s/\\/\\*.*?\\*\\*\\//./; s/\\/\\*[^\\*].*?[^\\*]\\*\\///"
+  }
+}

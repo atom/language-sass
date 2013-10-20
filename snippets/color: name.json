@@ -1,0 +1,6 @@
+{
+  "content": "color:${TM_CSS_SPACE}${1:red}${2:;}$0",
+  "name": "color: name",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "color"
+}

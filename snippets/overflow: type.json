@@ -1,0 +1,6 @@
+{
+  "content": "overflow:${TM_CSS_SPACE}${1|visible,hidden,scroll,auto|}${2:;}$0",
+  "name": "overflow: type",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "overflow"
+}

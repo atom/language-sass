@@ -1,0 +1,6 @@
+{
+  "content": "background-color:${TM_CSS_SPACE}#${1:DDD}${2:;}$0",
+  "name": "background-color: hex",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

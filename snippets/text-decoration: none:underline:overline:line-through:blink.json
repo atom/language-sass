@@ -1,0 +1,6 @@
+{
+  "content": "text-decoration:${TM_CSS_SPACE}${1|none,underline,overline,line-through,blink|}${2:;}$0",
+  "name": "text-decoration: none/underline/overline/line-through/blink",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "text"
+}

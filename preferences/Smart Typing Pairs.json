@@ -1,0 +1,36 @@
+{
+  "name": "Smart Typing Pairs",
+  "scope": "source.sass, source.css.scss",
+  "settings": {
+    "smartTypingPairs": [
+      [
+        "\"",
+        "\""
+      ],
+      [
+        "(",
+        ")"
+      ],
+      [
+        "{",
+        "}"
+      ],
+      [
+        "[",
+        "]"
+      ],
+      [
+        "<",
+        ">"
+      ],
+      [
+        "'",
+        "'"
+      ],
+      [
+        "/*",
+        "*/"
+      ]
+    ]
+  }
+}

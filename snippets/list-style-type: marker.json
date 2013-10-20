@@ -1,0 +1,6 @@
+{
+  "content": "list-style-type:${TM_CSS_SPACE}${1|none,disc,circle,square|}${2:;}$0",
+  "name": "list-style-type: marker",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "list"
+}

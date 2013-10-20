@@ -1,0 +1,6 @@
+{
+  "content": "display:${TM_CSS_SPACE}${1|none,inline,inline-block,block,list-item,run-in,compact,marker|}${2:;}$0",
+  "name": "display: common-types",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "display"
+}

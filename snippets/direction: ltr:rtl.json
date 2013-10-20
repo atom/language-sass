@@ -1,0 +1,6 @@
+{
+  "content": "direction:${TM_CSS_SPACE}${1|ltr,rtl|}${2:;}$0",
+  "name": "direction: ltr/rtl",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "direction"
+}

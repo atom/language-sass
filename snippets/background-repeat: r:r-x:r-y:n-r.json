@@ -1,0 +1,6 @@
+{
+  "content": "background-repeat:${TM_CSS_SPACE}${1|repeat,repeat-x,repeat-y,no-repeat|}${2:;}$0",
+  "name": "background-repeat: r/r-x/r-y/n-r",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

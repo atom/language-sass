@@ -1,0 +1,7 @@
+{
+  "name": "Symbol List: Variable declaration",
+  "scope": "source.sass meta.set.variable variable, source.css.scss meta.set.variable variable",
+  "settings": {
+    "showInSymbolList": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "content": "text-shadow:${TM_CSS_SPACE}none${1:;}$0",
+  "name": "text-shadow: none",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "text"
+}

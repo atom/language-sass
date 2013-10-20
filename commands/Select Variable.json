@@ -1,0 +1,14 @@
+{
+  "beforeRunningCommand": "nop",
+  "command": "#!/usr/bin/env ruby\n\nrequire ENV['TM_BUNDLE_SUPPORT'] + '/lib/env'\n\nTextMate.require_env_var 'TM_COMPASS_PATH'\n\nCompass::Writer::complete(Compass::Reader::load_variables, (CURRENT_WORD || '').strip)\n",
+  "fallbackInput": "word",
+  "input": "word",
+  "inputFormat": "text",
+  "keyEquivalent": "~@k",
+  "name": "Select Variable",
+  "outputCaret": "afterOutput",
+  "outputFormat": "html",
+  "outputLocation": "discard",
+  "scope": "source.css.scss",
+  "version": "2"
+}

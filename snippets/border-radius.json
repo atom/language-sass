@@ -1,0 +1,6 @@
+{
+  "content": "@mixin border-radius(\\$r: 3px) {\n\t-moz-border-radius: \\$r;\n\t-webkit-border-radius: \\$r;\n\tborder-radius: \\$r;\n\n\t-moz-background-clip: padding;\n\t-webkit-background-clip: padding-box;\n\tbackground-clip: padding-box;\n}",
+  "name": "border-radius",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

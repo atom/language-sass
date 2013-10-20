@@ -1,0 +1,6 @@
+{
+  "content": "background-position:${TM_CSS_SPACE}${1|top left,top center,top right,center left,center center,center right,bottom left,bottom center,bottom right,x-% y-%,x-pos y-pos|}${2:;}$0",
+  "name": "background-position: position",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "background"
+}

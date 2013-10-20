@@ -1,0 +1,15 @@
+{
+  "beforeRunningCommand": "nop",
+  "command": "#!/usr/bin/env bash\n[[ -f \"${TM_SUPPORT_PATH}/lib/bash_init.sh\" ]] && . \"${TM_SUPPORT_PATH}/lib/bash_init.sh\"\n\nrequire_cmd sass-convert\n\necho \"$TM_SELECTED_TEXT\" | sass-convert --from sass --to sass --dasherize",
+  "fallbackInput": "word",
+  "input": "selection",
+  "inputFormat": "text",
+  "keyEquivalent": "^~@c",
+  "name": "Cleanup SASS",
+  "output": "replaceSelectedText",
+  "outputCaret": "afterOutput",
+  "outputFormat": "html",
+  "outputLocation": "discard",
+  "scope": "source.sass",
+  "version": 2
+}

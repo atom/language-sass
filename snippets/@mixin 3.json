@@ -1,0 +1,6 @@
+{
+  "content": "//\n// @TODO: Add docs to $1!\n//\n@mixin ${1:mixin-name}${2:(${3:\\$params})} {\n  $0\n}",
+  "name": "@mixin",
+  "scope": "source.css.scss",
+  "tabTrigger": "mixin"
+}

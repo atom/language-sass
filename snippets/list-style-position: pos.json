@@ -1,0 +1,6 @@
+{
+  "content": "list-style-position:${TM_CSS_SPACE}${1|inside,outside|}${2:;}$0",
+  "name": "list-style-position: pos",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "list"
+}

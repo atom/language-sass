@@ -1,0 +1,6 @@
+{
+  "content": "@import \"compass\";$0",
+  "name": "compass",
+  "scope": "source.css.scss",
+  "tabTrigger": "import"
+}

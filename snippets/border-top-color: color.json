@@ -1,0 +1,6 @@
+{
+  "content": "border-top-color:${TM_CSS_SPACE}#${1:999}${2:;}$0",
+  "name": "border-top-color: color",
+  "scope": "source.sass, source.css.scss",
+  "tabTrigger": "border"
+}
