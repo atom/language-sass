@@ -1,6 +1,6 @@
 {
   "name": "language-sass",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "SASS/SCSS language support in Atom",
   "engines": {
     "atom": "*",
