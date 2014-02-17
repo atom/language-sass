@@ -1,5 +1,5 @@
 {
-  "source.sass meta.property-value, source.css.scss meta.property-value": {
+  ".source.sass .meta.property-value, .source.css.scss .meta.property-value": {
     "editor": {
       "completions": [
         "absolute",
