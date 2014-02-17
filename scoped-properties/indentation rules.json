@@ -1,0 +1,8 @@
+{
+  "source.sass, source.css.scss": {
+    "editor": {
+      "increaseIndentPattern": "(^.*\\{[^}]*$)",
+      "decreaseIndentPattern": "^\\s*\\}"
+    }
+  }
+}

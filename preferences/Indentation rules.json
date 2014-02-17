@@ -1,8 +1,0 @@
-{
-  "name": "Indentation rules",
-  "scope": "source.sass, source.css.scss",
-  "settings": {
-    "decreaseIndentPattern": "^\\s*\\}",
-    "increaseIndentPattern": "(^.*\\{[^}]*$)"
-  }
-}
