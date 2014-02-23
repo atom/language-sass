@@ -1,6 +1,0 @@
-{
-  "content": "@import \"blueprint\";$0",
-  "name": "blueprint",
-  "scope": "source.css.scss",
-  "tabTrigger": "import"
-}

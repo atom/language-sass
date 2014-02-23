@@ -1,6 +1,0 @@
-{
-  "content": "text-indent:${TM_CSS_SPACE}${1:10}px${2:;}$0",
-  "name": "text-indent: length",
-  "scope": "source.sass, source.css.scss",
-  "tabTrigger": "text"
-}

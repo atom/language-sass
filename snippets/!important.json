@@ -1,6 +1,0 @@
-{
-  "content": "!important${1:;}$0",
-  "name": "!important",
-  "scope": "source.sass, source.css.scss",
-  "tabTrigger": "!"
-}

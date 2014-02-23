@@ -1,6 +1,0 @@
-{
-  "content": "@include ${0};",
-  "name": "@Include",
-  "scope": "source.css.scss",
-  "tabTrigger": "include"
-}

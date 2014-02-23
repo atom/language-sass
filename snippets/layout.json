@@ -1,6 +1,0 @@
-{
-  "content": "@import \"compass/layout\";$0",
-  "name": "layout",
-  "scope": "source.css.scss",
-  "tabTrigger": "import"
-}

@@ -1,6 +1,0 @@
-{
-  "content": "@import \"$0\";",
-  "name": "@import",
-  "scope": "source.css.scss",
-  "tabTrigger": "import"
-}

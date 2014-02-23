@@ -1,7 +1,0 @@
-{
-  ".source.sass, .source.css.scss": {
-    "editor": {
-      "commentStart": "// "
-    }
-  }
-}
