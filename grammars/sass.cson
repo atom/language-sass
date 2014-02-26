@@ -4,7 +4,7 @@
 ]
 'foldingStartMarker': '^\\s*([-%#\\:\\.\\w\\=].*)\\s$'
 'foldingStopMarker': '^\\s*$'
-'name': 'SASS'
+'name': 'Sass'
 'patterns': [
   {
     'begin': '^(\\!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'

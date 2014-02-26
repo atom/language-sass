@@ -22,7 +22,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 --------------------------------------------------------------------
 
 This package was derived from a TextMate bundle located at
-https://github.com/alexsancho/SASS.tmbundle and distributed under the following
+https://github.com/alexsancho/Sass.tmbundle and distributed under the following
 license, located in `LICENSE.md`:
 
 Copyright (c) 2012 Alex Sancho, http://alexsancho.name/
