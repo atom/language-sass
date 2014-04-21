@@ -74,7 +74,7 @@
         'name': 'variable.other.sass'
       '3':
         'name': 'invalid.illegal.punctuation.sass'
-    'match': '^\\s*(@extend)\\s+([.*&#%a-zA-Z][:.*&#a-zA-Z]*)\\s*(;)?\\s*$'
+    'match': '^\\s*(@extend)\\s+([.*&#%a-zA-Z][-:.*&#a-zA-Z]*)\\s*(;)?\\s*$'
     'name': 'meta.function.extend.sass'
   }
   {
