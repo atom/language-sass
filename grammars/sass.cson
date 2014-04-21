@@ -1,10 +1,10 @@
-'comment': ''
+'scopeName': 'source.sass'
+'name': 'Sass'
 'fileTypes': [
   'sass'
 ]
 'foldingStartMarker': '^\\s*([-%#\\:\\.\\w\\=].*)\\s$'
 'foldingStopMarker': '^\\s*$'
-'name': 'Sass'
 'patterns': [
   {
     'begin': '^(\\!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
@@ -430,4 +430,3 @@
         'name': 'constant.character.escape.sass'
       }
     ]
-'scopeName': 'source.sass'

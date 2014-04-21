@@ -1,11 +1,11 @@
-'comment': 'Sass Version 2 Grammar by Mario "Kuroir" Ricalde (http://kuroir.com)'
+'scopeName': 'source.css.scss'
+'name': 'SCSS'
 'fileTypes': [
   'scss'
   'css.scss'
 ]
 'foldingStartMarker': '\\{\\s*$'
 'foldingStopMarker': '^\\s*\\}'
-'name': 'SCSS'
 'patterns': [
   {
     'include': '#variable_setting'
@@ -1063,4 +1063,3 @@
         'name': 'variable.scss'
     'match': '\\s*(\\$[A-Za-z0-9_-]+\\b)\\s*'
     'name': 'variable.scss'
-'scopeName': 'source.css.scss'
