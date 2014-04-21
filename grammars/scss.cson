@@ -957,7 +957,7 @@
     'captures':
       '1':
         'name': 'punctuation.definition.entity.css'
-    'match': '(:+)\\b(after|before|first-letter|first-line|selection)\\b'
+    'match': '(:+)((-(moz|webkit|ms)-)?(after|before|first-letter|first-line|selection))\\b'
     'name': 'entity.other.attribute-name.pseudo-element.css'
   'selectors':
     'comment': 'Stuff for Selectors.'
