@@ -345,15 +345,13 @@
   'at_rule_media':
     'patterns': [
       {
-        'begin': '^\\s*((@)media)(?=.*?\\{)'
+        'begin': '^\\s*((@)media)(\\s+|$)'
+        'end': '\\s*(?=\\{)'
         'captures':
           '1':
             'name': 'keyword.control.at-rule.media.scss'
           '2':
             'name': 'punctuation.definition.keyword.scss'
-          '3':
-            'name': 'support.constant.media.scss'
-        'end': '\\s*(?=\\{)'
         'name': 'meta.at-rule.media.scss'
         'patterns': [
           {
