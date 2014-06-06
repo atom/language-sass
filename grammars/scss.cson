@@ -945,6 +945,9 @@
         'name': 'punctuation.definition.entity.scss'
     'match': '(\\%)[a-zA-Z0-9_-]+'
     'name': 'entity.other.attribute-name.placeholder.scss'
+  'parent_selector_suffix':
+    'match': '(?<=&)[a-zA-Z0-9_-]+'
+    'name': 'entity.other.attribute-name.parent-selector-suffix.scss'
   'selector_pseudo_class':
     'captures':
       '1':
@@ -986,6 +989,9 @@
       }
       {
         'include': '#selector_placeholder'
+      }
+      {
+        'include': '#parent_selector_suffix'
       }
     ]
   'string_double':
