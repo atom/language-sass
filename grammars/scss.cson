@@ -3,6 +3,8 @@
 'fileTypes': [
   'scss'
   'css.scss'
+  'css.scss.erb'
+  'scss.erb'
 ]
 'foldingStartMarker': '\\{\\s*$'
 'foldingStopMarker': '^\\s*\\}'
