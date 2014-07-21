@@ -2,6 +2,7 @@
 'name': 'Sass'
 'fileTypes': [
   'sass'
+  'sass.erb'
 ]
 'foldingStartMarker': '^\\s*([-%#\\:\\.\\w\\=].*)\\s$'
 'foldingStopMarker': '^\\s*$'
