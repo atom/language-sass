@@ -69,7 +69,4 @@
     'body': '@if ${1:conditions} {\n\t$0\n}'
   '@import':
     'prefix': 'import'
-    'body': '@import "$0";'
-  'blueprint':
-    'prefix': 'import'
-    'body': '@import "blueprint";$0'
+    'body': '@import "$1";$0'
