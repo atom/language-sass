@@ -57,6 +57,9 @@
   {
     'include': '#at_rule_keyframes'
   }
+  {
+    'include': '#at_rule_at_root'
+  }
 ]
 'repository':
   'at_rule__':
@@ -481,6 +484,26 @@
       }
       {
         'include': '#property_values'
+      }
+    ]
+  'at_rule_at_root':
+    'begin': '\\s*((@)(at-root))(\\s+|$)'
+    'end': '\\s*(?=\\{)'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.at-rule.at-root.scss'
+      '2':
+        'name': 'punctuation.definition.keyword.scss'
+    'name': 'meta.at-rule.at-root.scss'
+    'patterns': [
+      {
+        'include': '#function_attributes'
+      }
+      {
+        'include': '#functions'
+      }
+      {
+        'include': '#selectors'
       }
     ]
   'at_rule_warn':
