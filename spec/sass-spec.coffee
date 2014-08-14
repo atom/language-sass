@@ -24,3 +24,7 @@ describe 'SCSS grammar', ->
       {tokens} = grammar.tokenizeLine 'very-custom { color: red; }'
 
       expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+
+      {tokens} = grammar.tokenizeLine 'very-very-custom { color: red; }'
+
+      expect(tokens[0]).toEqual value: 'very-very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
