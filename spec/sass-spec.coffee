@@ -43,6 +43,7 @@ describe 'SCSS grammar', ->
       lines = grammar.tokenizeLines """
         body {
           border-width: 2;
+          font-size : 2;
         }
       """
 
@@ -51,3 +52,10 @@ describe 'SCSS grammar', ->
       expect(lines[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.key-value.scss']
       expect(lines[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
       expect(lines[1][4]).toEqual value: '2', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+
+      expect(lines[2][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(lines[2][1]).toEqual value: 'font-size', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(lines[2][2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(lines[2][3]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.key-value.scss']
+      expect(lines[2][4]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
+      expect(lines[2][5]).toEqual value: '2', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
