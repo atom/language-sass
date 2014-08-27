@@ -35,6 +35,11 @@ describe 'SCSS grammar', ->
       expect(lines[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
       expect(lines[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
 
+  describe 'vendor properties', ->
+    it 'tokenizes the browser prefix', ->
+      {tokens} = grammar.tokenizeLine 'body { -webkit-box-shadow: none; }'
+      expect(tokens[0]).toEqual value: 'body', scopes: ['source.css.scss', 'entity.name.tag.scss']
+      expect(tokens[4]).toEqual value: '-webkit-box-shadow', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
 
   describe 'custom elements', ->
     it 'tokenizes them as tags', ->
