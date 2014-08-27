@@ -61,6 +61,7 @@ describe 'SCSS grammar', ->
         body {
           border-width: 2;
           font-size : 2;
+          background-image  : none;
         }
       """
 
@@ -76,3 +77,10 @@ describe 'SCSS grammar', ->
       expect(lines[2][3]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.key-value.scss']
       expect(lines[2][4]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
       expect(lines[2][5]).toEqual value: '2', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+
+      expect(lines[3][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(lines[3][1]).toEqual value: 'background-image', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(lines[3][2]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(lines[3][3]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.key-value.scss']
+      expect(lines[3][4]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
+      expect(lines[3][5]).toEqual value: 'none', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
