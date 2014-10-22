@@ -439,34 +439,17 @@
   'at_rule_page':
     'patterns': [
       {
-        'begin': '^\\s*((@)page) ([\\w-]*)'
+        'begin': '^\\s*((@)page)(?=:|\\s)\\s*([-:\\w]*)'
         'captures':
           '1':
-            'name': 'keyword.control.at-rule.fontface.scss'
+            'name': 'keyword.control.at-rule.page.scss'
           '2':
             'name': 'punctuation.definition.keyword.scss'
           '3':
             'name': 'entity.name.function.scss'
         'comment': 'Page with Attributes'
-        'end': ''
-        'name': 'meta.at-rule.fontface.scss'
-        'patterns': [
-          {
-            'include': '#function_attributes'
-          }
-        ]
-      }
-      {
-        'captures':
-          '1':
-            'name': 'keyword.control.at-rule.mixin.scss'
-          '2':
-            'name': 'punctuation.definition.keyword.scss'
-          '3':
-            'name': 'entity.name.function.scss'
-        'comment': 'Simple Page'
-        'match': '^\\s*((@)page) ([\\w-]{1,})'
-        'name': 'meta.at-rule.mixin.scss'
+        'end': '\\s*(?=\\{)'
+        'name': 'meta.at-rule.page.scss'
       }
     ]
   'at_rule_return':
