@@ -405,26 +405,57 @@
       }
     ]
   'at_rule_namespace':
-    'begin': '\\s*((@)namespace) ([\\w-]*)\\s*'
-    'captures':
-      '1':
-        'name': 'keyword.control.at-rule.import.scss'
-      '2':
-        'name': 'punctuation.definition.keyword.scss'
-      '3':
-        'name': 'entity.name.function.scss'
-    'comment': 'Namespace'
-    'end': '\\s*((;)|(?=\\}))$'
-    'name': 'meta.at-rule.namespace.scss'
     'patterns': [
       {
-        'include': '#variable'
+        'begin': '\\s*((@)namespace)\\s*(?=url)'
+        'captures':
+          '1':
+            'name': 'keyword.control.at-rule.namespace.scss'
+          '2':
+            'name': 'punctuation.definition.keyword.scss'
+          '3':
+            'name': 'support.function.misc.scss'
+        'comment': 'Namespace without prefix'
+        'end': '\\s*((?=;|$))'
+        'name': 'meta.at-rule.namespace.scss'
+        'patterns': [
+          {
+            'include': '#property_values'
+          }
+          {
+            'include': '#string_single'
+          }
+          {
+            'include': '#string_double'
+          }
+        ]
       }
       {
-        'include': '#string_single'
-      }
-      {
-        'include': '#string_double'
+        'begin': '\\s*((@)namespace) ([\\w-]*)\\s*'
+        'captures':
+          '1':
+            'name': 'keyword.control.at-rule.namespace.scss'
+          '2':
+            'name': 'punctuation.definition.keyword.scss'
+          '3':
+            'name': 'entity.name.function.scss'
+        'comment': 'Namespace'
+        'end': '\\s*((?=;|$))'
+        'name': 'meta.at-rule.namespace.scss'
+        'patterns': [
+          {
+            'include': '#variables'
+          }
+          {
+            'include': '#property_values'
+          }
+          {
+            'include': '#string_single'
+          }
+          {
+            'include': '#string_double'
+          }
+        ]
       }
     ]
   'at_rule_option':
