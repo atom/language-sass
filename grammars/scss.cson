@@ -407,7 +407,7 @@
   'at_rule_namespace':
     'patterns': [
       {
-        'begin': '\\s*((@)namespace)\\s*(?=url)'
+        'begin': '\\s*((@)namespace)\\s+(?=url)'
         'captures':
           '1':
             'name': 'keyword.control.at-rule.namespace.scss'
