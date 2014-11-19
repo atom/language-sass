@@ -1,3 +1,6 @@
+'.source.sass':
+  'editor':
+    'autoIndentOnPaste': false
 '.source.sass, .source.css.scss':
   'editor':
     'commentStart': '// '
