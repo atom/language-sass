@@ -284,6 +284,9 @@
       {
         'include': '#functions'
       }
+      {
+        'include': '#comment_line'
+      }
     ]
   'at_rule_include':
     'patterns': [
