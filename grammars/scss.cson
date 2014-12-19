@@ -997,7 +997,7 @@
     'captures':
       '1':
         'name': 'punctuation.definition.entity.css'
-    'match': '(:)\\b(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-child()|nth-last-child()|nth-of-type()|nth-last-of-type()|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?'
+    'match': '(:)\\b(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-child()|nth-last-child()|nth-of-type()|nth-last-of-type()|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([-+0-9A-Za-z]*\\))?'
     'name': 'entity.other.attribute-name.pseudo-class.css'
   'selector_pseudo_element':
     'captures':
