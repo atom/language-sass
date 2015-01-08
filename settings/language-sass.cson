@@ -291,6 +291,7 @@
       'pre'
       'pre-line'
       'pre-wrap'
+      'preserve-3d'
       'rect()'
       'relative'
       'repeat'
