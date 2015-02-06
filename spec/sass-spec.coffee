@@ -9,8 +9,13 @@ describe 'SCSS grammar', ->
       grammar = atom.grammars.grammarForScopeName('source.css.scss')
 
   it 'parses the grammar', ->
-    expect(grammar).toBeTruthy()
-    expect(grammar.scopeName).toBe 'source.css.scss'
+    sassGrammar = atom.grammars.grammarForScopeName('source.sass')
+    expect(sassGrammar).toBeTruthy()
+    expect(sassGrammar.scopeName).toBe 'source.sass'
+
+    scssGrammar = atom.grammars.grammarForScopeName('source.css.scss')
+    expect(scssGrammar).toBeTruthy()
+    expect(scssGrammar.scopeName).toBe 'source.css.scss'
 
   describe '@at-root', ->
     it 'tokenizes it correctly', ->
