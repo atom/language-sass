@@ -6,7 +6,7 @@
     'commentStart': '// '
     'increaseIndentPattern': '(^.*\\{[^}]*$)'
     'decreaseIndentPattern': '^\\s*\\}'
-'.source.sass .meta.property-list, .source.css.scss .meta.property-list':
+'.source.sass .meta.selector, .source.css.scss .meta.property-list':
   'editor':
     'completions': [
       'azimuth'
