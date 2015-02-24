@@ -196,7 +196,7 @@
     'name': 'meta.at-rule.for.scss'
     'patterns': [
       {
-        'match': '(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|from|through)'
+        'match': '(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|from|to|through)'
         'name': 'keyword.control.operator'
       }
       {
