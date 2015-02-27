@@ -327,27 +327,36 @@
           '4':
             'name': 'entity.name.function.scss'
         'comment': 'Keyframes with Attributes'
-        'end': '\\s*(?=\\{)'
+        'end': '(?<=\\})(?:\\s*\\n)?'
         'name': 'meta.at-rule.keyframes.scss'
         'patterns': [
           {
-            'include': '#function_attributes'
+            'begin': '(\\{)'
+            'end': '(\\})'
+            'captues':
+              '1':
+                'name': 'punctuation.section.keyframes.scss'
+            'beginCaptures':
+              '1':
+                'name': 'punctuation.section.keyframes.begin.scss'
+            'endCaptures':
+              '1':
+                'name': 'punctuation.section.keyframes.end.scss'
+            'name': 'meta.keyframes.scss'
+            'patterns': [
+              {
+                'match': '(\\b(\\d+%|from\\b|to\\b))'
+                'name': 'entity.other.attribute-name.scss'
+              }
+              {
+                'include': '#interpolation'
+              }
+              {
+                'include': '#property_list'
+              }
+            ]
           }
         ]
-      }
-      {
-        'captures':
-          '1':
-            'name': 'keyword.control.at-rule.keyframes.scss'
-          '2':
-            'name': 'punctuation.definition.keyword.scss'
-          '3':
-            'name': 'punctuation.definition.keyword.scss'
-          '4':
-            'name': 'entity.name.function.scss'
-        'comment': 'Simple Keyframe'
-        'match': '^\\s*((@)(\\-[\\w\\-]*\\-)?keyframes\\b)\\s*([\\w-]*)'
-        'name': 'meta.at-rule.keyframes.scss'
       }
     ]
   'at_rule_media':
