@@ -327,20 +327,17 @@
           '4':
             'name': 'entity.name.function.scss'
         'comment': 'Keyframes with Attributes'
-        'end': '(?<=\\})(?:\\s*\\n)?'
+        'end': '(?<=\\})(?:\\s*$)?'
         'name': 'meta.at-rule.keyframes.scss'
         'patterns': [
           {
-            'begin': '(\\{)'
-            'end': '(\\})'
-            'captues':
-              '1':
-                'name': 'punctuation.section.keyframes.scss'
+            'begin': '\\{'
+            'end': '\\}'
             'beginCaptures':
-              '1':
+              '0':
                 'name': 'punctuation.section.keyframes.begin.scss'
             'endCaptures':
-              '1':
+              '0':
                 'name': 'punctuation.section.keyframes.end.scss'
             'name': 'meta.keyframes.scss'
             'patterns': [
