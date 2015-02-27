@@ -2,9 +2,9 @@
   '!important':
     'prefix': '!'
     'body': '!important${1:;}$0'
-  'background-color: hex':
+  'background: hex':
     'prefix': 'background'
-    'body': 'background-color: #${1:DDD};$0'
+    'body': 'background: #${1:DDD};$0'
   'clear: value':
     'prefix': 'clear'
     'body': 'clear: ${1:both};$0'
