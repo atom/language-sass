@@ -170,7 +170,7 @@
   'at_rule_fontface':
     'patterns': [
       {
-        'begin': '^\\s*((@)font-face)\\s*(?=\\{)'
+        'begin': '^\\s*((@)font-face\\b)'
         'beginCaptures':
           '1':
             'name': 'keyword.control.at-rule.fontface.scss'
@@ -196,7 +196,7 @@
     'name': 'meta.at-rule.for.scss'
     'patterns': [
       {
-        'match': '(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|from|through)'
+        'match': '(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|from|to|through)'
         'name': 'keyword.control.operator'
       }
       {
