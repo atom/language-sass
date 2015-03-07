@@ -530,7 +530,7 @@
       }
     ]
   'at_rule_warn':
-    'begin': '\\s*((@)(warn|debug)\\b)\\s*'
+    'begin': '\\s*((@)(warn|debug|error)\\b)\\s*'
     'captures':
       '1':
         'name': 'keyword.control.warn.scss'
