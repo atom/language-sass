@@ -15,6 +15,12 @@
   '@import':
     'prefix': 'import'
     'body': '@import "$0"'
+  '@mixin':
+    'prefix': 'mixin'
+    'body': '@mixin ${1:name} {\n\t$0\n}'
+  '@function':
+    'prefix': 'func'
+    'body': '@function ${1:name}(${2:arguments}) {\n\t@return ${3:returnValue};\n}'
 '.source.css.scss':
   '@Include':
     'prefix': 'include'
@@ -28,3 +34,9 @@
   '@import':
     'prefix': 'import'
     'body': '@import "$1";$0'
+  '@mixin':
+    'prefix': 'mixin'
+    'body': '@mixin ${1:name} {\n\t$0\n}'
+  '@function':
+    'prefix': 'func'
+    'body': '@function ${1:name}(${2:arguments}) {\n\t@return ${3:returnValue};\n}'
