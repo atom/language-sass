@@ -6,3 +6,16 @@
     'commentStart': '// '
     'increaseIndentPattern': '(^.*\\{[^}]*$)'
     'decreaseIndentPattern': '^\\s*\\}'
+    'completions':
+      'mixin':
+        'selector': '.meta.mixin .name, .meta.at-rule.include .function'
+        'typePriority': 4
+      'function':
+        'selector': '.entity.name.function, .support.function'
+        'typePriority': 3
+      'variable':
+        'selector': '.variable'
+        'typePriority': 2
+      'selector':
+        'selector': '.attribute-name.id, .attribute-name.class'
+        'typePriority': 1
