@@ -6,7 +6,8 @@
     'commentStart': '// '
     'increaseIndentPattern': '(^.*\\{[^}]*$)'
     'decreaseIndentPattern': '^\\s*\\}'
-    'completions':
+  'autocomplete':
+    'symbols':
       'mixin':
         'selector': '.meta.mixin .name, .meta.at-rule.include .function'
         'typePriority': 4
