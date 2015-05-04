@@ -1,4 +1,4 @@
-'.source.sass, .source.css.scss':
+'.source.sass':
   '!important':
     'prefix': '!'
     'body': '!important${1:;}$0'
@@ -31,9 +31,6 @@
   '@if':
     'prefix': 'if'
     'body': '@if ${1:conditions} {\n\t$0\n}'
-  '@import':
-    'prefix': 'import'
-    'body': '@import "$1";$0'
   '@mixin':
     'prefix': 'mixin'
     'body': '@mixin ${1:name} {\n\t$0\n}'
