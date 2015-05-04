@@ -43,215 +43,269 @@
     'prefix': 'red'
     'body': 'red(${1:$color})'
     'description': "Gets the red component of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'green($color)':
     'prefix': 'green'
     'body': 'green(${1:$color})'
     'description': "Gets the green component of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'blue($color)':
     'prefix': 'blue'
     'body': 'blue(${1:$color})'
     'description': "Gets the blue component of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'mix($color1, $color2, [$weight])':
     'prefix': 'mix'
     'body': 'mix(${1:$color1}, ${2:$color2}, ${3:[$weight]})'
     'description': "Mixes two colors together."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'hue($color)':
     'prefix': 'hue'
     'body': 'hue(${1:$color})'
     'description': "Gets the hue component of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'saturation($color)':
     'prefix': 'saturation'
     'body': 'saturation(${1:$color})'
     'description': "Gets the saturation component of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'lightness($color)':
     'prefix': 'lightness'
     'body': 'lightness(${1:$color})'
     'description': "Gets the lightness component of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'adjust-hue($color, $degrees)':
     'prefix': 'adjust-hue'
     'body': 'adjust-hue(${1:$color}, ${2:$degrees})'
     'description': "Changes the hue of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'lighten($color, $amount)':
     'prefix': 'lighten'
     'body': 'lighten(${1:$color}, ${2:$amount})'
     'description': "Makes a color lighter."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'darken($color, $amount)':
     'prefix': 'darken'
     'body': 'darken(${1:$color}, ${2:$amount})'
     'description': "Makes a color darker."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'saturate($color, $amount)':
     'prefix': 'saturate'
     'body': 'saturate(${1:$color}, ${2:$amount})'
     'description': "Makes a color more saturated."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'desaturate($color, $amount)':
     'prefix': 'desaturate'
     'body': 'desaturate(${1:$color}, ${2:$amount})'
     'description': "Makes a color less saturated."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'grayscale($color)':
     'prefix': 'grayscale'
     'body': 'grayscale(${1:$color})'
     'description': "Converts a color to grayscale."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'complement($color)':
     'prefix': 'complement'
     'body': 'complement(${1:$color})'
     'description': "Returns the complement of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'invert($color)':
     'prefix': 'invert'
     'body': 'invert(${1:$color})'
     'description': "Returns the inverse of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'alpha($color)':
     'prefix': 'alpha'
     'body': 'alpha(${1:$color})'
     'description': "Gets the alpha component (opacity) of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'fade-in($color, $amount)':
     'prefix': 'fade-in'
     'body': 'fade-in(${1:$color}, ${2:$amount})'
     'description': "Makes a color more opaque."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'opacify($color, $amount)':
     'prefix': 'opacify'
     'body': 'opacify(${1:$color}, ${2:$amount})'
     'description': "Makes a color more opaque."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'fade-out($color, $amount)':
     'prefix': 'fade-out'
     'body': 'fade-out(${1:$color}, ${2:$amount})'
     'description': "Makes a color more transparent."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'transparentize($color, $amount)':
     'prefix': 'transparentize'
     'body': 'transparentize(${1:$color}, ${2:$amount})'
     'description': "Makes a color more transparent."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'adjust-color()':
     'prefix': 'adjust-color'
     'body': 'adjust-color(${1:$color}, ${2:[$red]}, ${3:[$green]}, ${4:[$blue]}, ${5:[$hue]}, ${6:[$saturation]}, ${7:[$lightness]}, ${8:[$alpha]})'
     'description': "Increases or decreases one or more components of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'scale-color()':
     'prefix': 'scale-color'
     'body': 'scale-color(${1:$color}, ${2:[$red]}, ${3:[$green]}, ${4:[$blue]}, ${5:[$saturation]}, ${6:[$lightness]}, ${7:[$alpha]})'
     'description': "Fluidly scales one or more properties of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'change-color()':
     'prefix': 'change-color'
     'body': 'change-color(${1:$color}, ${2:[$red]}, ${3:[$green]}, ${4:[$blue]}, ${5:[$hue]}, ${6:[$saturation]}, ${7:[$lightness]}, ${8:[$alpha]})'
     'description': "Changes one or more properties of a color."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'unquote($string)':
     'prefix': 'unquote'
     'body': 'unquote(${1:$string})'
     'description': "Removes quotes from a string."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'quote($string)':
     'prefix': 'quote'
     'body': 'quote(${1:$string})'
     'description': "Adds quotes to a string."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'str-length($string)':
     'prefix': 'str-length'
     'body': 'str-length(${1:$string})'
     'description': "Returns the number of characters in a string."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'str-insert($string)':
     'prefix': 'str-insert'
     'body': 'str-insert(${1:$string}, $insert, $index)'
     'description': "Inserts $insert into $string at $index."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'str-index($string, $substring)':
     'prefix': 'str-index'
     'body': 'str-index(${1:$string}, $substring)'
     'description': "Returns the index of the first occurance of $substring in $string."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'str-slice($string, $start-at, [$end-at])':
     'prefix': 'str-slice'
     'body': 'str-slice(${1:$string}, $start-at, [$end-at])'
     'description': "Extracts a substring from ${1:$string}."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'to-upper-case($string)':
     'prefix': 'to-upper-case'
     'body': 'to-upper-case(${1:$string})'
     'description': "Converts a string to upper case."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'to-lower-case($string)':
     'prefix': 'to-lower-case'
     'body': 'to-lower-case(${1:$string})'
     'description': "Converts a string to lower case."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'percentage($number)':
     'prefix': 'percentage'
     'body': 'percentage(${1:$number})'
     'description': "Converts a unitless number to a percentage."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'round($number)':
     'prefix': 'round'
     'body': 'round(${1:$number})'
     'description': "Rounds a number to the nearest whole number."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'ceil($number)':
     'prefix': 'ceil'
     'body': 'ceil(${1:$number})'
     'description': "Rounds a number up to the next whole number."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'floor($number)':
     'prefix': 'floor'
     'body': 'floor(${1:$number})'
     'description': "Rounds a number down to the previous whole number."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'abs($number)':
     'prefix': 'abs'
     'body': 'abs(${1:$number})'
     'description': "Returns the absolute value of a number."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'min($numbers...)':
     'prefix': 'min'
     'body': 'min(${1:$numbers...})'
     'description': "Finds the minimum of several numbers."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'max($numbers...)':
     'prefix': 'max'
     'body': 'max(${1:$numbers...})'
     'description': "Finds the maximum of several numbers."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'random([$limit])':
     'prefix': 'random'
     'body': 'random(${1:[$limit]})'
     'description': "Returns a random number."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'length($list)':
     'prefix': 'length'
     'body': 'length(${1:$list})'
     'description': "Returns the length of a list."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'nth($list, $n)':
     'prefix': 'nth'
     'body': 'nth(${1:$list}, ${2:$n})'
     'description': "Returns a specific item in a list."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'set-nth($list, $n, $value)':
     'prefix': 'set-nth'
     'body': 'set-nth(${1:$list}, ${2:$n}, $value)'
     'description': "Replaces the nth item in a list."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'join($list1, $list2, [$separator])':
     'prefix': 'join'
     'body': 'join(${1:$list1}, ${2:$list2}, ${3:[$separator]})'
     'description': "Joins together two lists into one."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'append($list1, $val, [$separator])':
     'prefix': 'append'
     'body': 'append(${1:$list1}, ${2:$val}, ${3:[$separator]})'
     'description': "Appends a single value onto the end of a list."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'zip($lists...)':
     'prefix': 'zip'
     'body': 'zip(${1:$lists...})'
     'description': "Combines several lists into a single multidimensional list."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'index($list, $value)':
     'prefix': 'index'
     'body': 'index(${1:$list}, ${2:$value})'
     'description': "Returns the position of a value within a list."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'list-separator($list)':
     'prefix': 'list-separator'
     'body': 'list-separator(${1:$list})'
     'description': "Returns the separator of a list."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'map-get($map, $key)':
     'prefix': 'map-get'
     'body': 'map-get(${1:$map}, $key)'
     'description': "Returns the value in a map associated with a given key."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'map-merge($map1, $map2)':
     'prefix': 'map-merge'
     'body': 'map-merge(${1:$map1}, ${2:$map2})'
     'description': "Merges two maps together into a new map."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'map-remove($map, $keys...)':
     'prefix': 'map-remove'
     'body': 'map-remove(${1:$map}, ${2:$keys...})'
     'description': "Returns a new map with keys removed."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'map-keys($map)':
     'prefix': 'map-keys'
     'body': 'map-keys(${1:$map})'
     'description': "Returns a list of all keys in a map."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'map-values($map)':
     'prefix': 'map-values'
     'body': 'map-values(${1:$map})'
     'description': "Returns a list of all values in a map."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'map-has-key($map, $key)':
     'prefix': 'map-has-key'
     'body': 'map-has-key(${1:$map}, ${2:$key})'
     'description': "Returns whether a map has a value associated with a given key."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
   'keywords($args)':
     'prefix': 'keywords'
     'body': 'keywords(${1:$args})'
     'description': "Returns the keywords passed to a function that takes variable arguments."
+    'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
