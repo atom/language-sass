@@ -28,6 +28,18 @@
           'suggestions': [{
             'type': 'function'
             'rightLabel': 'SCSS builtin'
+            'snippet': 'rgb(${1:$red}, ${2:$red}, ${3:$red})${4:;}$0'
+            'description': "Creates a Color from red (0-255), green (0-255), and blue (0-255) values."
+            'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
+          }, {
+            'type': 'function'
+            'rightLabel': 'SCSS builtin'
+            'snippet': 'rgba(${1:$red}, ${2:$red}, ${3:$red}, ${4:$alpha})${5:;}$0'
+            'description': "Creates a Color from red (0-255), green (0-255), blue (0-255), and alpha (0-1) values."
+            'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
+          }, {
+            'type': 'function'
+            'rightLabel': 'SCSS builtin'
             'snippet': 'red(${1:$color})${2:;}$0'
             'description': "Gets the red component of a color."
             'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
@@ -48,6 +60,18 @@
             'rightLabel': 'SCSS builtin'
             'snippet': 'mix(${1:$color1}, ${2:$color2}, ${3:[$weight]})${4:;}$0'
             'description': "Mixes two colors together."
+            'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
+          }, {
+            'type': 'function'
+            'rightLabel': 'SCSS builtin'
+            'snippet': 'hsl(${1:$hue}, ${2:$saturation}, ${3:$lightness})${4:;}$0'
+            'description': "Creates a Color from hue (0-360), saturation (0-100%), and lightness (0-100%) values."
+            'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
+          }, {
+            'type': 'function'
+            'rightLabel': 'SCSS builtin'
+            'snippet': 'hsla(${1:$hue}, ${2:$saturation}, ${3:$lightness}, ${4:$alpha})${5:;}$0'
+            'description': "Creates a Color from hue (0-360), saturation (0-100%), lightness (0-100%), and alpha (0-1) values."
             'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
           }, {
             'type': 'function'
