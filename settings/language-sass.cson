@@ -28,7 +28,7 @@
           'suggestions': [{
             'type': 'function'
             'rightLabel': 'SCSS builtin'
-            'snippet': 'rgb(${1:$red}, ${2:$red}, ${3:$red})${4:;}$0'
+            'snippet': 'rgb(${1:$red}, ${2:$green}, ${3:$blue})${4:;}$0'
             'description': "Creates a Color from red (0-255), green (0-255), and blue (0-255) values."
             'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
           }, {
@@ -382,13 +382,13 @@
           'suggestions': [{
             'type': 'function'
             'rightLabel': 'SASS builtin'
-            'snippet': 'rgb(${1:$red}, ${2:$red}, ${3:$red})$0'
+            'snippet': 'rgb(${1:$red}, ${2:$green}, ${3:$blue})$0'
             'description': "Creates a Color from red (0-255), green (0-255), and blue (0-255) values."
             'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
           }, {
             'type': 'function'
             'rightLabel': 'SASS builtin'
-            'snippet': 'rgba(${1:$red}, ${2:$red}, ${3:$red}, ${4:$alpha})$0'
+            'snippet': 'rgba(${1:$red}, ${2:$green}, ${3:$blue}, ${4:$alpha})$0'
             'description': "Creates a Color from red (0-255), green (0-255), blue (0-255), and alpha (0-1) values."
             'descriptionMoreURL': 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
           }, {
