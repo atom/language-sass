@@ -14,5 +14,8 @@
   },
   "bugs": {
     "url": "https://github.com/atom/language-sass/issues"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.9.7"
   }
 }
