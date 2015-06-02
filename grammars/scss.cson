@@ -369,10 +369,10 @@
         'name': 'meta.at-rule.media.scss'
         'patterns': [
           {
-            'include': '#function_attributes'
+            'include': '#property_values'
           }
           {
-            'include': '#functions'
+            'include': '#variable'
           }
           {
             'include': '#logical_operators'
@@ -382,6 +382,9 @@
           }
           {
             'include': '#media_types'
+          }
+          {
+            'include': '#property_names'
           }
         ]
       }
