@@ -776,6 +776,20 @@
         'name': 'invalid.illegal'
       }
     ]
+  'media_features':
+    'patterns': [
+      {
+        'match': '\\b(min-device-aspect-ratio|max-device-aspect-ratio|device-aspect-ratio|min-aspect-ratio|max-aspect-ratio|aspect-ratio|min-device-height|max-device-height|device-height|min-device-width|max-device-width|device-width|min-monochrome|max-monochrome|monochrome|min-color-index|max-color-index|color-index|min-color|max-color|color|orientation|scan|min-resolution|max-resolution|resolution|grid|min-width|max-width|width)\\b'
+        'name': 'support.type.property-name.media.css'
+      }
+    ]
+  'media_types':
+    'patterns': [
+      {
+        'match': '\\b(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\\b'
+        'name': 'support.constant.media.css'
+      }
+    ]
   'parameters':
     'patterns': [
       {
