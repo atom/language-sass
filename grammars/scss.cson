@@ -377,6 +377,12 @@
           {
             'include': '#logical_operators'
           }
+          {
+            'include': '#media_features'
+          }
+          {
+            'include': '#media_types'
+          }
         ]
       }
     ]
