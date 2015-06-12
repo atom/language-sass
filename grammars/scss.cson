@@ -359,7 +359,7 @@
   'at_rule_media':
     'patterns': [
       {
-        'begin': '^\\s*((@)media)(\\s+|$)'
+        'begin': '^\\s*((@)media\\b)\\s*'
         'end': '\\s*(?=\\{)'
         'captures':
           '1':
@@ -368,6 +368,10 @@
             'name': 'punctuation.definition.keyword.scss'
         'name': 'meta.at-rule.media.scss'
         'patterns': [
+          {
+            'match': '\\b(only)\\b'
+            'name': 'keyword.control.operator'
+          }
           {
             'include': '#property_values'
           }
