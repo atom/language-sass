@@ -359,7 +359,7 @@
   'at_rule_media':
     'patterns': [
       {
-        'begin': '^\\s*((@)media)(\\s+|$)'
+        'begin': '^\\s*((@)media\\b)\\s*'
         'end': '\\s*(?=\\{)'
         'captures':
           '1':
@@ -369,13 +369,26 @@
         'name': 'meta.at-rule.media.scss'
         'patterns': [
           {
-            'include': '#function_attributes'
+            'match': '\\b(only)\\b'
+            'name': 'keyword.control.operator'
           }
           {
-            'include': '#functions'
+            'include': '#property_values'
+          }
+          {
+            'include': '#variable'
           }
           {
             'include': '#logical_operators'
+          }
+          {
+            'include': '#media_features'
+          }
+          {
+            'include': '#media_types'
+          }
+          {
+            'include': '#property_names'
           }
         ]
       }
@@ -600,7 +613,7 @@
     'match': '(\\b(?i:arial|century|comic|courier|garamond|georgia|helvetica|impact|lucida|symbol|system|tahoma|times|trebuchet|utopia|verdana|webdings|sans-serif|serif|monospace)\\b)'
     'name': 'support.constant.font-name.scss'
   'constant_functions':
-    'begin': '([\\w-]+)\\s*(\\()'
+    'begin': '([\\w-]+)(\\()'
     'beginCaptures':
       '1':
         'name': 'support.function.misc.scss'
@@ -634,7 +647,7 @@
     'match': '\\!optional'
     'name': 'keyword.other.optional.scss'
   'constant_property_value':
-    'match': '\\b(absolute|all-scroll|always|armenian|auto|baseline|below|bidi-override|block|bold|bolder|both|bottom|break-all|break-word|butt|capitalize|center|char|circle|cjk-ideographic|col-resize|collapse|column-reverse|column|contain|cover|crosshair|currentColor|dashed|decimal-leading-zero|decimal|default|disabled|disc|distribute-all-lines|distribute-letter|distribute-space|distribute|dotted|double|e-resize|ellipsis|fill|fixed|flex-end|flex-start|flex|georgian|groove|hand|hebrew|help|hidden|hiragana-iroha|hiragana|horizontal|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline-flex|inline|inset|inside|inter-ideograph|inter-word|italic|justify|katakana-iroha|katakana|keep-all|left|lighter|line-edge|line-through|line|list-item|loose|lower-alpha|lower-greek|lower-latin|lower-roman|lowercase|lr-tb|ltr|medium|middle|move|n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|oblique|outset|outside|overline|pointer|preserve-3d|progress|relative|repeat-x|repeat-y|repeat|right|ridge|round|row-resize|row-reverse|row|rtl|s-resize|scroll|se-resize|separate|small-caps|solid|space-around|space-between|square|static|stretch|strict|super|sw-resize|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|table|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|underline|upper-alpha|upper-latin|upper-roman|uppercase|vertical-ideographic|vertical-text|visible|w-resize|wait|whitespace|wrap|wrap-reverse|zero|true|false|vertical|horizontal)\\b'
+    'match': '\\b(absolute|all-scroll|always|armenian|auto|baseline|below|bidi-override|block|bold|bolder|both|bottom|break-all|break-word|butt|capitalize|center|char|circle|cjk-ideographic|col-resize|collapse|column-reverse|column|contain|cover|crosshair|currentColor|dashed|decimal-leading-zero|decimal|default|disabled|disc|distribute-all-lines|distribute-letter|distribute-space|distribute|dotted|double|e-resize|ellipsis|fill|fixed|flex-end|flex-start|flex|georgian|groove|hand|hebrew|help|hidden|hiragana-iroha|hiragana|horizontal|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline-flex|inline|inset|inside|inter-ideograph|inter-word|italic|justify|katakana-iroha|katakana|keep-all|landscape|left|lighter|line-edge|line-through|line|list-item|loose|lower-alpha|lower-greek|lower-latin|lower-roman|lowercase|lr-tb|ltr|medium|middle|move|n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|null|oblique|outset|outside|overline|pointer|portrait|preserve-3d|progress|relative|repeat-x|repeat-y|repeat|right|ridge|round|row-resize|row-reverse|row|rtl|s-resize|scroll|se-resize|separate|small-caps|solid|space-around|space-between|square|static|stretch|strict|super|sw-resize|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|table|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|underline|upper-alpha|upper-latin|upper-roman|uppercase|vertical-ideographic|vertical-text|visible|w-resize|wait|whitespace|wrap|wrap-reverse|zero|true|false|vertical|horizontal)\\b'
     'name': 'support.constant.property-value.scss'
   'constant_rgb':
     'match': '(?<!scale3d\\(|translate3d\\(|rotate3d\\()(\\b0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\s*,\\s*)(0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\s*,\\s*)(0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\b)'
@@ -643,7 +656,7 @@
     'match': '\\b([0-9]{1,2}|100)\\s*%,\\s*([0-9]{1,2}|100)\\s*%,\\s*([0-9]{1,2}|100)\\s*%'
     'name': 'constant.other.color.rgb-percentage.scss'
   'constant_sass_functions':
-    'begin': '(headings|stylesheet-url|rgba?|hsla?|ie-hex-str|red|green|blue|alpha|opacity|hue|saturation|lightness|prefixed|prefix|-moz|-svg|-css2|-pie|-webkit|-ms|-o|-khtml|font-(?:files|url)|grid-image|image-(?:width|height|url|color)|sprites?|sprite-(?:map|map-name|file|url|position)|inline-(?:font-files|image)|opposite-position|grad-point|grad-end-position|color-stops|color-stops-in-percentages|grad-color-stops|(?:radial|linear)-(?:gradient|svg-gradient)|opacify|fade-?in|transparentize|fade-?out|lighten|darken|saturate|desaturate|grayscale|adjust-(?:hue|lightness|saturation|color)|scale-(?:lightness|saturation|color)|change-color|spin|complement|invert|mix|-compass-(?:list|space-list|slice|nth|list-size)|blank|compact|nth|first-value-of|join|length|append|nest|append-selector|headers|enumerate|range|percentage|unitless|unit|if|type-of|comparable|elements-of-type|quote|unquote|escape|e|sin|cos|tan|abs|round|ceil|floor|pi|translate(?:X|Y))\\s*(\\()'
+    'begin': '(headings|stylesheet-url|rgba?|hsla?|ie-hex-str|red|green|blue|alpha|opacity|hue|saturation|lightness|prefixed|prefix|-moz|-svg|-css2|-pie|-webkit|-ms|-o|-khtml|font-(?:files|url)|grid-image|image-(?:width|height|url|color)|sprites?|sprite-(?:map|map-name|file|url|position)|inline-(?:font-files|image)|opposite-position|grad-point|grad-end-position|color-stops|color-stops-in-percentages|grad-color-stops|(?:radial|linear)-(?:gradient|svg-gradient)|opacify|fade-?in|transparentize|fade-?out|lighten|darken|saturate|desaturate|grayscale|adjust-(?:hue|lightness|saturation|color)|scale-(?:lightness|saturation|color)|change-color|spin|complement|invert|mix|-compass-(?:list|space-list|slice|nth|list-size)|blank|compact|nth|first-value-of|join|length|append|nest|append-selector|headers|enumerate|range|percentage|unitless|unit|if|type-of|comparable|elements-of-type|quote|unquote|escape|e|sin|cos|tan|abs|round|ceil|floor|pi|translate(?:X|Y))(\\()'
     'beginCaptures':
       '1':
         'name': 'support.function.misc.scss'
@@ -753,7 +766,7 @@
       }
     ]
   'logical_operators':
-    'match': '\\s(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|not|or|and)\\s'
+    'match': '\\b(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|not|or|and)\\b'
     'name': 'keyword.control.operator'
   'media_attributes':
     'patterns': [
@@ -774,6 +787,20 @@
         'comment': 'We even have error highlighting <3'
         'match': '[=\\{\\}\\?\\@]'
         'name': 'invalid.illegal'
+      }
+    ]
+  'media_features':
+    'patterns': [
+      {
+        'match': '\\b(min-device-aspect-ratio|max-device-aspect-ratio|device-aspect-ratio|min-aspect-ratio|max-aspect-ratio|aspect-ratio|min-device-height|max-device-height|device-height|min-device-width|max-device-width|device-width|min-monochrome|max-monochrome|monochrome|min-color-index|max-color-index|color-index|min-color|max-color|color|orientation|scan|min-resolution|max-resolution|resolution|grid|min-width|max-width|width)\\b'
+        'name': 'support.type.property-name.media.css'
+      }
+    ]
+  'media_types':
+    'patterns': [
+      {
+        'match': '\\b(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\\b'
+        'name': 'support.constant.media.css'
       }
     ]
   'parameters':
