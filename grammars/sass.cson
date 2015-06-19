@@ -319,7 +319,7 @@
   'comment-line':
     'begin': '^(\\s*)(\\/\\/)'
     'captures':
-      '0':
+      '2':
         'name': 'punctuation.definition.comment.sass'
     'end': '\\n'
     'name': 'comment.sass'

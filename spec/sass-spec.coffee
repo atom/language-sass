@@ -208,3 +208,25 @@ describe 'SCSS grammar', ->
       expect(tokens[16]).toEqual value: 'min-width', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'support.type.property-name.media.css']
       expect(tokens[18]).toEqual value: ' 700', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'constant.numeric.scss']
       expect(tokens[19]).toEqual value: 'px', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.other.unit.scss']
+
+describe 'Sass Grammar', ->
+  grammar = null
+
+  beforeEach ->
+    waitsForPromise ->
+      atom.packages.activatePackage('language-sass')
+
+    runs ->
+      grammar = atom.grammars.grammarForScopeName('source.sass')
+
+  describe 'comments', ->
+    it "doesn't confuse the next line as a comment", ->
+      lines = grammar.tokenizeLines """
+        // hello, world
+        $some-variable: 1
+      """
+
+      expect(lines[0][0]).toEqual value: '//', scopes: ['source.sass', 'comment.sass', 'punctuation.definition.comment.sass']
+      expect(lines[0][1]).toEqual value: ' hello, world', scopes: ['source.sass', 'comment.sass']
+      expect(lines[0][2]).toEqual value: '', scopes: ['source.sass', 'comment.sass']
+      expect(lines[1][0]).toEqual value: '$', scopes: ['source.sass', 'meta.variable-declaration.sass', 'punctuation.definition.entity.sass']
