@@ -15,7 +15,7 @@
       '2':
         'name': 'variable.other.sass'
       '3':
-        'name': 'punctuation.definition.entity.sass'
+        'name': 'punctuation.separator.operator.sass'
     'end': '(;)?$'
     'endCaptures':
       '1':

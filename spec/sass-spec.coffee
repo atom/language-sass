@@ -208,3 +208,12 @@ describe 'SCSS grammar', ->
       expect(tokens[16]).toEqual value: 'min-width', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'support.type.property-name.media.css']
       expect(tokens[18]).toEqual value: ' 700', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'constant.numeric.scss']
       expect(tokens[19]).toEqual value: 'px', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.other.unit.scss']
+
+  describe 'variable setting', ->
+    it 'parses all tokens', ->
+      {tokens} = grammar.tokenizeLine '$font-size: $normal-font-size;'
+
+      expect(tokens[0]).toEqual value: '$font-size', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss']
+      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss']
+      expect(tokens[3]).toEqual value: '$normal-font-size', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss', 'variable.scss']
