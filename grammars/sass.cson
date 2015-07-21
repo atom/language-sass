@@ -119,6 +119,9 @@
     'name': 'meta.selector.css'
     'patterns': [
       {
+        'include': '#comment-line'
+      }
+      {
         'include': '#comment-block'
       }
       {
@@ -185,6 +188,9 @@
         'name': 'entity.other.attribute-name.parent-selector-suffix.css.sass'
       }
     ]
+  }
+  {
+    'include': '#comment-line'
   }
   {
     'include': '#comment-block'
@@ -310,12 +316,19 @@
   }
 ]
 'repository':
+  'comment-line':
+    'begin': '^(\\s*)(\\/\\/)'
+    'captures':
+      '2':
+        'name': 'punctuation.definition.comment.sass'
+    'end': '\\n'
+    'name': 'comment.sass'
   'comment-block':
-    'begin': '^(\\s*)(\\/\\/|\\/\\*)'
+    'begin': '^(\\s*)(\\/\\*)'
     'captures':
       '0':
         'name': 'punctuation.definition.comment.sass'
-    'end': '^(?!\\1\\s)'
+    'end': '\\*\\/'
     'name': 'comment.sass'
   'property-value':
     'begin': '(:)?\\s?+'
