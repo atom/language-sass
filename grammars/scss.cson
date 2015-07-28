@@ -1131,11 +1131,11 @@
     'begin': '\\s*(\\$[A-Za-z0-9_-]+\\b)\\s*(\\:)\\s*'
     'captures':
       '1':
-        'name': 'variable'
+        'name': 'variable.scss'
       '2':
-        'name': 'punctuation'
+        'name': 'punctuation.separator.key-value.scss'
     'end': '\\s*(?=\\;)'
-    'name': 'meta.set.variable'
+    'name': 'meta.set.variable.scss'
     'patterns': [
       {
         'include': '#property_values'
