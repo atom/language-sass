@@ -88,6 +88,19 @@ describe 'SCSS grammar', ->
       expect(tokens[7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
       expect(tokens[8]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.property-list.end.scss']
 
+    it 'tokenizes multiple lines of incomplete property-list', ->
+      lines = grammar.tokenizeLines '''
+        very-custom { color: inherit }
+        another-one { display: none; }
+      '''
+      expect(lines[0][0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(lines[0][4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(lines[0][7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(lines[0][9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.property-list.end.scss']
+
+      expect(lines[1][0]).toEqual value: 'another-one', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(lines[1][10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.scss']
+
   describe 'property names with a prefix that matches an element name', ->
     it 'does not confuse them with properties', ->
       lines = grammar.tokenizeLines """

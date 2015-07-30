@@ -872,7 +872,7 @@
     'captures':
       '0':
         'name': 'punctuation.section.property-list.scss'
-    'end': '\\}'
+    'end': '(\\})|(?<=\\})'
     'endCaptures':
       '0':
         'name': 'punctuation.section.property-list.end.scss'
