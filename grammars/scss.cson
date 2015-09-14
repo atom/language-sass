@@ -1111,6 +1111,9 @@
         'match': '\\\\.'
         'name': 'constant.character.escape.scss'
       }
+      {
+        'include': '#interpolation'
+      }
     ]
   'tag_parent_reference':
     'match': '\\&'
