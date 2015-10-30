@@ -280,3 +280,26 @@ describe 'SCSS grammar', ->
       expect(tokens[7]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss']
       expect(tokens[8]).toEqual value: '$keyframe', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
       expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss']
+
+  describe 'comments', ->
+    it 'tokenizes line comments', ->
+      {tokens} = grammar.tokenizeLine '//Wow a comment!'
+
+      expect(tokens[0]).toEqual value: '//', scopes: ['source.css.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[1]).toEqual value: 'Wow a comment!', scopes: ['source.css.scss', 'comment.line.scss']
+
+    it 'tokenizes block comments', ->
+      {tokens} = grammar.tokenizeLine '/*Pretty blocky*/'
+
+      expect(tokens[0]).toEqual value: '/*', scopes: ['source.css.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[1]).toEqual value: 'Pretty blocky', scopes: ['source.css.scss', 'comment.block.scss']
+      expect(tokens[2]).toEqual value: '*/', scopes: ['source.css.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+
+    it "doesn't tokenize URLs as comments", ->
+      tokens = grammar.tokenizeLines '''
+        .a {
+            background: transparent url(//url/goes/here) 0 0 / cover no-repeat;
+        }
+      '''
+
+      expect(tokens[1][8]).toEqual value: '//url/goes/here', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.parameter.url.scss']
