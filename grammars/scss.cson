@@ -641,7 +641,7 @@
     'match': '(\\b(\\+|\\-|\\*|/)\\b)'
     'name': 'support.constant.mathematical-symbols.scss'
   'constant_number':
-    'match': '[\\+|\\-]?(\\s*)?([0-9]+(\\.[0-9]+)?|\\.[0-9]+)'
+    'match': '\\b([\\+|\\-]\\s*)?([0-9]+(\\.[0-9]+)?|\\.[0-9]+)(?=\\s*ch|cm|em|ex|in|mm|rem|pc|pt|px|vh|vmin|vmax|vw|\\b)'
     'name': 'constant.numeric.scss'
   'constant_optional':
     'match': '\\!optional'
