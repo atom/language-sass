@@ -586,24 +586,24 @@
       }
     ]
   'comment_block':
-    'begin': '\\s*(/\\*)\\s*'
+    'begin': '(/\\*)\\s*'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.comment.scss'
     'captures':
       '0':
         'name': 'punctuation.whitespace.comment.trailing.scss'
-    'end': '(\\*/)\\s*'
+    'end': '(\\*/)'
     'endCaptures':
       '1':
         'name': 'punctuation.definition.comment.scss'
     'name': 'comment.block.scss'
   'comment_line':
-    'begin': '\\s*(//)'
+    'begin': '(//)'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.comment.scss'
-    'end': '$(\\s*)'
+    'end': '\\n'
     'name': 'comment.line.scss'
   'constant_color':
     'comment': 'http://www.w3.org/TR/CSS21/syndata.html#value-def-color'

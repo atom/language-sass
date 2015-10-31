@@ -281,7 +281,7 @@ describe 'SCSS grammar', ->
       expect(tokens[8]).toEqual value: '$keyframe', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
       expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss']
 
-  describe 'comments', ->
+  describe 'comments in SCSS', ->
     it 'tokenizes line comments', ->
       {tokens} = grammar.tokenizeLine '//Wow a comment!'
 
@@ -303,3 +303,47 @@ describe 'SCSS grammar', ->
       '''
 
       expect(tokens[1][8]).toEqual value: '//url/goes/here', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.parameter.url.scss']
+
+  xdescribe 'comments in SASS', ->
+    it 'only tokenizes comments that start at the beginning of a line', ->
+      {tokens} = grammar.tokenizeLine '  //A comment?'
+
+      expect(tokens[0]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
+      expect(tokens[1]).toEqual value: 'A comment?', scopes: ['source.sass', 'comment.line.sass']
+
+      {tokens} = grammar.tokenizeLine '/* also a comment */'
+
+      expect(tokens[0]).toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
+      expect(tokens[1]).toEqual value: ' also a comment ', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[2]).toEqual value: '*/', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
+
+      {tokens} = grammar.tokenizeLine 'hi //Not a comment'
+
+      expect(tokens[3]).not.toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
+
+      {tokens} = grammar.tokenizeLine 'hi /* also not a comment */'
+      expect(tokens[3]).not.toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
+
+    it 'correctly tokenizes block comments based on indentation', ->
+      tokens = grammar.tokenizeLines '''
+        /* hi1
+          hi2
+        hi3
+      '''
+
+      expect(tokens[0][0]).toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'puncutation.definition.comment.sass']
+      expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.block.sass']
+
+    it 'correctly tokenizes line comments based on indentation', ->
+      tokens = grammar.tokenizeLines '''
+        // hi1
+          hi2
+        hi3
+      '''
+
+      expect(tokens[0][0]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'puncutation.definition.comment.sass']
+      expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.line.sass']
