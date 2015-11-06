@@ -328,8 +328,8 @@
         'beginCaptures':
           '2':
             'name': 'punctuation.definition.comment.sass'
-        'end': '^(?!\\s{2}\\1)'
-        'name': 'comment.line.sass' # Include two explicit whitespace characters here because // is two characters
+        'end': '^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because // is two characters
+        'name': 'comment.line.sass'
       }
     ]
   'property-value':
