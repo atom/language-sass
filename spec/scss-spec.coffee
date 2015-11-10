@@ -12,6 +12,17 @@ describe 'SCSS grammar', ->
     expect(grammar).toBeTruthy()
     expect(grammar.scopeName).toBe 'source.css.scss'
 
+  describe 'numbers', ->
+    it 'tokenizes them correctly', ->
+      {tokens} = grammar.tokenizeLine '.something { color: 0 1 }'
+
+      expect(tokens[8]).toEqual value: '0', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[10]).toEqual value: '1', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+
+      {tokens} = grammar.tokenizeLine '$q: (color1:$dark-orange);'
+
+      expect(tokens[3]).toEqual value: '(color1:', scopes: ['source.css.scss', 'meta.set.variable.scss']
+
   describe '@at-root', ->
     it 'tokenizes it correctly', ->
       {tokens} = grammar.tokenizeLine '@at-root (without: media) .btn { color: red; }'
@@ -69,7 +80,7 @@ describe 'SCSS grammar', ->
   describe 'property-list', ->
     it 'tokenizes the property-name and property-value', ->
       {tokens} = grammar.tokenizeLine 'very-custom { color: inherit; }'
-      
+
       expect(tokens[4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
       expect(tokens[7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
       expect(tokens[8]).toEqual value: ';', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.terminator.rule.scss']
@@ -228,7 +239,7 @@ describe 'SCSS grammar', ->
       expect(tokens[12]).toEqual value: 'screen', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'support.constant.media.css']
       expect(tokens[14]).toEqual value: 'and', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.operator']
       expect(tokens[16]).toEqual value: 'min-width', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'support.type.property-name.media.css']
-      expect(tokens[18]).toEqual value: ' 700', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'constant.numeric.scss']
+      expect(tokens[18]).toEqual value: '700', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'constant.numeric.scss']
       expect(tokens[19]).toEqual value: 'px', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.other.unit.scss']
 
   describe 'variable setting', ->
