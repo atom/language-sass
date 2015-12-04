@@ -12,12 +12,12 @@ describe 'SASS grammar', ->
     expect(grammar).toBeTruthy()
     expect(grammar.scopeName).toBe 'source.sass'
 
-  xdescribe 'comments', ->
+  describe 'comments', ->
     it 'only tokenizes comments that start at the beginning of a line', ->
       {tokens} = grammar.tokenizeLine '  //A comment?'
 
-      expect(tokens[0]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
-      expect(tokens[1]).toEqual value: 'A comment?', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[1]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
+      expect(tokens[2]).toEqual value: 'A comment?', scopes: ['source.sass', 'comment.line.sass']
 
       {tokens} = grammar.tokenizeLine '/* also a comment */'
 
@@ -25,12 +25,12 @@ describe 'SASS grammar', ->
       expect(tokens[1]).toEqual value: ' also a comment ', scopes: ['source.sass', 'comment.block.sass']
       expect(tokens[2]).toEqual value: '*/', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
 
-      {tokens} = grammar.tokenizeLine 'hi //Not a comment'
+      {tokens} = grammar.tokenizeLine 'this //is not a comment'
 
-      expect(tokens[3]).not.toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
+      expect(tokens[1]).toEqual value: '//is not a comment', scopes: ['source.sass', 'meta.selector.css', 'invalid.illegal.comment.sass']
 
-      {tokens} = grammar.tokenizeLine 'hi /* also not a comment */'
-      expect(tokens[3]).not.toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
+      {tokens} = grammar.tokenizeLine 'this /* is also not a comment */'
+      expect(tokens[1]).toEqual value: '/* is also not a comment */', scopes: ['source.sass', 'meta.selector.css', 'invalid.illegal.comment.sass']
 
     it 'correctly tokenizes block comments based on indentation', ->
       tokens = grammar.tokenizeLines '''
@@ -39,7 +39,7 @@ describe 'SASS grammar', ->
         hi3
       '''
 
-      expect(tokens[0][0]).toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'puncutation.definition.comment.sass']
+      expect(tokens[0][0]).toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
       expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.block.sass']
       expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.block.sass']
       expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.block.sass']
@@ -51,7 +51,7 @@ describe 'SASS grammar', ->
         hi3
       '''
 
-      expect(tokens[0][0]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'puncutation.definition.comment.sass']
+      expect(tokens[0][0]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
       expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.line.sass']
       expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.line.sass']
       expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.line.sass']

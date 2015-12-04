@@ -313,23 +313,35 @@
   'comments':
     'patterns': [
       {
-        'begin': '^(\\s*)(/\\*)'
-        'beginCaptures':
-          '2':
-            'name': 'punctuation.definition.comment.sass'
-        'end': '.*(\\*/)|^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because /* is two characters
-        'endCaptures':
-          '2':
-            'name': 'punctuation.definition.comment.sass'
-        'name': 'comment.block.sass'
+        'match': '\\w+\\s*((//|/\\*).*)'
+        'captures':
+          '1':
+            'name': 'invalid.illegal.comment.sass'
       }
       {
-        'begin': '^(\\s*)(//)'
+        'begin': '^(\\s*)((/\\*))'
         'beginCaptures':
           '2':
+            'name': 'comment.block.sass'
+          '3':
+            'name': 'punctuation.definition.comment.sass'
+        'end': '((\\*/))|^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because /* is two characters
+        'endCaptures':
+          '1':
+            'name': 'comment.block.sass'
+          '2':
+            'name': 'punctuation.definition.comment.sass'
+        'contentName': 'comment.block.sass'
+      }
+      {
+        'begin': '^(\\s*)((//))'
+        'beginCaptures':
+          '2':
+            'name': 'comment.line.sass'
+          '3':
             'name': 'punctuation.definition.comment.sass'
         'end': '^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because // is two characters
-        'name': 'comment.line.sass'
+        'contentName': 'comment.line.sass'
       }
     ]
   'property-value':
