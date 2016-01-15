@@ -316,32 +316,26 @@
         'match': '\\w+\\s*((//|/\\*).*)'
         'captures':
           '1':
-            'name': 'invalid.illegal.comment.sass'
+            'name': 'invalid.illegal.sass'
       }
       {
-        'begin': '^(\\s*)((/\\*))'
+        'begin': '^(\\s*)(/\\*)'
         'beginCaptures':
           '2':
-            'name': 'comment.block.sass'
-          '3':
             'name': 'punctuation.definition.comment.sass'
-        'end': '((\\*/))|^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because /* is two characters
+        'end': '(\\*/)|^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because /* is two characters
         'endCaptures':
           '1':
-            'name': 'comment.block.sass'
-          '2':
             'name': 'punctuation.definition.comment.sass'
-        'contentName': 'comment.block.sass'
+        'name': 'comment.block.sass'
       }
       {
-        'begin': '^(\\s*)((//))'
+        'begin': '^(\\s*)(//)'
         'beginCaptures':
           '2':
-            'name': 'comment.line.sass'
-          '3':
             'name': 'punctuation.definition.comment.sass'
         'end': '^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because // is two characters
-        'contentName': 'comment.line.sass'
+        'name': 'comment.line.sass'
       }
     ]
   'property-value':

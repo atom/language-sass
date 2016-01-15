@@ -27,10 +27,10 @@ describe 'SASS grammar', ->
 
       {tokens} = grammar.tokenizeLine 'this //is not a comment'
 
-      expect(tokens[1]).toEqual value: '//is not a comment', scopes: ['source.sass', 'meta.selector.css', 'invalid.illegal.comment.sass']
+      expect(tokens[1]).toEqual value: '//is not a comment', scopes: ['source.sass', 'meta.selector.css', 'invalid.illegal.sass']
 
       {tokens} = grammar.tokenizeLine 'this /* is also not a comment */'
-      expect(tokens[1]).toEqual value: '/* is also not a comment */', scopes: ['source.sass', 'meta.selector.css', 'invalid.illegal.comment.sass']
+      expect(tokens[1]).toEqual value: '/* is also not a comment */', scopes: ['source.sass', 'meta.selector.css', 'invalid.illegal.sass']
 
     it 'correctly tokenizes block comments based on indentation', ->
       tokens = grammar.tokenizeLines '''
