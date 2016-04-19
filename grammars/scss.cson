@@ -586,22 +586,19 @@
       }
     ]
   'comment_block':
-    'begin': '(/\\*)\\s*'
+    'begin': '/\\*'
     'beginCaptures':
-      '1':
-        'name': 'punctuation.definition.comment.scss'
-    'captures':
       '0':
-        'name': 'punctuation.whitespace.comment.trailing.scss'
-    'end': '(\\*/)'
+        'name': 'punctuation.definition.comment.scss'
+    'end': '\\*/'
     'endCaptures':
-      '1':
+      '0':
         'name': 'punctuation.definition.comment.scss'
     'name': 'comment.block.scss'
   'comment_line':
-    'begin': '(//)'
+    'begin': '//'
     'beginCaptures':
-      '1':
+      '0':
         'name': 'punctuation.definition.comment.scss'
     'end': '\\n'
     'name': 'comment.line.scss'
