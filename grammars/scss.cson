@@ -586,17 +586,21 @@
       }
     ]
   'comment_block':
-    'begin': '\\s*/\\*\\s*'
-    'captures':
+    'begin': '/\\*'
+    'beginCaptures':
       '0':
-        'name': 'punctuation.whitespace.comment.trailing.scss'
-    'comment': 'Revamped Comment block.'
-    'end': '(\\*/)\\s*'
+        'name': 'punctuation.definition.comment.scss'
+    'end': '\\*/'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.scss'
     'name': 'comment.block.scss'
   'comment_line':
-    'begin': '(\\s*)//'
-    'comment': 'Revamped'
-    'end': '$(\\s*)'
+    'begin': '//'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.scss'
+    'end': '\\n'
     'name': 'comment.line.scss'
   'constant_color':
     'comment': 'http://www.w3.org/TR/CSS21/syndata.html#value-def-color'
@@ -810,9 +814,6 @@
       }
       {
         'include': '#property_values'
-      }
-      {
-        'include': '#comment_line'
       }
       {
         'include': '#comment_block'
