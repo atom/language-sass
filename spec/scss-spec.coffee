@@ -155,7 +155,7 @@ describe 'SCSS grammar', ->
       {tokens} = grammar.tokenizeLine 'very-custom:hover { color: red; }'
 
       expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
-      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css', 'punctuation.definition.entity.css']
+      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'punctuation.definition.entity.css']
       expect(tokens[2]).toEqual value: 'hover', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
 
     it 'tokenizes them with class selectors', ->
@@ -192,19 +192,59 @@ describe 'SCSS grammar', ->
       expect(tokens[3][4]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
       expect(tokens[3][5]).toEqual value: 'none', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
 
-  describe "pseudo selectors", ->
-    it "parses the value of the argument correctly", ->
-      {tokens} = grammar.tokenizeLine 'div:nth-child(3n+0) { color: red; }'
+  describe 'pseudo classes', ->
+    it 'tokenizes them', ->
+      {tokens} = grammar.tokenizeLine 'a:hover {}'
 
-      expect(tokens[0]).toEqual value: 'div', scopes: ['source.css.scss', 'entity.name.tag.scss']
-      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css', 'punctuation.definition.entity.css']
-      expect(tokens[2]).toEqual value: 'nth-child(3n+0)', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'punctuation.definition.entity.css']
+      expect(tokens[2]).toEqual value: 'hover', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
 
-      {tokens} = grammar.tokenizeLine 'div:nth-child(2n-1) { color: red; }'
+    it 'tokenizes nth-* pseudo classes', ->
+      {tokens} = grammar.tokenizeLine 'a:nth-child(n)'
 
-      expect(tokens[0]).toEqual value: 'div', scopes: ['source.css.scss', 'entity.name.tag.scss']
-      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css', 'punctuation.definition.entity.css']
-      expect(tokens[2]).toEqual value: 'nth-child(2n-1)', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[2]).toEqual value: 'nth-child', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.begin.bracket.round.css']
+      expect(tokens[4]).toEqual value: 'n', scopes: ['source.css.scss', 'constant.other.scss']
+      expect(tokens[5]).toEqual value: ')', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.end.bracket.round.css']
+
+      {tokens} = grammar.tokenizeLine 'a:nth-child(3n)'
+
+      expect(tokens[2]).toEqual value: 'nth-child', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.begin.bracket.round.css']
+      expect(tokens[4]).toEqual value: '3', scopes: ['source.css.scss', 'constant.numeric.scss']
+      expect(tokens[5]).toEqual value: 'n', scopes: ['source.css.scss', 'constant.other.scss']
+      expect(tokens[6]).toEqual value: ')', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.end.bracket.round.css']
+
+      {tokens} = grammar.tokenizeLine 'a:nth-child(2)'
+
+      expect(tokens[2]).toEqual value: 'nth-child', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.begin.bracket.round.css']
+      expect(tokens[4]).toEqual value: '2', scopes: ['source.css.scss', 'constant.numeric.scss']
+      expect(tokens[5]).toEqual value: ')', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.end.bracket.round.css']
+
+      {tokens} = grammar.tokenizeLine 'a:nth-child(n + 2)'
+
+      expect(tokens[2]).toEqual value: 'nth-child', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.begin.bracket.round.css']
+      expect(tokens[4]).toEqual value: 'n', scopes: ['source.css.scss', 'constant.other.scss']
+      expect(tokens[6]).toEqual value: '2', scopes: ['source.css.scss', 'constant.numeric.scss']
+      expect(tokens[7]).toEqual value: ')', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.end.bracket.round.css']
+
+      {tokens} = grammar.tokenizeLine 'a:nth-child(3n + 2)'
+
+      expect(tokens[2]).toEqual value: 'nth-child', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.begin.bracket.round.css']
+      expect(tokens[4]).toEqual value: '3', scopes: ['source.css.scss', 'constant.numeric.scss']
+      expect(tokens[5]).toEqual value: 'n', scopes: ['source.css.scss', 'constant.other.scss']
+      expect(tokens[7]).toEqual value: '2', scopes: ['source.css.scss', 'constant.numeric.scss']
+      expect(tokens[8]).toEqual value: ')', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.end.bracket.round.css']
+
+      {tokens} = grammar.tokenizeLine 'a:nth-child(hi)'
+
+      expect(tokens[2]).toEqual value: 'nth-child', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.begin.bracket.round.css']
+      expect(tokens[4]).toEqual value: 'hi', scopes: ['source.css.scss', 'invalid.illegal.scss']
+      expect(tokens[5]).toEqual value: ')', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.end.bracket.round.css']
 
   describe "keyframes", ->
     it "parses the from and to properties", ->
