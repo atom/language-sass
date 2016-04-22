@@ -1142,6 +1142,12 @@
     'name': 'meta.set.variable.scss'
     'patterns': [
       {
+        'include': '#comment_block'
+      }
+      {
+        'include': '#comment_line'
+      }
+      {
         'include': '#property_values'
       }
       {
