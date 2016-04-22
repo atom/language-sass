@@ -1,7 +1,17 @@
 '.source.sass':
   'editor':
     'autoIndentOnPaste': false
-    'increaseIndentPattern': '^\\s*([^:]+|[}\\w&-]+::?[#\\w&-]+)$'
+    'increaseIndentPattern': '''(?x)
+      ^\\s* # Start of line
+      (
+        [^:]+ # No colons (for regular selectors like body)
+        |
+        [}\\w&-]+::?[#\\w&-]+ # Pseudo-elements/classes (something::before)
+        |
+        @.* # At-rule since some at-rules may contain colons (@media(max-width: 922px))
+      )
+      \\s*$ # End of line
+    '''
 
 '.source.css.scss':
   'editor':
