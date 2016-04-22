@@ -21,7 +21,7 @@ describe 'SCSS grammar', ->
 
       {tokens} = grammar.tokenizeLine '$q: (color1:$dark-orange);'
 
-      expect(tokens[3]).toEqual value: '(color1:', scopes: ['source.css.scss', 'meta.set.variable.scss']
+      expect(tokens[4]).toEqual value: 'color1', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
 
   describe '@at-root', ->
     it 'tokenizes it correctly', ->
@@ -250,6 +250,24 @@ describe 'SCSS grammar', ->
       expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss']
       expect(tokens[3]).toEqual value: '$normal-font-size', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss', 'variable.scss']
+
+    it 'tokenizes maps', ->
+      {tokens} = grammar.tokenizeLine '$map: (medium: value, header-height: 10px);'
+
+      expect(tokens[0]).toEqual value: '$map', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss']
+      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.definition.map.begin.bracket.round.scss']
+      expect(tokens[4]).toEqual value: 'medium', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[5]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[6]).toEqual value: ' value', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss']
+      expect(tokens[7]).toEqual value: ',', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.separator.delimiter.scss']
+      expect(tokens[8]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss']
+      expect(tokens[9]).toEqual value: 'header-height', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[10]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[11]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss']
+      expect(tokens[12]).toEqual value: '10', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'constant.numeric.scss']
+      expect(tokens[14]).toEqual value: ')', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.definition.map.end.bracket.round.scss']
 
   describe 'interpolation', ->
     it 'is tokenized within single quotes', ->
