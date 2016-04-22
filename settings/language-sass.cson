@@ -1,11 +1,16 @@
 '.source.sass':
   'editor':
     'autoIndentOnPaste': false
+    'increaseIndentPattern': '^\\s*([^:]+|[}\\w&-]+::?[#\\w&-]+)$'
+
+'.source.css.scss':
+  'editor':
+    'increaseIndentPattern': '(^.*\\{[^}]*$)'
+    'decreaseIndentPattern': '^\\s*\\}'
+
 '.source.sass, .source.css.scss':
   'editor':
     'commentStart': '// '
-    'increaseIndentPattern': '(^.*\\{[^}]*$)'
-    'decreaseIndentPattern': '^\\s*\\}'
   'autocomplete':
     'symbols':
       'mixin':
