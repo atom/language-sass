@@ -8,7 +8,7 @@
 'foldingStopMarker': '^\\s*$'
 'patterns': [
   {
-    'begin': '^(\\!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
+    'begin': '(\\!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.entity.sass'
