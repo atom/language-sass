@@ -350,6 +350,10 @@
     'name': 'meta.property-value.sass'
     'patterns': [
       {
+        'match': '([+-]\\s*)?\\s*[0-9]+(\\.[0-9]+)?'
+        'name': 'constant.numeric.css'
+      }
+      {
         'match': '([-=+*/])'
         'name': 'punctuation.definition.entity.css'
       }
@@ -383,10 +387,6 @@
         'comment': 'These colours are mostly recognised but will not validate. ref: http://www.w3schools.com/css/css_colornames.asp'
         'match': '\\b(seagreen|hotpink|lawngreen|darkgreen|violet|darkred|crimson|green|sandybrown|navy|magenta|darkslategray|steelblue|silver|darkgrey|mistyrose|gray|aliceblue|blueviolet|lightpink|saddlebrown|chocolate|limegreen|lightslategray|yellowgreen|pink|lightskyblue|indigo|lightblue|floralwhite|navajowhite|mediumvioletred|honeydew|aquamarine|blue|olivedrab|palegreen|slategray|lavenderblush|wheat|moccasin|mediumturquoise|mediumspringgreen|lightcoral|mintcream|tomato|lightgrey|black|darkmagenta|dimgray|darkturquoise|midnightblue|plum|indianred|coral|lightcyan|mediumslateblue|darkcyan|darkslateblue|darkkhaki|ivory|azure|khaki|powderblue|darkgoldenrod|orangered|burlywood|turquoise|royalblue|maroon|cornsilk|antiquewhite|yellow|teal|orange|grey|darkslategrey|slateblue|seashell|darkorchid|snow|lightslategrey|cyan|greenyellow|palevioletred|goldenrod|deepskyblue|lightyellow|lightseagreen|sienna|lemonchiffon|darkviolet|paleturquoise|slategrey|skyblue|purple|mediumpurple|cadetblue|fuchsia|chartreuse|darksalmon|lightgoldenrodyellow|white|springgreen|olive|forestgreen|peachpuff|peru|dimgrey|mediumseagreen|thistle|firebrick|darkgray|mediumaquamarine|darkolivegreen|mediumblue|palegoldenrod|blanchedalmond|ghostwhite|gold|gainsboro|darkseagreen|cornflowerblue|lime|lavender|beige|orchid|mediumorchid|whitesmoke|bisque|lightgray|tan|salmon|rosybrown|red|dodgerblue|brown|aqua|oldlace|deeppink|papayawhip|lightsalmon|lightsteelblue|darkorange|darkblue|linen|lightgreen)\\b'
         'name': 'invalid.deprecated.color.w3c-non-standard-color-name.css.sass'
-      }
-      {
-        'match': '(-|\\+)?\\s*[0-9]+(\\.[0-9]+)?'
-        'name': 'constant.numeric.css'
       }
       {
         'match': '(?<=[\\d])(px|pt|cm|mm|in|em|ex|pc)\\b|%'

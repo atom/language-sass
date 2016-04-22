@@ -12,6 +12,31 @@ describe 'SASS grammar', ->
     expect(grammar).toBeTruthy()
     expect(grammar.scopeName).toBe 'source.sass'
 
+  describe 'numbers', ->
+    it 'tokenizes them', ->
+      tokens = grammar.tokenizeLines '''
+        .something
+          top: 50%
+      '''
+
+      expect(tokens[1][4]).toEqual value: '50', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'constant.numeric.css']
+
+    it 'tokenizes positive and negative numbers', ->
+      tokens = grammar.tokenizeLines '''
+        .something
+          top: +50%
+      '''
+
+      expect(tokens[1][4]).toEqual value: '+50', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'constant.numeric.css']
+
+      tokens = grammar.tokenizeLines '''
+        .something
+          top: -50%
+      '''
+
+      expect(tokens[1][4]).toEqual value: '-50', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'constant.numeric.css']
+
+
   describe 'comments', ->
     it 'only tokenizes comments that start at the beginning of a line', ->
       {tokens} = grammar.tokenizeLine '  //A comment?'
