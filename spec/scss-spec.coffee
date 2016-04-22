@@ -87,7 +87,7 @@ describe 'SCSS grammar', ->
       expect(tokens[10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
 
     it 'tokenizes nested property-lists', ->
-      {tokens} = grammar.tokenizeLine 'very-custom { very-very-custom { color: inherit; } }'
+      {tokens} = grammar.tokenizeLine 'very-custom { very-very-custom { color: inherit; } margin: top; }'
 
       expect(tokens[2]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
       expect(tokens[4]).toEqual value: 'very-very-custom', scopes: ['source.css.scss', 'meta.property-list.scss', 'entity.name.tag.custom.scss']
@@ -96,7 +96,9 @@ describe 'SCSS grammar', ->
       expect(tokens[11]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
       expect(tokens[12]).toEqual value: ';', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'punctuation.terminator.rule.scss']
       expect(tokens[14]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
-      expect(tokens[16]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
+      expect(tokens[16]).toEqual value: 'margin', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[19]).toEqual value: 'top', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[22]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
 
     it 'tokenizes an incomplete inline property-list', ->
       {tokens} = grammar.tokenizeLine 'very-custom { color: inherit}'
