@@ -848,9 +848,9 @@
           '1':
             'name': 'punctuation.separator.key-value.scss'
         'comment': 'Kuroir: fixed nested elements for sass.'
-        'end': ';|(?=})'
+        'end': '\\s*(;|(?=}))'
         'endCaptures':
-          '0':
+          '1':
             'name': 'punctuation.terminator.rule.scss'
         'contentName': 'meta.property-value.scss'
         'patterns': [
