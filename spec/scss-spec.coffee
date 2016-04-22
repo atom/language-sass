@@ -269,6 +269,12 @@ describe 'SCSS grammar', ->
       expect(tokens[12]).toEqual value: '10', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'constant.numeric.scss']
       expect(tokens[14]).toEqual value: ')', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.definition.map.end.bracket.round.scss']
 
+    it 'tokenizes comments in maps', ->
+      {tokens} = grammar.tokenizeLine '$map: (/* comment */ key: // comment)'
+
+      expect(tokens[4]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[11]).toEqual value: '//', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+
   describe 'interpolation', ->
     it 'is tokenized within single quotes', ->
       {tokens} = grammar.tokenizeLine "body { font-family: '#\{$family}'; }" # escaping CoffeeScript's interpolation

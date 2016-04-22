@@ -784,6 +784,12 @@
     'name': 'meta.set.variable.map.scss'
     'patterns': [
       {
+        'include': '#comment_block'
+      }
+      {
+        'include': '#comment_line'
+      }
+      {
         'match': '\\b([\\w-]+)\\s*(:)'
         'captures':
           '1':
