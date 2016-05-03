@@ -389,7 +389,7 @@
         'name': 'constant.numeric.css'
       }
       {
-        'match': '(?<=[\\d])(px|pt|cm|mm|in|em|ex|pc)\\b|%'
+        'match': '(?<=[\\d])(ch|cm|deg|dpi|dpcm|dppx|em|ex|grad|in|mm|mozmm|ms|pc|pt|px|rad|rem|turn|s|vh|vmin|vmax|vw)\\b|%'
         'name': 'keyword.other.unit.css'
       }
       {
