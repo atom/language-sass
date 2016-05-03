@@ -262,6 +262,15 @@ describe 'SCSS grammar', ->
       expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss']
       expect(tokens[3]).toEqual value: '$normal-font-size', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss', 'variable.scss']
 
+    it 'tokenizes comments', ->
+      {tokens} = grammar.tokenizeLine '$font-size: // comment'
+
+      expect(tokens[3]).toEqual value: '//', scopes: ['source.css.scss', 'meta.set.variable.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+
+      {tokens} = grammar.tokenizeLine '$font-size: /* comment */'
+
+      expect(tokens[3]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.set.variable.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+
   describe 'interpolation', ->
     it 'is tokenized within single quotes', ->
       {tokens} = grammar.tokenizeLine "body { font-family: '#\{$family}'; }" # escaping CoffeeScript's interpolation
