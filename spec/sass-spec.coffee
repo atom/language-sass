@@ -12,6 +12,25 @@ describe 'SASS grammar', ->
     expect(grammar).toBeTruthy()
     expect(grammar.scopeName).toBe 'source.sass'
 
+  describe 'variables', ->
+    it 'tokenizes them', ->
+      {tokens} = grammar.tokenizeLine '$test: bla'
+
+      expect(tokens[0]).toEqual value: '$', scopes: ['source.sass', 'meta.variable-declaration.sass', 'punctuation.definition.entity.sass']
+      expect(tokens[1]).toEqual value: 'test', scopes: ['source.sass', 'meta.variable-declaration.sass', 'variable.other.sass']
+      expect(tokens[2]).toEqual value: ':', scopes: ['source.sass', 'meta.variable-declaration.sass', 'punctuation.separator.operator.sass']
+      expect(tokens[3]).toEqual value: ' ', scopes: ['source.sass', 'meta.variable-declaration.sass', 'meta.property-value.sass']
+      expect(tokens[4]).toEqual value: 'bla', scopes: ['source.sass', 'meta.variable-declaration.sass', 'meta.property-value.sass']
+
+    it 'tokenizes indented variables', ->
+      {tokens} = grammar.tokenizeLine '  $test: bla'
+
+      expect(tokens[1]).toEqual value: '$', scopes: ['source.sass', 'meta.variable-declaration.sass', 'punctuation.definition.entity.sass']
+      expect(tokens[2]).toEqual value: 'test', scopes: ['source.sass', 'meta.variable-declaration.sass', 'variable.other.sass']
+      expect(tokens[3]).toEqual value: ':', scopes: ['source.sass', 'meta.variable-declaration.sass', 'punctuation.separator.operator.sass']
+      expect(tokens[4]).toEqual value: ' ', scopes: ['source.sass', 'meta.variable-declaration.sass', 'meta.property-value.sass']
+      expect(tokens[5]).toEqual value: 'bla', scopes: ['source.sass', 'meta.variable-declaration.sass', 'meta.property-value.sass']
+
   describe 'comments', ->
     it 'only tokenizes comments that start at the beginning of a line', ->
       {tokens} = grammar.tokenizeLine '  //A comment?'
