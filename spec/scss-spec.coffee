@@ -206,6 +206,17 @@ describe 'SCSS grammar', ->
       expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css', 'punctuation.definition.entity.css']
       expect(tokens[2]).toEqual value: 'nth-child(2n-1)', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
 
+  describe "attribute selectors", ->
+    it "parses them correctly", ->
+      {tokens} = grammar.tokenizeLine '[something="1"]'
+
+      expect(tokens[0]).toEqual value: '[', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.begin.bracket.square.scss']
+      expect(tokens[1]).toEqual value: 'something', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'entity.other.attribute-name.attribute.scss']
+      expect(tokens[2]).toEqual value: '=', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.separator.operator.scss']
+      expect(tokens[3]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[5]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.end.scss']
+      expect(tokens[6]).toEqual value: ']', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.end.bracket.square.scss']
+
   describe "keyframes", ->
     it "parses the from and to properties", ->
       tokens = grammar.tokenizeLines """
@@ -269,6 +280,15 @@ describe 'SCSS grammar', ->
       expect(tokens[12]).toEqual value: '10', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'constant.numeric.scss']
       expect(tokens[14]).toEqual value: ')', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.definition.map.end.bracket.round.scss']
 
+    it 'tokenizes comments', ->
+      {tokens} = grammar.tokenizeLine '$font-size: // comment'
+
+      expect(tokens[3]).toEqual value: '//', scopes: ['source.css.scss', 'meta.set.variable.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+
+      {tokens} = grammar.tokenizeLine '$font-size: /* comment */'
+
+      expect(tokens[3]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.set.variable.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+
     it 'tokenizes comments in maps', ->
       {tokens} = grammar.tokenizeLine '$map: (/* comment */ key: // comment)'
 
@@ -279,37 +299,42 @@ describe 'SCSS grammar', ->
     it 'is tokenized within single quotes', ->
       {tokens} = grammar.tokenizeLine "body { font-family: '#\{$family}'; }" # escaping CoffeeScript's interpolation
 
-      expect(tokens[8]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'variable.interpolation.scss']
+      expect(tokens[8]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.begin.bracket.curly.scss']
       expect(tokens[9]).toEqual value: '$family', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
-      expect(tokens[10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'variable.interpolation.scss']
+      expect(tokens[10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.end.bracket.curly.scss']
 
     it 'is tokenized within double quotes', ->
       {tokens} = grammar.tokenizeLine 'body { font-family: "#\{$family}"; }'
 
-      expect(tokens[8]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'variable.interpolation.scss']
+      expect(tokens[8]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.begin.bracket.curly.scss']
       expect(tokens[9]).toEqual value: '$family', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
-      expect(tokens[10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'variable.interpolation.scss']
+      expect(tokens[10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.end.bracket.curly.scss']
 
     it 'is tokenized without quotes', ->
       {tokens} = grammar.tokenizeLine 'body { font-family: #\{$family}; }'
 
-      expect(tokens[7]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.interpolation.scss']
+      expect(tokens[7]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.begin.bracket.curly.scss']
       expect(tokens[8]).toEqual value: '$family', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
-      expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.interpolation.scss']
+      expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.end.bracket.curly.scss']
 
     it 'is tokenized as a class name', ->
       {tokens} = grammar.tokenizeLine 'body.#\{$class} {}'
 
-      expect(tokens[2]).toEqual value: '#{', scopes: ['source.css.scss', 'variable.interpolation.scss']
-      expect(tokens[3]).toEqual value: '$class', scopes: ['source.css.scss', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
-      expect(tokens[4]).toEqual value: '}', scopes: ['source.css.scss', 'variable.interpolation.scss']
+      expect(tokens[2]).toEqual value: '#{', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css', 'variable.interpolation.scss', 'punctuation.definition.interpolation.begin.bracket.curly.scss']
+      expect(tokens[3]).toEqual value: '$class', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
+      expect(tokens[4]).toEqual value: '}', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css', 'variable.interpolation.scss', 'punctuation.definition.interpolation.end.bracket.curly.scss']
 
     it 'is tokenized as a keyframe', ->
       {tokens} = grammar.tokenizeLine '@keyframes anim { #\{$keyframe} {} }'
 
-      expect(tokens[7]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss']
+      expect(tokens[7]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.begin.bracket.curly.scss']
       expect(tokens[8]).toEqual value: '$keyframe', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'variable.scss', 'variable.scss']
-      expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss']
+      expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.end.bracket.curly.scss']
+
+    it 'does not tokenize anything after the closing bracket as interpolation', ->
+      {tokens} = grammar.tokenizeLine '#\{variable}hi'
+
+      expect(tokens[3]).not.toEqual value: 'hi', scopes: ['source.css.scss', 'variable.interpolation.scss']
 
   describe 'comments', ->
     it 'tokenizes line comments', ->
