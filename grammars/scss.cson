@@ -1016,7 +1016,7 @@
       '1':
         'name': 'punctuation.definition.entity.css'
     'end': '(?![\\w-]|(#{))'
-    'contentName': 'entity.other.attribute-name.class.css'
+    'name': 'entity.other.attribute-name.class.css'
     'patterns': [
       {
         'include': '#interpolation'
