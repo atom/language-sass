@@ -162,7 +162,7 @@ describe 'SCSS grammar', ->
       {tokens} = grammar.tokenizeLine 'very-custom.class { color: red; }'
 
       expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
-      expect(tokens[1]).toEqual value: '.', scopes: ['source.css.scss', 'punctuation.definition.entity.css']
+      expect(tokens[1]).toEqual value: '.', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css', 'punctuation.definition.entity.css']
       expect(tokens[2]).toEqual value: 'class', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css']
 
     it 'does not confuse them with properties', ->
