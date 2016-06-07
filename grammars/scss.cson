@@ -854,13 +854,11 @@
           '1':
             'name': 'punctuation.separator.key-value.scss'
         'comment': 'Kuroir: fixed nested elements for sass.'
-        'end': '\\s*(;)|(\\})'
+        'end': '\\s*(;|(?=}))'
         'endCaptures':
           '1':
             'name': 'punctuation.terminator.rule.scss'
-          '2':
-            'name': 'punctuation.section.property-list.end.scss'
-        'name': 'meta.property-value.scss'
+        'contentName': 'meta.property-value.scss'
         'patterns': [
           {
             'include': '#general'
@@ -872,17 +870,14 @@
       }
     ]
   'property_list':
-    'begin': '\\{'
+    'begin': '{'
     'beginCaptures':
       '0':
-        'name': 'punctuation.section.property-list.begin.scss'
-    'captures':
-      '0':
-        'name': 'punctuation.section.property-list.scss'
-    'end': '(\\})|(?<=\\})'
+        'name': 'punctuation.section.property-list.begin.bracket.curly.scss'
+    'end': '}'
     'endCaptures':
       '0':
-        'name': 'punctuation.section.property-list.end.scss'
+        'name': 'punctuation.section.property-list.end.bracket.curly.scss'
     'name': 'meta.property-list.scss'
     'patterns': [
       {
