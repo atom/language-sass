@@ -1036,7 +1036,7 @@
     'match': '\\b(a|abbr|acronym|address|area|article|aside|audio|b|base|bdi|bdo|big|blockquote|body|br|button|canvas|caption|circle|cite|code|col|colgroup|data|datalist|dd|del|details|dfn|dialog|div|dl|dt|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|g|(h[1-6])|head|header|hgroup|hr|html|i|iframe|img|image|input|ins|kbd|keygen|label|legend|li|line(?!-)|link|main|map|mark|menu|menuitem|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|path|polygon|polyline|pre|progress|q|rb|rect|rp|rt|rtc|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|svg|table(?!-)|tbody|td|template|text(?!-)|textarea|textpath|tfoot|th|thead|time|title|tr|track|tspan|tt|u|ul|var|video|wbr)\\b'
     'name': 'entity.name.tag.scss'
   'selector_custom':
-    'match': '\\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)+)(?=\\.|\\s++[^:]|\\s*[,{]|:(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-child()|nth-last-child()|nth-of-type()|nth-last-of-type()|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?)'
+    'match': '\\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)+)(?=\\.|\\s++[^:]|\\s*[,{]|:(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-(child|last-child|of-type|last-of-type)|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?)'
     'name': 'entity.name.tag.custom.scss'
   'selector_id':
     'captures':
@@ -1054,11 +1054,44 @@
     'match': '(?<=&)[a-zA-Z0-9_-]+'
     'name': 'entity.other.attribute-name.parent-selector-suffix.scss'
   'selector_pseudo_class':
-    'captures':
-      '1':
-        'name': 'punctuation.definition.entity.css'
-    'match': '(:)\\b(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-child()|nth-last-child()|nth-of-type()|nth-last-of-type()|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([-+0-9A-Za-z]*\\))?'
-    'name': 'entity.other.attribute-name.pseudo-class.css'
+    'patterns': [
+      {
+        'begin': '(:)\\b(nth-(?:child|last-child|of-type|last-of-type))(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.entity.css'
+          '2':
+            'name': 'entity.other.attribute-name.pseudo-class.css'
+          '3':
+            'name': 'punctuation.definition.pseudo-class.begin.bracket.round.css'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.pseudo-class.end.bracket.round.css'
+        'patterns': [
+          {
+            'match': '\\d+'
+            'name': 'constant.numeric.scss'
+          }
+          {
+            'match': '(?<=\\d)n\\b|\\b(n|even|odd)\\b'
+            'name': 'constant.other.scss'
+          }
+          {
+            'match': '\\w+'
+            'name': 'invalid.illegal.scss'
+          }
+        ]
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.entity.css'
+          '2':
+            'name': 'entity.other.attribute-name.pseudo-class.css'
+        'match': '(:)\\b(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)\\b'
+      }
+    ]
   'selector_pseudo_element':
     'captures':
       '1':
