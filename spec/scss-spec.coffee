@@ -23,14 +23,15 @@ describe 'SCSS grammar', ->
 
       expect(tokens[3]).toEqual value: '(color1:', scopes: ['source.css.scss', 'meta.set.variable.scss']
 
-    it 'tokenizes positive and negative numbers', ->
+    it 'tokenizes number operations', ->
       {tokens} = grammar.tokenizeLine '.something { top: +50%; }'
 
-      expect(tokens[8]).toEqual value: '+50', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[8]).toEqual value: '+', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'keyword.operator.css']
+      expect(tokens[9]).toEqual value: '50', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
 
-      {tokens} = grammar.tokenizeLine '.something { top: -50%; }'
+      {tokens} = grammar.tokenizeLine '.something { top: 50% - 30%; }'
 
-      expect(tokens[8]).toEqual value: '-50', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[11]).toEqual value: '-', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'keyword.operator.css']
 
   describe '@at-root', ->
     it 'tokenizes it correctly', ->

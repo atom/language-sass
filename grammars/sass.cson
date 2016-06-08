@@ -350,7 +350,7 @@
     'name': 'meta.property-value.sass'
     'patterns': [
       {
-        'match': '([+-]\\s*)?\\s*[0-9]+(\\.[0-9]+)?'
+        'match': '\\b[0-9]+(\\.[0-9]+)?'
         'name': 'constant.numeric.css'
       }
       {
@@ -358,8 +358,12 @@
         'name': 'keyword.other.unit.css'
       }
       {
-        'match': '([-=+*/])'
-        'name': 'punctuation.definition.entity.css'
+        'match': '[-+*/](?!\\s*[-+*/])'
+        'name': 'keyword.operator.css'
+      }
+      {
+        'match': '='
+        'name': 'keyword.operator.assignment.css'
       }
       {
         'captures':
