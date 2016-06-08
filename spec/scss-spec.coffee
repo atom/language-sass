@@ -23,6 +23,16 @@ describe 'SCSS grammar', ->
 
       expect(tokens[4]).toEqual value: 'color1', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
 
+    it 'tokenizes number operations', ->
+      {tokens} = grammar.tokenizeLine '.something { top: +50%; }'
+
+      expect(tokens[8]).toEqual value: '+', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'keyword.operator.css']
+      expect(tokens[9]).toEqual value: '50', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+
+      {tokens} = grammar.tokenizeLine '.something { top: 50% - 30%; }'
+
+      expect(tokens[11]).toEqual value: '-', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'keyword.operator.css']
+
   describe '@at-root', ->
     it 'tokenizes it correctly', ->
       {tokens} = grammar.tokenizeLine '@at-root (without: media) .btn { color: red; }'

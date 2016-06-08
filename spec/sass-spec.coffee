@@ -12,6 +12,31 @@ describe 'SASS grammar', ->
     expect(grammar).toBeTruthy()
     expect(grammar.scopeName).toBe 'source.sass'
 
+  describe 'numbers', ->
+    it 'tokenizes them', ->
+      tokens = grammar.tokenizeLines '''
+        .something
+          top: 50%
+      '''
+
+      expect(tokens[1][4]).toEqual value: '50', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'constant.numeric.css']
+
+    it 'tokenizes number operations', ->
+      tokens = grammar.tokenizeLines '''
+        .something
+          top: +50%
+      '''
+
+      expect(tokens[1][4]).toEqual value: '+', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'keyword.operator.css']
+      expect(tokens[1][5]).toEqual value: '50', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'constant.numeric.css']
+
+      tokens = grammar.tokenizeLines '''
+        .something
+          top: 50% - 30%
+      '''
+
+      expect(tokens[1][7]).toEqual value: '-', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'keyword.operator.css']
+
   describe 'variables', ->
     it 'tokenizes them', ->
       {tokens} = grammar.tokenizeLine '$test: bla'
