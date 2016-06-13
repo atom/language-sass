@@ -394,7 +394,7 @@
       {
         'comment': 'These colours are deprecated from CSS color module level 3 http://www.w3.org/TR/css3-color/#css2-system'
         'match': '\\b(ActiveBorder|ActiveCaption|AppWorkspace|Background|ButtonFace|ButtonHighlight|ButtonShadow|ButtonText|CaptionText|GrayText|Highlight|HighlightText|InactiveBorder|InactiveCaption|InactiveCaptionText|InfoBackground|InfoText|Menu|MenuText|Scrollbar|ThreeDDarkShadow|ThreeDFace|ThreeDHighlight|ThreeDLightShadow|ThreeDShadow|Window|WindowFrame|WindowText)\\b'
-        'name': 'invalid.deprecated.color.w3c-non-standard-color-name.css.sass'
+        'name': 'invalid.deprecated.color.system.css.sass'
       }
       {
         'captures':
