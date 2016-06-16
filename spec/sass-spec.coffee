@@ -12,6 +12,15 @@ describe 'SASS grammar', ->
     expect(grammar).toBeTruthy()
     expect(grammar.scopeName).toBe 'source.sass'
 
+  describe 'vendor-prefixed properties', ->
+    it 'tokenizes them as properties', ->
+      tokens = grammar.tokenizeLines '''
+        .something
+          -webkit-mask-repeat: no-repeat
+      '''
+
+      expect(tokens[1][1]).toEqual value: '-webkit-mask-repeat', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.property-name.css.sass']
+
   describe 'numbers', ->
     it 'tokenizes them', ->
       tokens = grammar.tokenizeLines '''
