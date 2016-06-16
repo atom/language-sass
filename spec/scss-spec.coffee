@@ -40,6 +40,15 @@ describe 'SCSS grammar', ->
       expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.at-root.scss', 'keyword.control.at-rule.at-root.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[1]).toEqual value: 'at-root', scopes: ['source.css.scss', 'meta.at-rule.at-root.scss', 'keyword.control.at-rule.at-root.scss']
 
+  describe '@include', ->
+    it 'tokenizes it correctly', ->
+      {tokens} = grammar.tokenizeLine '@include media{}'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'keyword.control.at-rule.include.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'include', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'keyword.control.at-rule.include.scss']
+      expect(tokens[3]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'entity.name.function.scss']
+      expect(tokens[4]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+
   describe '@mixin', ->
     it 'tokenizes solitary @mixin correctly', ->
       {tokens} = grammar.tokenizeLine '@mixin'
