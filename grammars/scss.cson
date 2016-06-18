@@ -396,16 +396,16 @@
   'at_rule_mixin':
     'patterns': [
       {
-        'begin': '\\s*((@)mixin) ([\\w-]*)\\s*\\('
-        'captures':
+        'begin': '(?<=@mixin)\\s+([\\w-]+)\\s*(\\()'
+        'beginCaptures':
           '1':
-            'name': 'keyword.control.at-rule.mixin.scss'
-          '2':
-            'name': 'punctuation.definition.keyword.scss'
-          '3':
             'name': 'entity.name.function.scss'
-        'comment': 'Mixin with Attributes'
+          '2':
+            'name': 'punctuation.definition.parameters.begin.bracket.round.scss'
         'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.parameters.end.bracket.round.scss'
         'name': 'meta.at-rule.mixin.scss'
         'patterns': [
           {
@@ -414,15 +414,19 @@
         ]
       }
       {
+        'match': '(?<=@mixin)\\s+([\\w-]+)'
+        'captures':
+          '1':
+            'name': 'entity.name.function.scss'
+        'name': 'meta.at-rule.mixin.scss'
+      }
+      {
+        'match': '((@)mixin)\\b'
         'captures':
           '1':
             'name': 'keyword.control.at-rule.mixin.scss'
           '2':
             'name': 'punctuation.definition.keyword.scss'
-          '3':
-            'name': 'entity.name.function.scss'
-        'comment': 'Simple Mixin'
-        'match': '^\\s*((@)mixin) ([\\w-]{1,})'
         'name': 'meta.at-rule.mixin.scss'
       }
     ]
