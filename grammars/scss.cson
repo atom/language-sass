@@ -433,16 +433,10 @@
   'at_rule_namespace':
     'patterns': [
       {
-        'begin': '\\s*((@)namespace)\\s+(?=url)'
-        'captures':
-          '1':
-            'name': 'keyword.control.at-rule.namespace.scss'
-          '2':
-            'name': 'punctuation.definition.keyword.scss'
-          '3':
-            'name': 'support.function.misc.scss'
-        'comment': 'Namespace without prefix'
-        'end': '\\s*((?=;|$))'
+        # Define the default namespace with url()
+        # MUST be on the top
+        'begin': '(?<=@namespace)\\s+(?=url)'
+        'end': '(?=;|$)'
         'name': 'meta.at-rule.namespace.scss'
         'patterns': [
           {
@@ -457,16 +451,13 @@
         ]
       }
       {
-        'begin': '\\s*((@)namespace) ([\\w-]*)\\s*'
+        # Define the default namespace with string, or
+        # a namespace prefix with string or url()
+        'begin': '(?<=@namespace)\\s+([\\w-]*)'
         'captures':
           '1':
-            'name': 'keyword.control.at-rule.namespace.scss'
-          '2':
-            'name': 'punctuation.definition.keyword.scss'
-          '3':
-            'name': 'entity.name.function.scss'
-        'comment': 'Namespace'
-        'end': '\\s*((?=;|$))'
+            'name': 'entity.name.namespace-prefix.scss'
+        'end': '(?=;|$)'
         'name': 'meta.at-rule.namespace.scss'
         'patterns': [
           {
@@ -482,6 +473,15 @@
             'include': '#string_double'
           }
         ]
+      }
+      {
+        'match': '((@)namespace)\\b'
+        'captures':
+          '1':
+            'name': 'keyword.control.at-rule.namespace.scss'
+          '2':
+            'name': 'punctuation.definition.keyword.scss'
+        'name': 'meta.at-rule.namespace.scss'
       }
     ]
   'at_rule_option':
