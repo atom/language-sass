@@ -42,6 +42,11 @@ describe 'SCSS grammar', ->
 
   describe '@include', ->
     it 'tokenizes it correctly', ->
+      {tokens} = grammar.tokenizeLine '@include'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'keyword.control.at-rule.include.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'include', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'keyword.control.at-rule.include.scss']
+
       {tokens} = grammar.tokenizeLine '@include media{}'
 
       expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'keyword.control.at-rule.include.scss', 'punctuation.definition.keyword.scss']
