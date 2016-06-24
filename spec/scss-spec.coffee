@@ -40,6 +40,51 @@ describe 'SCSS grammar', ->
       expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.at-root.scss', 'keyword.control.at-rule.at-root.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[1]).toEqual value: 'at-root', scopes: ['source.css.scss', 'meta.at-rule.at-root.scss', 'keyword.control.at-rule.at-root.scss']
 
+  describe '@mixin', ->
+    it 'tokenizes solitary @mixin correctly', ->
+      {tokens} = grammar.tokenizeLine '@mixin'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'keyword.control.at-rule.mixin.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'mixin', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'keyword.control.at-rule.mixin.scss']
+
+    it 'tokenizes @mixin with no arguments correctly', ->
+      {tokens} = grammar.tokenizeLine '@mixin media{}'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'keyword.control.at-rule.mixin.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'mixin', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'keyword.control.at-rule.mixin.scss']
+      expect(tokens[3]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'entity.name.function.scss']
+      expect(tokens[4]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+
+    it 'tokenizes @mixin with arguments correctly', ->
+      {tokens} = grammar.tokenizeLine '@mixin media ($width){}'
+
+      expect(tokens[3]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'entity.name.function.scss']
+      expect(tokens[5]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'punctuation.definition.parameters.begin.bracket.round.scss']
+      expect(tokens[7]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.mixin.scss', 'punctuation.definition.parameters.end.bracket.round.scss']
+      expect(tokens[8]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+
+  describe '@namespace', ->
+    it 'tokenizes solitary @namespace correctly', ->
+      {tokens} = grammar.tokenizeLine '@namespace'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'keyword.control.at-rule.namespace.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'namespace', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'keyword.control.at-rule.namespace.scss']
+
+    it 'tokenizes default namespace definition with url() correctly', ->
+      {tokens} = grammar.tokenizeLine '@namespace url(XML-namespace-URL);'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'keyword.control.at-rule.namespace.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'namespace', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'keyword.control.at-rule.namespace.scss']
+      expect(tokens[3]).toEqual value: 'url', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'support.function.misc.scss']
+
+    it 'tokenizes namespace prefix definition with url() correctly', ->
+      {tokens} = grammar.tokenizeLine '@namespace prefix url(XML-namespace-URL);'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'keyword.control.at-rule.namespace.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'namespace', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'keyword.control.at-rule.namespace.scss']
+      expect(tokens[3]).toEqual value: 'prefix', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'entity.name.namespace-prefix.scss']
+      expect(tokens[5]).toEqual value: 'url', scopes: ['source.css.scss', 'meta.at-rule.namespace.scss', 'support.function.misc.scss']
+
   describe '@page', ->
     it 'tokenizes it correctly', ->
       tokens = grammar.tokenizeLines """
