@@ -60,6 +60,9 @@
   {
     'include': '#at_rule_at_root'
   }
+  {
+    'include': '#at_rule_supports'
+  }
 ]
 'repository':
   'at_rule__':
@@ -544,6 +547,41 @@
       }
       {
         'include': '#selectors'
+      }
+    ]
+  'at_rule_supports':
+    'begin': '((@)supports)\\b'
+    'captures':
+      '1':
+        'name': 'keyword.control.at-rule.supports.scss'
+      '2':
+        'name': 'punctuation.definition.keyword.scss'
+    'end': '(?={|$)'
+    'name': 'meta.at-rule.supports.scss'
+    'patterns': [
+      {
+        'include': '#logical_operators'
+      }
+      {
+        'include': '#constant_property_value'
+      }
+      {
+        'include': '#property_names'
+      }
+      {
+        'include': '#property_values'
+      }
+      {
+        'match': '\\('
+        'name': 'punctuation.definition.condition.begin.bracket.round.scss'
+      }
+      {
+        'match': '\\)'
+        'name': 'punctuation.definition.condition.end.bracket.round.scss'
+      }
+      {
+        'match': ':'
+        'name': 'punctuation.separator.key-value.scss'
       }
     ]
   'at_rule_warn':
