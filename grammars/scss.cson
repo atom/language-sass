@@ -199,7 +199,7 @@
     'name': 'meta.at-rule.for.scss'
     'patterns': [
       {
-        'match': '(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|from|to|through)'
+        'match': '(==|\\!=|<=|>=|<|>|from|to|through)'
         'name': 'keyword.control.operator'
       }
       {
@@ -832,7 +832,7 @@
       }
     ]
   'logical_operators':
-    'match': '\\b(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>|not|or|and)\\b'
+    'match': '\\b(==|\\!=|<=|>=|<|>|not|or|and)\\b'
     'name': 'keyword.control.operator'
   'map':
     'begin': '\\('
