@@ -117,7 +117,7 @@
     'name': 'meta.at-rule.each.scss'
     'patterns': [
       {
-        'match': '\\b(in|\\,)\\b'
+        'match': '\\b(in|,)\\b'
         'name': 'keyword.control.operator'
       }
       {
@@ -157,7 +157,7 @@
         'name': 'keyword.control.at-rule.import.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*(?=\\;)'
+    'end': '\\s*(?=;)'
     'name': 'meta.at-rule.import.scss'
     'patterns': [
       {
@@ -605,7 +605,7 @@
         'name': 'keyword.control.warn.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*(?=\\;)'
+    'end': '\\s*(?=;)'
     'name': 'meta.at-rule.warn.scss'
     'patterns': [
       {
@@ -772,7 +772,7 @@
       }
       {
         'comment': 'We even have error highlighting <3'
-        'match': '[={}\\?\\;@]'
+        'match': '[={}\\?;@]'
         'name': 'invalid.illegal'
       }
     ]
@@ -1284,13 +1284,13 @@
       }
     ]
   'variable_setting':
-    'begin': '\\s*(\\$[A-Za-z0-9_-]+\\b)\\s*(\\:)\\s*'
+    'begin': '\\s*(\\$[A-Za-z0-9_-]+\\b)\\s*(:)\\s*'
     'captures':
       '1':
         'name': 'variable.scss'
       '2':
         'name': 'punctuation.separator.key-value.scss'
-    'end': '\\s*(?=\\;)'
+    'end': '\\s*(?=;)'
     'name': 'meta.set.variable.scss'
     'patterns': [
       {
