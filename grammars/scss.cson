@@ -6,8 +6,8 @@
   'css.scss.erb'
   'scss.erb'
 ]
-'foldingStartMarker': '\\{\\s*$'
-'foldingStopMarker': '^\\s*\\}'
+'foldingStartMarker': '{\\s*$'
+'foldingStopMarker': '^\\s*}'
 'patterns': [
   {
     'include': '#variable_setting'
@@ -113,7 +113,7 @@
         'name': 'keyword.control.each.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*((?=\\}))'
+    'end': '\\s*((?=}))'
     'name': 'meta.at-rule.each.scss'
     'patterns': [
       {
@@ -137,7 +137,7 @@
         'name': 'keyword.control.else.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*(?=\\{)'
+    'end': '\\s*(?={)'
     'name': 'meta.at-rule.else.scss'
     'patterns': [
       {
@@ -179,7 +179,7 @@
             'name': 'keyword.control.at-rule.fontface.scss'
           '2':
             'name': 'punctuation.definition.keyword.scss'
-        'end': '\\s*(?=\\{)'
+        'end': '\\s*(?={)'
         'name': 'meta.at-rule.fontface.scss'
         'patterns': [
           {
@@ -195,7 +195,7 @@
         'name': 'keyword.control.for.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*(?=\\{)'
+    'end': '\\s*(?={)'
     'name': 'meta.at-rule.for.scss'
     'patterns': [
       {
@@ -224,7 +224,7 @@
           '3':
             'name': 'entity.name.function.scss'
         'comment': 'Function with Attributes'
-        'end': '\\s*(?=\\{)'
+        'end': '\\s*(?={)'
         'name': 'meta.at-rule.function.scss'
         'patterns': [
           {
@@ -252,7 +252,7 @@
         'name': 'keyword.control.if.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*(?=\\{)'
+    'end': '\\s*(?={)'
     'name': 'meta.at-rule.if.scss'
     'patterns': [
       {
@@ -272,7 +272,7 @@
         'name': 'keyword.control.at-rule.import.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*((?=;)|(?=\\}))'
+    'end': '\\s*((?=;)|(?=}))'
     'name': 'meta.at-rule.import.scss'
     'patterns': [
       {
@@ -344,12 +344,12 @@
           '4':
             'name': 'entity.name.function.scss'
         'comment': 'Keyframes with Attributes'
-        'end': '(?<=\\})(?:\\s*$)?'
+        'end': '(?<=})(?:\\s*$)?'
         'name': 'meta.at-rule.keyframes.scss'
         'patterns': [
           {
-            'begin': '\\{'
-            'end': '\\}'
+            'begin': '{'
+            'end': '}'
             'beginCaptures':
               '0':
                 'name': 'punctuation.section.keyframes.begin.scss'
@@ -377,7 +377,7 @@
     'patterns': [
       {
         'begin': '^\\s*((@)media\\b)\\s*'
-        'end': '\\s*(?=\\{)'
+        'end': '\\s*(?={)'
         'captures':
           '1':
             'name': 'keyword.control.at-rule.media.scss'
@@ -522,7 +522,7 @@
           '3':
             'name': 'entity.name.function.scss'
         'comment': 'Page with Attributes'
-        'end': '\\s*(?=\\{)'
+        'end': '\\s*(?={)'
         'name': 'meta.at-rule.page.scss'
       }
     ]
@@ -545,7 +545,7 @@
     ]
   'at_rule_at_root':
     'begin': '\\s*((@)(at-root))(\\s+|$)'
-    'end': '\\s*(?=\\{)'
+    'end': '\\s*(?={)'
     'beginCaptures':
       '1':
         'name': 'keyword.control.at-rule.at-root.scss'
@@ -625,7 +625,7 @@
         'name': 'keyword.control.while.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '\\s*(?=\\})'
+    'end': '\\s*(?=})'
     'name': 'meta.at-rule.while.scss'
     'patterns': [
       {
@@ -772,7 +772,7 @@
       }
       {
         'comment': 'We even have error highlighting <3'
-        'match': '[=\\{\\}\\?\\;\\@]'
+        'match': '[={}\\?\\;\\@]'
         'name': 'invalid.illegal'
       }
     ]
@@ -884,7 +884,7 @@
       }
       {
         'comment': 'We even have error highlighting <3'
-        'match': '[=\\{\\}\\?\\@]'
+        'match': '[={}\\?\\@]'
         'name': 'invalid.illegal'
       }
     ]
@@ -1113,7 +1113,7 @@
         'name': 'punctuation.definition.string.end.scss'
       '8':
         'name': 'punctuation.definition.attribute-selector.end.bracket.square.scss'
-    'match': '(?i)(\\[)\\s*(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)(?:\\s*([~|^$*]?=)\\s*(?:(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)|((?>([\'"])(?:[^\\\\]|\\\\.)*?(\\6)))))?\\s*(\\])'
+    'match': '(?i)(\\[)\\s*(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)(?:\\s*([~|^$*]?=)\\s*(?:(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)|((?>([\'"])(?:[^\\\\]|\\\\.)*?(\\6)))))?\\s*(])'
     'name': 'meta.attribute-selector.scss'
   'selector_class':
     'begin': '(\\.)(?=[\\w-]|#{)'
