@@ -8,7 +8,7 @@
 'foldingStopMarker': '^\\s*$'
 'patterns': [
   {
-    'begin': '(\\!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
+    'begin': '(!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.entity.sass'
@@ -99,7 +99,7 @@
             'name': 'punctuation.definition.entity.css'
           '2':
             'name': 'variable.other.sass'
-        'match': '(\\!|\\$)([a-zA-Z0-9_-]+)'
+        'match': '(!|\\$)([a-zA-Z0-9_-]+)'
         'name': 'meta.variable-usage.sass'
       }
       {
@@ -371,7 +371,7 @@
             'name': 'punctuation.definition.entity.css'
           '2':
             'name': 'variable.other.sass'
-        'match': '(\\!|\\$)([a-zA-Z0-9_-]+)'
+        'match': '(!|\\$)([a-zA-Z0-9_-]+)'
         'name': 'meta.variable-usage.sass'
       }
       {
@@ -442,7 +442,7 @@
         ]
       }
       {
-        'match': '\\!\\s*important'
+        'match': '!\\s*important'
         'name': 'keyword.other.important.sass'
       }
     ]
