@@ -6,8 +6,6 @@
   'css.scss.erb'
   'scss.erb'
 ]
-'foldingStartMarker': '{\\s*$'
-'foldingStopMarker': '^\\s*}'
 'patterns': [
   {
     'include': '#variable_setting'

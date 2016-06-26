@@ -4,8 +4,6 @@
   'sass'
   'sass.erb'
 ]
-'foldingStartMarker': '^\\s*([-%#:\\.\\w=].*)\\s$'
-'foldingStopMarker': '^\\s*$'
 'patterns': [
   {
     'begin': '(!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
