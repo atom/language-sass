@@ -4,11 +4,9 @@
   'sass'
   'sass.erb'
 ]
-'foldingStartMarker': '^\\s*([-%#\\:\\.\\w\\=].*)\\s$'
-'foldingStopMarker': '^\\s*$'
 'patterns': [
   {
-    'begin': '(\\!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
+    'begin': '(!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.entity.sass'
@@ -99,7 +97,7 @@
             'name': 'punctuation.definition.entity.css'
           '2':
             'name': 'variable.other.sass'
-        'match': '(\\!|\\$)([a-zA-Z0-9_-]+)'
+        'match': '(!|\\$)([a-zA-Z0-9_-]+)'
         'name': 'meta.variable-usage.sass'
       }
       {
@@ -177,7 +175,7 @@
             'name': 'punctuation.definition.string.begin.sass'
           '7':
             'name': 'punctuation.definition.string.end.sass'
-        'match': '(?i)(\\[)\\s*(-?[_a-z\\\\[[:^ascii:]]][_a-z0-9\\-\\\\[[:^ascii:]]]*)(?:\\s*([~|^$*]?=)\\s*(?:(-?[_a-z\\\\[[:^ascii:]]][_a-z0-9\\-\\\\[[:^ascii:]]]*)|((?>([\'"])(?:[^\\\\]|\\\\.)*?(\\6)))))?\\s*(\\])'
+        'match': '(?i)(\\[)\\s*(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)(?:\\s*([~|^$*]?=)\\s*(?:(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)|((?>([\'"])(?:[^\\\\]|\\\\.)*?(\\6)))))?\\s*(])'
         'name': 'meta.attribute-selector.css.sass'
       }
       {
@@ -262,7 +260,7 @@
         'name': 'punctuation.definition.keyword.sass'
       '3':
         'name': 'support.constant.media.sass'
-    'end': '\\s*((?=;|\\}))'
+    'end': '\\s*((?=;|}))'
     'name': 'meta.at-rule.media.sass'
     'patterns': [
       {
@@ -371,7 +369,7 @@
             'name': 'punctuation.definition.entity.css'
           '2':
             'name': 'variable.other.sass'
-        'match': '(\\!|\\$)([a-zA-Z0-9_-]+)'
+        'match': '(!|\\$)([a-zA-Z0-9_-]+)'
         'name': 'meta.variable-usage.sass'
       }
       {
@@ -442,7 +440,7 @@
         ]
       }
       {
-        'match': '\\!\\s*important'
+        'match': '!\\s*important'
         'name': 'keyword.other.important.sass'
       }
     ]
