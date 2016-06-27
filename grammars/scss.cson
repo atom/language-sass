@@ -699,7 +699,7 @@
     'match': '\\b(\\+|-|\\*|/)\\b'
     'name': 'support.constant.mathematical-symbols.scss'
   'constant_number':
-    'match': '\\b(([0-9]+(\\.[0-9]+)?)|\\.[0-9]+)(?=\\s*(ch|cm|deg|dpi|dpcm|dppx|em|ex|grad|in|mm|mozmm|ms|pc|pt|px|rad|rem|turn|s|vh|vmin|vmax|vw|\\b))'
+    'match': '(\\b([0-9]+(\\.[0-9]+)?)|\\B\\.[0-9]+)(?=\\s*(ch|cm|deg|dpi|dpcm|dppx|em|ex|grad|in|mm|mozmm|ms|pc|pt|px|rad|rem|turn|s|vh|vmin|vmax|vw|\\b))'
     'name': 'constant.numeric.scss'
   'constant_optional':
     'match': '!optional'
@@ -716,10 +716,6 @@
                 (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
                 \\s*(,)\\s*
                 (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
-                (?:
-                  \\s*(,)\\s*
-                  (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
-                )? # RGBA is a thing as well
                 \\b
               '''
     'captures':
@@ -733,10 +729,6 @@
         'name': 'punctuation.separator.delimiter.scss'
       '5':
         'name': 'constant.numeric.color.rgb-value.scss'
-      '6':
-        'name': 'punctuation.separator.delimiter.scss'
-      '7':
-        'name': 'constant.numeric.color.rgb-value.scss'
   'constant_rgb_percentage':
     'match': '''(?x)
                 (?<!scale3d\\(|translate3d\\(|rotate3d\\() # scale3d, translate3d, and rotate3d don't use RGB percentages
@@ -746,10 +738,6 @@
                 ([0-9]{1,2}|100)\\s*(%)
                 \\s*(,)\\s*
                 ([0-9]{1,2}|100)\\s*(%)
-                (?:
-                  \\s*(,)\\s*
-                  ([0-9]{1,2}|100)\\s*(%)
-                )? # RGBA is a thing as well
               '''
     'captures':
       '1':
@@ -767,12 +755,6 @@
       '7':
         'name': 'constant.numeric.color.rgb-percentage.scss'
       '8':
-        'name': 'keyword.other.unit.scss'
-      '9':
-        'name': 'punctuation.separator.delimiter.scss'
-      '10':
-        'name': 'constant.numeric.color.rgb-percentage.scss'
-      '11':
         'name': 'keyword.other.unit.scss'
   'constant_sass_functions':
     'begin': '(headings|stylesheet-url|rgba?|hsla?|ie-hex-str|red|green|blue|alpha|opacity|hue|saturation|lightness|prefixed|prefix|-moz|-svg|-css2|-pie|-webkit|-ms|font-(?:files|url)|grid-image|image-(?:width|height|url|color)|sprites?|sprite-(?:map|map-name|file|url|position)|inline-(?:font-files|image)|opposite-position|grad-point|grad-end-position|color-stops|color-stops-in-percentages|grad-color-stops|(?:radial|linear)-(?:gradient|svg-gradient)|opacify|fade-?in|transparentize|fade-?out|lighten|darken|saturate|desaturate|grayscale|adjust-(?:hue|lightness|saturation|color)|scale-(?:lightness|saturation|color)|change-color|spin|complement|invert|mix|-compass-(?:list|space-list|slice|nth|list-size)|blank|compact|nth|first-value-of|join|length|append|nest|append-selector|headers|enumerate|range|percentage|unitless|unit|if|type-of|comparable|elements-of-type|quote|unquote|escape|e|sin|cos|tan|abs|round|ceil|floor|pi|translate(?:X|Y))(\\()'
