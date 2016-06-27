@@ -691,7 +691,7 @@
       '1':
         'name': 'punctuation.definition.constant.scss'
     'match': '(#)([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\\b'
-    'name': 'constant.other.color.rgb-value.scss'
+    'name': 'constant.numeric.color.hex-value.scss'
   'constant_important':
     'match': '!important'
     'name': 'keyword.other.important.scss'
@@ -708,11 +708,72 @@
     'match': '\\b(absolute|all-scroll|always|armenian|auto|baseline|below|bidi-override|block|bold|bolder|both|bottom|border-box|break-all|break-word|butt|capitalize|center|char|circle|cjk-ideographic|col-resize|collapse|column-reverse|column|contain|content-box|cover|crosshair|currentColor|dashed|decimal-leading-zero|decimal|default|disabled|disc|distribute-all-lines|distribute-letter|distribute-space|distribute|dotted|double|e-resize|ease-in-out|ease-in|ease-out|ease|ellipsis|fill|fixed|flex-end|flex-start|flex|georgian|grid|groove|hand|hebrew|help|hidden|hiragana-iroha|hiragana|horizontal|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline-flex|inline-grid|inline-table|inline|inset|inside|inter-ideograph|inter-word|italic|justify|katakana-iroha|katakana|keep-all|landscape|left|lighter|line-edge|line-through|line|linear|list-item|loose|lower-alpha|lower-greek|lower-latin|lower-roman|lowercase|lr-tb|ltr|manipulation|medium|middle|move|n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|null|oblique|outset|outside|overline|pan-(x|y|left|right|up|down)|pointer|portrait|preserve-3d|progress|relative|repeat-x|repeat-y|repeat|right|ridge|round|row-resize|row-reverse|row|rtl|ruby-base-container|ruby-base|ruby-text-container|ruby-text|ruby|s-resize|scale-down|scroll|se-resize|separate|small-caps|solid|space-around|space-between|square|static|step-end|step-start|stretch|strict|super|sw-resize|table-caption|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|table|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|underline|upper-alpha|upper-latin|upper-roman|uppercase|vertical-ideographic|vertical-text|visible|w-resize|wait|whitespace|wrap|wrap-reverse|zero|true|false|vertical|horizontal)\\b'
     'name': 'support.constant.property-value.scss'
   'constant_rgb':
-    'match': '(?<!scale3d\\(|translate3d\\(|rotate3d\\()(\\b0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\s*,\\s*)(0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\s*,\\s*)(0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\b)'
-    'name': 'constant.other.color.rgb-value.scss'
+    'match': '''(?x)
+                (?<!scale3d\\(|translate3d\\(|rotate3d\\() # scale3d, translate3d, and rotate3d don't use RGB values
+                \\b
+                (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
+                \\s*(,)\\s*
+                (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
+                \\s*(,)\\s*
+                (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
+                (?:
+                  \\s*(,)\\s*
+                  (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
+                )? # RGBA is a thing as well
+                \\b
+              '''
+    'captures':
+      '1':
+        'name': 'constant.numeric.color.rgb-value.scss'
+      '2':
+        'name': 'punctuation.separator.delimiter.scss'
+      '3':
+        'name': 'constant.numeric.color.rgb-value.scss'
+      '4':
+        'name': 'punctuation.separator.delimiter.scss'
+      '5':
+        'name': 'constant.numeric.color.rgb-value.scss'
+      '6':
+        'name': 'punctuation.separator.delimiter.scss'
+      '7':
+        'name': 'constant.numeric.color.rgb-value.scss'
   'constant_rgb_percentage':
-    'match': '\\b([0-9]{1,2}|100)\\s*%,\\s*([0-9]{1,2}|100)\\s*%,\\s*([0-9]{1,2}|100)\\s*%'
-    'name': 'constant.other.color.rgb-percentage.scss'
+    'match': '''(?x)
+                (?<!scale3d\\(|translate3d\\(|rotate3d\\() # scale3d, translate3d, and rotate3d don't use RGB percentages
+                \\b
+                ([0-9]{1,2}|100)\\s*(%)
+                \\s*(,)\\s*
+                ([0-9]{1,2}|100)\\s*(%)
+                \\s*(,)\\s*
+                ([0-9]{1,2}|100)\\s*(%)
+                (?:
+                  \\s*(,)\\s*
+                  ([0-9]{1,2}|100)\\s*(%)
+                )? # RGBA is a thing as well
+              '''
+    'captures':
+      '1':
+        'name': 'constant.numeric.color.rgb-percentage.scss'
+      '2':
+        'name': 'keyword.other.unit.scss'
+      '3':
+        'name': 'punctuation.separator.delimiter.scss'
+      '4':
+        'name': 'constant.numeric.color.rgb-percentage.scss'
+      '5':
+        'name': 'keyword.other.unit.scss'
+      '6':
+        'name': 'punctuation.separator.delimiter.scss'
+      '7':
+        'name': 'constant.numeric.color.rgb-percentage.scss'
+      '8':
+        'name': 'keyword.other.unit.scss'
+      '9':
+        'name': 'punctuation.separator.delimiter.scss'
+      '10':
+        'name': 'constant.numeric.color.rgb-percentage.scss'
+      '11':
+        'name': 'keyword.other.unit.scss'
   'constant_sass_functions':
     'begin': '(headings|stylesheet-url|rgba?|hsla?|ie-hex-str|red|green|blue|alpha|opacity|hue|saturation|lightness|prefixed|prefix|-moz|-svg|-css2|-pie|-webkit|-ms|font-(?:files|url)|grid-image|image-(?:width|height|url|color)|sprites?|sprite-(?:map|map-name|file|url|position)|inline-(?:font-files|image)|opposite-position|grad-point|grad-end-position|color-stops|color-stops-in-percentages|grad-color-stops|(?:radial|linear)-(?:gradient|svg-gradient)|opacify|fade-?in|transparentize|fade-?out|lighten|darken|saturate|desaturate|grayscale|adjust-(?:hue|lightness|saturation|color)|scale-(?:lightness|saturation|color)|change-color|spin|complement|invert|mix|-compass-(?:list|space-list|slice|nth|list-size)|blank|compact|nth|first-value-of|join|length|append|nest|append-selector|headers|enumerate|range|percentage|unitless|unit|if|type-of|comparable|elements-of-type|quote|unquote|escape|e|sin|cos|tan|abs|round|ceil|floor|pi|translate(?:X|Y))(\\()'
     'beginCaptures':
