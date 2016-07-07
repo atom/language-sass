@@ -864,6 +864,9 @@
       {
         'include': '#property_values'
       }
+      {
+        'include': '#variable'
+      }
     ]
   'media_attributes':
     'patterns': [
