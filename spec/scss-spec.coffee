@@ -454,6 +454,11 @@ describe 'SCSS grammar', ->
       expect(tokens[12]).toEqual value: '10', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'constant.numeric.scss']
       expect(tokens[14]).toEqual value: ')', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.definition.map.end.bracket.round.scss']
 
+    it 'tokenizes variables in maps', ->
+      {tokens} = grammar.tokenizeLine '$map: (gutters: $grid-content-gutters)'
+
+      expect(tokens[7]).toEqual value: '$grid-content-gutters', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'variable.scss']
+
     it 'tokenizes comments', ->
       {tokens} = grammar.tokenizeLine '$font-size: // comment'
 
