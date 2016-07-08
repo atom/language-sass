@@ -867,6 +867,9 @@
       {
         'include': '#variable'
       }
+      {
+        'include': '#map'
+      }
     ]
   'media_attributes':
     'patterns': [
