@@ -459,6 +459,21 @@ describe 'SCSS grammar', ->
 
       expect(tokens[7]).toEqual value: '$grid-content-gutters', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'variable.scss']
 
+    it 'tokenizes maps inside maps', ->
+      tokens = grammar.tokenizeLines '''
+        $custom-palettes: (
+          alr: (
+            alr-blue: (
+              x-light: rgb(240, 243, 246)
+            )
+          )
+        );
+      '''
+
+      expect(tokens[1][1]).toEqual value: 'alr', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[2][1]).toEqual value: 'alr-blue', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[3][1]).toEqual value: 'x-light', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'meta.set.variable.map.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
+
     it 'tokenizes comments', ->
       {tokens} = grammar.tokenizeLine '$font-size: // comment'
 
