@@ -58,7 +58,7 @@ describe 'SCSS grammar', ->
 
       expect(tokens[3]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'entity.name.function.scss']
       expect(tokens[4]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.definition.parameters.begin.bracket.round.scss']
-      expect(tokens[6]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.definition']
+      expect(tokens[6]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[10]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.definition.parameters.end.bracket.round.scss']
       expect(tokens[11]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
 
@@ -411,7 +411,7 @@ describe 'SCSS grammar', ->
       expect(tokens[8]).toEqual value: 'something', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.function.misc.scss']
       expect(tokens[9]).toEqual value: '(', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']
       expect(tokens[10]).toEqual value: '$wow', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.scss', 'variable.scss']
-      expect(tokens[11]).toEqual value: ',', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.scss']
+      expect(tokens[11]).toEqual value: ',', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.delimiter.scss']
       expect(tokens[13]).toEqual value: '3', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
       expect(tokens[14]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']
 
@@ -422,7 +422,7 @@ describe 'SCSS grammar', ->
       expect(tokens[9]).toEqual value: '(', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']
       expect(tokens[10]).toEqual value: '(', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition.begin.bracket.round.scss']
       expect(tokens[11]).toEqual value: 'a', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
-      expect(tokens[12]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition']
+      expect(tokens[12]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[14]).toEqual value: '$b', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.scss', 'variable.scss']
       expect(tokens[15]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition.end.bracket.round.scss']
       expect(tokens[16]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']

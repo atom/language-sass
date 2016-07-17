@@ -388,6 +388,9 @@
             'name': 'keyword.control.operator'
           }
           {
+            'include': '#media_features'
+          }
+          {
             'include': '#property_values'
           }
           {
@@ -395,9 +398,6 @@
           }
           {
             'include': '#logical_operators'
-          }
-          {
-            'include': '#media_features'
           }
           {
             'include': '#media_types'
