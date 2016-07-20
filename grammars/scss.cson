@@ -1297,7 +1297,7 @@
     'name': 'string.quoted.double.scss'
     'patterns': [
       {
-        'match': '\\\\([a-fA-F0-9]{1,6}|.)'
+        'match': '\\\\(\\h{1,6}|.)'
         'name': 'constant.character.escape.scss'
       }
       {
@@ -1316,7 +1316,7 @@
     'name': 'string.quoted.single.scss'
     'patterns': [
       {
-        'match': '\\\\([a-fA-F0-9]{1,6}|.)'
+        'match': '\\\\(\\h{1,6}|.)'
         'name': 'constant.character.escape.scss'
       }
       {

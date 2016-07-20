@@ -456,7 +456,7 @@
     'name': 'string.quoted.double.sass'
     'patterns': [
       {
-        'match': '\\\\([a-fA-F0-9]{1,6}|.)'
+        'match': '\\\\(\\h{1,6}|.)'
         'name': 'constant.character.escape.sass'
       }
     ]
@@ -472,7 +472,7 @@
     'name': 'string.quoted.single.sass'
     'patterns': [
       {
-        'match': '\\\\([a-fA-F0-9]{1,6}|.)'
+        'match': '\\\\(\\h{1,6}|.)'
         'name': 'constant.character.escape.sass'
       }
     ]
