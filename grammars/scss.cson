@@ -1201,12 +1201,12 @@
   'selector_pseudo_class':
     'patterns': [
       {
-        'begin': '(:)\\b(nth-(?:child|last-child|of-type|last-of-type))(\\()'
+        'begin': '((:)\\bnth-(?:child|last-child|of-type|last-of-type))(\\()'
         'beginCaptures':
           '1':
-            'name': 'punctuation.definition.entity.css'
-          '2':
             'name': 'entity.other.attribute-name.pseudo-class.css'
+          '2':
+            'name': 'punctuation.definition.entity.css'
           '3':
             'name': 'punctuation.definition.pseudo-class.begin.bracket.round.css'
         'end': '\\)'
@@ -1229,12 +1229,17 @@
         ]
       }
       {
+        'match': '''(?x)
+          (:)\\b
+          (link|visited|hover|active|focus|target|lang|disabled|enabled|checked|
+          indeterminate|root|first-child|last-child|first-of-type|last-of-type|
+          only-child|only-of-type|empty|not|valid|invalid)\\b
+        '''
         'captures':
+          '0':
+            'name': 'entity.other.attribute-name.pseudo-class.css'
           '1':
             'name': 'punctuation.definition.entity.css'
-          '2':
-            'name': 'entity.other.attribute-name.pseudo-class.css'
-        'match': '(:)\\b(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)\\b'
       }
     ]
   'selector_pseudo_element':
