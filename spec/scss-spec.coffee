@@ -555,6 +555,30 @@ describe 'SCSS grammar', ->
 
       expect(tokens[3]).not.toEqual value: 'hi', scopes: ['source.css.scss', 'variable.interpolation.scss']
 
+  describe 'strings', ->
+    it 'tokenizes single-quote strings', ->
+      {tokens} = grammar.tokenizeLine ".a { content: 'hi' }"
+
+      expect(tokens[8]).toEqual value: "'", scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[9]).toEqual value: 'hi', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss']
+      expect(tokens[10]).toEqual value: "'", scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'punctuation.definition.string.end.scss']
+
+    it 'tokenizes double-quote strings', ->
+      {tokens} = grammar.tokenizeLine '.a { content: "hi" }'
+
+      expect(tokens[8]).toEqual value: '"', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[9]).toEqual value: 'hi', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss']
+      expect(tokens[10]).toEqual value: '"', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'punctuation.definition.string.end.scss']
+
+    it 'tokenizes escape characters', ->
+      {tokens} = grammar.tokenizeLine ".a { content: '\\abcdef' }"
+
+      expect(tokens[9]).toEqual value: '\\abcdef', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'constant.character.escape.scss']
+
+      {tokens} = grammar.tokenizeLine '.a { content: "\\abcdef" }'
+
+      expect(tokens[9]).toEqual value: '\\abcdef', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.double.scss', 'constant.character.escape.scss']
+
   describe 'comments', ->
     it 'tokenizes line comments', ->
       {tokens} = grammar.tokenizeLine '//Wow a comment!'

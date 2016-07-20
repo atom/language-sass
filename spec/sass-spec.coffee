@@ -65,6 +65,42 @@ describe 'SASS grammar', ->
       expect(tokens[4]).toEqual value: ' ', scopes: ['source.sass', 'meta.variable-declaration.sass', 'meta.property-value.sass']
       expect(tokens[5]).toEqual value: 'bla', scopes: ['source.sass', 'meta.variable-declaration.sass', 'meta.property-value.sass']
 
+  describe 'strings', ->
+    it 'tokenizes single-quote strings', ->
+      tokens = grammar.tokenizeLines """
+        .a
+          content: 'hi'
+      """
+
+      expect(tokens[1][4]).toEqual value: "'", scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.single.sass', 'punctuation.definition.string.begin.sass']
+      expect(tokens[1][5]).toEqual value: 'hi', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.single.sass']
+      expect(tokens[1][6]).toEqual value: "'", scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.single.sass', 'punctuation.definition.string.end.sass']
+
+    it 'tokenizes double-quote strings', ->
+      tokens = grammar.tokenizeLines '''
+        .a
+          content: "hi"
+      '''
+
+      expect(tokens[1][4]).toEqual value: '"', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.double.sass', 'punctuation.definition.string.begin.sass']
+      expect(tokens[1][5]).toEqual value: 'hi', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.double.sass']
+      expect(tokens[1][6]).toEqual value: '"', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.double.sass', 'punctuation.definition.string.end.sass']
+
+    it 'tokenizes escape characters', ->
+      tokens = grammar.tokenizeLines """
+        .a
+          content: '\\abcdef'
+      """
+
+      expect(tokens[1][5]).toEqual value: '\\abcdef', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.single.sass', 'constant.character.escape.sass']
+
+      tokens = grammar.tokenizeLines '''
+        .a
+          content: "\\abcdef"
+      '''
+
+      expect(tokens[1][5]).toEqual value: '\\abcdef', scopes: ['source.sass', 'meta.property-name.sass', 'meta.property-value.sass', 'string.quoted.double.sass', 'constant.character.escape.sass']
+
   describe 'comments', ->
     it 'only tokenizes comments that start at the beginning of a line', ->
       {tokens} = grammar.tokenizeLine '  //A comment?'
