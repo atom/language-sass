@@ -388,6 +388,9 @@
             'name': 'keyword.control.operator'
           }
           {
+            'include': '#media_features'
+          }
+          {
             'include': '#property_values'
           }
           {
@@ -395,9 +398,6 @@
           }
           {
             'include': '#logical_operators'
-          }
-          {
-            'include': '#media_features'
           }
           {
             'include': '#media_types'
@@ -691,15 +691,15 @@
       '1':
         'name': 'punctuation.definition.constant.scss'
     'match': '(#)([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\\b'
-    'name': 'constant.other.color.rgb-value.scss'
+    'name': 'constant.numeric.color.hex-value.scss'
   'constant_important':
     'match': '!important'
     'name': 'keyword.other.important.scss'
   'constant_mathematical_symbols':
-    'match': '(\\b(\\+|-|\\*|/)\\b)'
+    'match': '\\b(\\+|-|\\*|/)\\b'
     'name': 'support.constant.mathematical-symbols.scss'
   'constant_number':
-    'match': '\\b([0-9]+(\\.[0-9]+)?|\\.[0-9]+)(?=\\s*ch|cm|em|ex|in|mm|rem|pc|pt|px|vh|vmin|vmax|vw|\\b)'
+    'match': '(\\b([0-9]+(\\.[0-9]+)?)|\\B\\.[0-9]+)(?=\\s*(ch|cm|deg|dpi|dpcm|dppx|em|ex|grad|in|mm|mozmm|ms|pc|pt|px|rad|rem|turn|s|vh|vmin|vmax|vw|\\b))'
     'name': 'constant.numeric.scss'
   'constant_optional':
     'match': '!optional'
@@ -708,11 +708,54 @@
     'match': '\\b(absolute|all-scroll|always|armenian|auto|baseline|below|bidi-override|block|bold|bolder|both|bottom|border-box|break-all|break-word|butt|capitalize|center|char|circle|cjk-ideographic|col-resize|collapse|column-reverse|column|contain|content-box|cover|crosshair|currentColor|dashed|decimal-leading-zero|decimal|default|disabled|disc|distribute-all-lines|distribute-letter|distribute-space|distribute|dotted|double|e-resize|ease-in-out|ease-in|ease-out|ease|ellipsis|fill|fixed|flex-end|flex-start|flex|georgian|grid|groove|hand|hebrew|help|hidden|hiragana-iroha|hiragana|horizontal|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline-flex|inline-grid|inline-table|inline|inset|inside|inter-ideograph|inter-word|italic|justify|katakana-iroha|katakana|keep-all|landscape|left|lighter|line-edge|line-through|line|linear|list-item|loose|lower-alpha|lower-greek|lower-latin|lower-roman|lowercase|lr-tb|ltr|manipulation|medium|middle|move|n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|null|oblique|outset|outside|overline|pan-(x|y|left|right|up|down)|pointer|portrait|preserve-3d|progress|relative|repeat-x|repeat-y|repeat|right|ridge|round|row-resize|row-reverse|row|rtl|ruby-base-container|ruby-base|ruby-text-container|ruby-text|ruby|s-resize|scale-down|scroll|se-resize|separate|small-caps|solid|space-around|space-between|square|static|step-end|step-start|stretch|strict|super|sw-resize|table-caption|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|table|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|underline|upper-alpha|upper-latin|upper-roman|uppercase|vertical-ideographic|vertical-text|visible|w-resize|wait|whitespace|wrap|wrap-reverse|zero|true|false|vertical|horizontal)\\b'
     'name': 'support.constant.property-value.scss'
   'constant_rgb':
-    'match': '(?<!scale3d\\(|translate3d\\(|rotate3d\\()(\\b0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\s*,\\s*)(0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\s*,\\s*)(0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\\b)'
-    'name': 'constant.other.color.rgb-value.scss'
+    'match': '''(?x)
+                (?<!scale3d\\(|translate3d\\(|rotate3d\\() # scale3d, translate3d, and rotate3d don't use RGB values
+                \\b
+                (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
+                \\s*(,)\\s*
+                (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
+                \\s*(,)\\s*
+                (0*(?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))
+                \\b
+              '''
+    'captures':
+      '1':
+        'name': 'constant.numeric.color.rgb-value.scss'
+      '2':
+        'name': 'punctuation.separator.delimiter.scss'
+      '3':
+        'name': 'constant.numeric.color.rgb-value.scss'
+      '4':
+        'name': 'punctuation.separator.delimiter.scss'
+      '5':
+        'name': 'constant.numeric.color.rgb-value.scss'
   'constant_rgb_percentage':
-    'match': '\\b([0-9]{1,2}|100)\\s*%,\\s*([0-9]{1,2}|100)\\s*%,\\s*([0-9]{1,2}|100)\\s*%'
-    'name': 'constant.other.color.rgb-percentage.scss'
+    'match': '''(?x)
+                (?<!scale3d\\(|translate3d\\(|rotate3d\\() # scale3d, translate3d, and rotate3d don't use RGB percentages
+                \\b
+                ([0-9]{1,2}|100)\\s*(%)
+                \\s*(,)\\s*
+                ([0-9]{1,2}|100)\\s*(%)
+                \\s*(,)\\s*
+                ([0-9]{1,2}|100)\\s*(%)
+              '''
+    'captures':
+      '1':
+        'name': 'constant.numeric.color.rgb-percentage.scss'
+      '2':
+        'name': 'keyword.other.unit.scss'
+      '3':
+        'name': 'punctuation.separator.delimiter.scss'
+      '4':
+        'name': 'constant.numeric.color.rgb-percentage.scss'
+      '5':
+        'name': 'keyword.other.unit.scss'
+      '6':
+        'name': 'punctuation.separator.delimiter.scss'
+      '7':
+        'name': 'constant.numeric.color.rgb-percentage.scss'
+      '8':
+        'name': 'keyword.other.unit.scss'
   'constant_sass_functions':
     'begin': '(headings|stylesheet-url|rgba?|hsla?|ie-hex-str|red|green|blue|alpha|opacity|hue|saturation|lightness|prefixed|prefix|-moz|-svg|-css2|-pie|-webkit|-ms|font-(?:files|url)|grid-image|image-(?:width|height|url|color)|sprites?|sprite-(?:map|map-name|file|url|position)|inline-(?:font-files|image)|opposite-position|grad-point|grad-end-position|color-stops|color-stops-in-percentages|grad-color-stops|(?:radial|linear)-(?:gradient|svg-gradient)|opacify|fade-?in|transparentize|fade-?out|lighten|darken|saturate|desaturate|grayscale|adjust-(?:hue|lightness|saturation|color)|scale-(?:lightness|saturation|color)|change-color|spin|complement|invert|mix|-compass-(?:list|space-list|slice|nth|list-size)|blank|compact|nth|first-value-of|join|length|append|nest|append-selector|headers|enumerate|range|percentage|unitless|unit|if|type-of|comparable|elements-of-type|quote|unquote|escape|e|sin|cos|tan|abs|round|ceil|floor|pi|translate(?:X|Y))(\\()'
     'beginCaptures':
@@ -760,7 +803,7 @@
     'patterns': [
       {
         'match': ':'
-        'name': 'punctuation.definition'
+        'name': 'punctuation.separator.key-value.scss'
       }
       {
         'include': '#general'
@@ -771,7 +814,7 @@
       {
         'comment': 'We even have error highlighting <3'
         'match': '[={}\\?;@]'
-        'name': 'invalid.illegal'
+        'name': 'invalid.illegal.scss'
       }
     ]
   'functions':
@@ -875,7 +918,7 @@
     'patterns': [
       {
         'match': ':'
-        'name': 'punctuation.definition'
+        'name': 'punctuation.separator.key-value.scss'
       }
       {
         'include': '#general'
@@ -889,7 +932,7 @@
       {
         'comment': 'We even have error highlighting <3'
         'match': '[={}\\?@]'
-        'name': 'invalid.illegal'
+        'name': 'invalid.illegal.scss'
       }
     ]
   'media_features':
@@ -941,7 +984,7 @@
       }
       {
         'match': ','
-        'name': 'punctuation.scss'
+        'name': 'punctuation.separator.delimiter.scss'
       }
     ]
   'properties':
@@ -1010,7 +1053,7 @@
     'name': 'support.type.property-name.scss'
   'property_name_error':
     'match': '(?<![a-z-])(?!-(top|right|left|bottom|color|radius|last|inside|width|before|after|value|size|type|position|style|image|strategy|shift|align|adjust)\\b|-webkit-[A-Za-z]+\\b|-moz-[A-Za-z]+\\b|-ms-[A-Za-z]+\\b|z-index\\b|[0-9]{1,3}%\\b|zoom\\b|y\\b|x\\b|wrap\\b|word-wrap\\b|word-spacing\\b|word-break\\b|word\\b|will-change\\b|width\\b|widows\\b|white-space-collapse\\b|white-space\\b|white\\b|weight\\b|volume\\b|voice-volume\\b|voice-stress\\b|voice-rate\\b|voice-pitch-range\\b|voice-pitch\\b|voice-family\\b|voice-duration\\b|voice-balance\\b|voice\\b|visibility\\b|vertical-align\\b|variant\\b|user-select\\b|up\\b|unicode-bidi\\b|unicode\\b|u\\b|tt\\b|trim\\b|transition-timing-function\\b|transition-property\\b|transition-duration\\b|transition-delay\\b|transition\\b|transform\\b|touch-action\\b|top-width\\b|top-style\\b|top-right-radius\\b|top-left-radius\\b|top-color\\b|top\\b|timing-function\\b|text-wrap\\b|text-transform\\b|text-shadow\\b|text-replace\\b|text-outline\\b|text-justify\\b|text-indent\\b|text-height\\b|text-emphasis\\b|text-decoration\\b|text-align-last\\b|text-align\\b|text\\b|target-position\\b|target-new\\b|target-name\\b|target\\b|table-layout\\b|tab-size\\b|style-type\\b|style-position\\b|style-image\\b|style\\b|string-set\\b|stroke\\b|strike\\b|stretch\\b|stress\\b|stacking-strategy\\b|stacking-shift\\b|stacking-ruby\\b|stacking\\b|src\\b|speed\\b|speech-rate\\b|speech\\b|speak-punctuation\\b|speak-numeral\\b|speak-header\\b|speak\\b|span\\b|spacing\\b|space-collapse\\b|space\\b|sizing\\b|size-adjust\\b|size\\b|shadow\\b|s\\b|respond-to\\b|rule-width\\b|rule-style\\b|rule-color\\b|rule\\b|ruby-span\\b|ruby-position\\b|ruby-overhang\\b|ruby-align\\b|ruby\\b|rows\\b|rotation-point\\b|rotation\\b|role\\b|right-width\\b|right-style\\b|right-color\\b|right\\b|richness\\b|rest-before\\b|rest-after\\b|rest\\b|resource\\b|resolution\\b|resize\\b|reset\\b|replace\\b|repeat\\b|rendering-intent\\b|rate\\b|radius\\b|quotes\\b|punctuation-trim\\b|punctuation\\b|property\\b|profile\\b|presentation-level\\b|presentation\\b|position\\b|pointer-events\\b|point\\b|play-state\\b|play-during\\b|play-count\\b|pitch-range\\b|pitch\\b|phonemes\\b|pause-before\\b|pause-after\\b|pause\\b|page-policy\\b|page-break-inside\\b|page-break-before\\b|page-break-after\\b|page\\b|padding-top\\b|padding-right\\b|padding-left\\b|padding-bottom\\b|padding\\b|pack\\b|overhang\\b|overflow-y\\b|overflow-x\\b|overflow-wrap\\b|overflow-style\\b|overflow\\b|outline-width\\b|outline-style\\b|outline-offset\\b|outline-color\\b|outline\\b|orphans\\b|origin\\b|orientation\\b|orient\\b|ordinal-group\\b|order\\b|opacity\\b|offset\\b|object-position\\b|object-fit\\b|numeral\\b|new\\b|nav-up\\b|nav-right\\b|nav-left\\b|nav-index\\b|nav-down\\b|nav\\b|name\\b|move-to\\b|model\\b|min-width\\b|min-height\\b|min\\b|max-width\\b|max-height\\b|max\\b|marquee-style\\b|marquee-speed\\b|marquee-play-count\\b|marquee-direction\\b|marquee\\b|marks\\b|mark-before\\b|mark-after\\b|marker\\b|mark\\b|margin-top\\b|margin-right\\b|margin-left\\b|margin-bottom\\b|margin\\b|mask-image\\b|list-style-type\\b|list-style-position\\b|list-style-image\\b|list-style\\b|list\\b|lines\\b|line-stacking-strategy\\b|line-stacking-shift\\b|line-stacking-ruby\\b|line-stacking\\b|line-height\\b|line\\b|level\\b|letter-spacing\\b|length\\b|left-width\\b|left-style\\b|left-color\\b|left\\b|label\\b|justify-content\\b|justify\\b|iteration-count\\b|inline-box-align\\b|initial-value\\b|initial-size\\b|initial-before-align\\b|initial-before-adjust\\b|initial-after-align\\b|initial-after-adjust\\b|index\\b|indent\\b|increment\\b|image-resolution\\b|image-orientation\\b|image\\b|icon\\b|hyphens\\b|hyphenate-resource\\b|hyphenate-lines\\b|hyphenate-character\\b|hyphenate-before\\b|hyphenate-after\\b|hyphenate\\b|height\\b|header\\b|hanging-punctuation\\b|grid-rows\\b|grid-columns\\b|grid\\b|gap\\b|font-weight\\b|font-variant\\b|font-variant-ligatures\\b|font-style\\b|font-stretch\\b|font-size-adjust\\b|font-size\\b|font-family\\b|font\\b|float-offset\\b|float\\b|flex-wrap\\b|flex-shrink\\b|flex-grow\\b|flex-group\\b|flex-flow\\b|flex-direction\\b|flex-basis\\b|flex\\b|fit-position\\b|fit\\b|fill\\b|filter\\b|family\\b|empty-cells\\b|emphasis\\b|elevation\\b|duration\\b|drop-initial-value\\b|drop-initial-size\\b|drop-initial-before-align\\b|drop-initial-before-adjust\\b|drop-initial-after-align\\b|drop-initial-after-adjust\\b|drop\\b|down\\b|dominant-baseline\\b|display-role\\b|display-model\\b|display\\b|direction\\b|delay\\b|decoration-break\\b|decoration\\b|cursor\\b|cue-before\\b|cue-after\\b|cue\\b|crop\\b|counter-reset\\b|counter-increment\\b|counter\\b|count\\b|content\\b|columns\\b|column-width\\b|column-span\\b|column-rule-width\\b|column-rule-style\\b|column-rule-color\\b|column-rule\\b|column-gap\\b|column-fill\\b|column-count\\b|column-break-before\\b|column-break-after\\b|column\\b|color-profile\\b|color\\b|collapse\\b|clip\\b|clear\\b|character\\b|center\\b|caption-side\\b|break-inside\\b|break-before\\b|break-after\\b|break\\b|box-sizing\\b|box-shadow\\b|box-pack\\b|box-orient\\b|box-ordinal-group\\b|box-lines\\b|box-flex-group\\b|box-flex\\b|box-direction\\b|box-decoration-break\\b|box-align\\b|box\\b|bottom-width\\b|bottom-style\\b|bottom-right-radius\\b|bottom-left-radius\\b|bottom-color\\b|bottom\\b|border-width\\b|border-top-width\\b|border-top-style\\b|border-top-right-radius\\b|border-top-left-radius\\b|border-top-color\\b|border-top\\b|border-style\\b|border-spacing\\b|border-right-width\\b|border-right-style\\b|border-right-color\\b|border-right\\b|border-radius\\b|border-length\\b|border-left-width\\b|border-left-style\\b|border-left-color\\b|border-left\\b|border-image\\b|border-color\\b|border-collapse\\b|border-bottom-width\\b|border-bottom-style\\b|border-bottom-right-radius\\b|border-bottom-left-radius\\b|border-bottom-color\\b|border-bottom\\b|border\\b|bookmark-target\\b|bookmark-level\\b|bookmark-label\\b|bookmark\\b|binding\\b|bidi\\b|big\\b|before\\b|baseline-shift\\b|baseline\\b|balance\\b|background-size\\b|background-repeat\\b|background-position-y\\b|background-position-x\\b|background-position\\b|background-origin\\b|background-image\\b|background-color\\b|background-clip\\b|background-break\\b|background-attachment\\b|background\\b|backface-visibility\\b|azimuth\\b|attachment\\b|applet\\b|appearance\\b|animation-timing-function\\b|animation-play-state\\b|animation-name\\b|animation-iteration-count\\b|animation-fill-mode\\b|animation-duration\\b|animation-direction\\b|animation-delay\\b|animation\\b|alignment-baseline\\b|alignment-adjust\\b|alignment\\b|align-last\\b|align-self\\b|align-items\\b|align-content\\b|align\\b|after\\b|adjust\\b|acronym\\b)[-_a-z]+'
-    'name': 'invalid.illegal'
+    'name': 'invalid.illegal.scss'
   'property_names':
     'patterns': [
       {
@@ -1070,6 +1113,9 @@
       }
       {
         'include': '#constant_deprecated_color'
+      }
+      {
+        'include': '#property_name' # Transitions can specify property names
       }
       {
         'include': '#constant_mathematical_symbols'
