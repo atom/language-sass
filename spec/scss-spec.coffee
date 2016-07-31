@@ -601,3 +601,15 @@ describe 'SCSS grammar', ->
       '''
 
       expect(tokens[1][8]).toEqual value: '//url/goes/here', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.parameter.url.scss']
+
+    it 'tokenizes comments in @keyframes', ->
+      tokens = grammar.tokenizeLines '''
+        @keyframes foo {
+          // comment
+          /* comment */
+        }
+      '''
+
+      expect(tokens[1][1]).toEqual value: '//', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[2][1]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[2][3]).toEqual value: '*/', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
