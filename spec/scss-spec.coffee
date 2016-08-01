@@ -376,12 +376,12 @@ describe 'SCSS grammar', ->
       expect(tokens[5]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.end.scss']
       expect(tokens[6]).toEqual value: ']', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.end.bracket.square.scss']
 
-  describe 'keyframes', ->
+  describe '@keyframes', ->
     it 'parses the from and to properties', ->
       tokens = grammar.tokenizeLines '''
         @keyframes anim {
-        from { opacity: 0; }
-        to { opacity: 1; }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
       '''
 
@@ -389,12 +389,31 @@ describe 'SCSS grammar', ->
       expect(tokens[0][1]).toEqual value: 'keyframes', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'keyword.control.at-rule.keyframes.scss']
       expect(tokens[0][2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss']
       expect(tokens[0][3]).toEqual value: 'anim', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.name.function.scss']
-      expect(tokens[1][0]).toEqual value: 'from', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
-      expect(tokens[1][4]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[1][7]).toEqual value: '0', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
-      expect(tokens[2][0]).toEqual value: 'to', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
-      expect(tokens[2][4]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[2][7]).toEqual value: '1', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[0][5]).toEqual value: '{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.begin.scss']
+      expect(tokens[1][1]).toEqual value: 'from', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
+      expect(tokens[1][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][8]).toEqual value: '0', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[2][1]).toEqual value: 'to', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
+      expect(tokens[2][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[2][8]).toEqual value: '1', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[3][0]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.end.scss']
+
+    describe 'when animation-name is specified as a string', ->
+      it 'can be double-quoted, containing escapes', ->
+        {tokens} = grammar.tokenizeLine '@keyframes "\\22 foo\\"" {}'
+
+        expect(tokens[3]).toEqual value: '"', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.double.scss', 'punctuation.definition.string.begin.scss']
+        expect(tokens[4]).toEqual value: '\\22', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.double.scss', 'entity.name.function.scss', 'constant.character.escape.scss']
+        expect(tokens[7]).toEqual value: '"', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.double.scss', 'punctuation.definition.string.end.scss']
+        expect(tokens[9]).toEqual value: '{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.begin.scss']
+
+      it 'can be single-quoted, containing escapes', ->
+        {tokens} = grammar.tokenizeLine "@keyframes '\\'foo\\27' {}"
+
+        expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+        expect(tokens[6]).toEqual value: '\\27', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.single.scss', 'entity.name.function.scss', 'constant.character.escape.scss']
+        expect(tokens[7]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.single.scss', 'punctuation.definition.string.end.scss']
+        expect(tokens[9]).toEqual value: '{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.begin.scss']
 
   describe 'media queries', ->
     it 'parses media types and features', ->
