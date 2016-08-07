@@ -330,7 +330,7 @@
     ]
   'at_rule_keyframes':
     {
-      'begin': '(?<=(?:\\s|^))(@)(?:-(?:webkit|moz)-)?keyframes\\b'
+      'begin': '(?<=^|\\s)(@)(?:-(?:webkit|moz)-)?keyframes\\b'
       'beginCaptures':
         '0':
           'name': 'keyword.control.at-rule.keyframes.scss'
@@ -340,13 +340,13 @@
       'name': 'meta.at-rule.keyframes.scss'
       'patterns': [
         {
-          'match': '(?<=@keyframes)[ \\t]+((?:[_A-Za-z][-\\w]|-[_A-Za-z])[-\\w]*)'
+          'match': '(?<=@keyframes)\\s+((?:[_A-Za-z][-\\w]|-[_A-Za-z])[-\\w]*)'
           'captures':
             '1':
               'name': 'entity.name.function.scss'
         }
         {
-          'begin': '(?<=@keyframes)[ \\t]+(")'
+          'begin': '(?<=@keyframes)\\s+(")'
           'beginCaptures':
             '1':
               'name': 'punctuation.definition.string.begin.scss'
@@ -367,7 +367,7 @@
           ]
         }
         {
-          'begin': "(?<=@keyframes)[ \\t]+(')"
+          'begin': "(?<=@keyframes)\\s+(')"
           'beginCaptures':
             '1':
               'name': 'punctuation.definition.string.begin.scss'
