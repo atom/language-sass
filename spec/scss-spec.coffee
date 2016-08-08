@@ -117,11 +117,11 @@ describe 'SCSS grammar', ->
 
   describe '@page', ->
     it 'tokenizes it correctly', ->
-      tokens = grammar.tokenizeLines """
+      tokens = grammar.tokenizeLines '''
         @page {
           text-align: center;
         }
-      """
+      '''
 
       expect(tokens[0][0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[0][1]).toEqual value: 'page', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss']
@@ -131,11 +131,11 @@ describe 'SCSS grammar', ->
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
 
-      tokens = grammar.tokenizeLines """
+      tokens = grammar.tokenizeLines '''
         @page :left {
           text-align: center;
         }
-      """
+      '''
 
       expect(tokens[0][0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[0][1]).toEqual value: 'page', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss']
@@ -147,11 +147,11 @@ describe 'SCSS grammar', ->
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
 
-      tokens = grammar.tokenizeLines """
+      tokens = grammar.tokenizeLines '''
         @page:left {
           text-align: center;
         }
-      """
+      '''
 
       expect(tokens[0][0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[0][1]).toEqual value: 'page', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss']
@@ -213,10 +213,10 @@ describe 'SCSS grammar', ->
       expect(tokens[8]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
 
     it 'tokenizes multiple lines of incomplete property-list', ->
-      tokens = grammar.tokenizeLines """
+      tokens = grammar.tokenizeLines '''
         very-custom { color: inherit }
         another-one { display: none; }
-      """
+      '''
 
       expect(tokens[0][0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
       expect(tokens[0][4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
@@ -227,11 +227,11 @@ describe 'SCSS grammar', ->
 
   describe 'property names with a prefix that matches an element name', ->
     it 'does not confuse them with properties', ->
-      tokens = grammar.tokenizeLines """
+      tokens = grammar.tokenizeLines '''
         text {
           text-align: center;
         }
-      """
+      '''
 
       expect(tokens[0][0]).toEqual value: 'text', scopes: ['source.css.scss', 'entity.name.tag.scss']
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
@@ -240,11 +240,11 @@ describe 'SCSS grammar', ->
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
 
-      tokens = grammar.tokenizeLines """
+      tokens = grammar.tokenizeLines '''
         table {
           table-layout: fixed;
         }
-      """
+      '''
 
       expect(tokens[0][0]).toEqual value: 'table', scopes: ['source.css.scss', 'entity.name.tag.scss']
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
@@ -285,13 +285,13 @@ describe 'SCSS grammar', ->
       expect(tokens[2]).toEqual value: 'class', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css']
 
     it 'does not confuse them with properties', ->
-      tokens = grammar.tokenizeLines """
+      tokens = grammar.tokenizeLines '''
         body {
           border-width: 2;
           font-size : 2;
           background-image  : none;
         }
-      """
+      '''
 
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[1][1]).toEqual value: 'border-width', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
@@ -365,8 +365,8 @@ describe 'SCSS grammar', ->
       expect(tokens[4]).toEqual value: 'hi', scopes: ['source.css.scss', 'invalid.illegal.scss']
       expect(tokens[5]).toEqual value: ')', scopes: ['source.css.scss', 'punctuation.definition.pseudo-class.end.bracket.round.css']
 
-  describe "attribute selectors", ->
-    it "parses them correctly", ->
+  describe 'attribute selectors', ->
+    it 'parses them correctly', ->
       {tokens} = grammar.tokenizeLine '[something="1"]'
 
       expect(tokens[0]).toEqual value: '[', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.begin.bracket.square.scss']
@@ -376,25 +376,44 @@ describe 'SCSS grammar', ->
       expect(tokens[5]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.end.scss']
       expect(tokens[6]).toEqual value: ']', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.end.bracket.square.scss']
 
-  describe "keyframes", ->
-    it "parses the from and to properties", ->
-      tokens = grammar.tokenizeLines """
+  describe '@keyframes', ->
+    it 'parses the from and to properties', ->
+      tokens = grammar.tokenizeLines '''
         @keyframes anim {
-        from { opacity: 0; }
-        to { opacity: 1; }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
-      """
+      '''
 
       expect(tokens[0][0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'keyword.control.at-rule.keyframes.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[0][1]).toEqual value: 'keyframes', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'keyword.control.at-rule.keyframes.scss']
       expect(tokens[0][2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss']
       expect(tokens[0][3]).toEqual value: 'anim', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.name.function.scss']
-      expect(tokens[1][0]).toEqual value: 'from', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'entity.other.attribute-name.scss']
-      expect(tokens[1][4]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[1][7]).toEqual value: '0', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
-      expect(tokens[2][0]).toEqual value: 'to', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'entity.other.attribute-name.scss']
-      expect(tokens[2][4]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[2][7]).toEqual value: '1', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[0][5]).toEqual value: '{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.begin.scss']
+      expect(tokens[1][1]).toEqual value: 'from', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
+      expect(tokens[1][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][8]).toEqual value: '0', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[2][1]).toEqual value: 'to', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
+      expect(tokens[2][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[2][8]).toEqual value: '1', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[3][0]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.end.scss']
+
+    describe 'when animation-name is specified as a string', ->
+      it 'can be double-quoted, containing escapes', ->
+        {tokens} = grammar.tokenizeLine '@keyframes "\\22 foo\\"" {}'
+
+        expect(tokens[3]).toEqual value: '"', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.double.scss', 'punctuation.definition.string.begin.scss']
+        expect(tokens[4]).toEqual value: '\\22', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.double.scss', 'entity.name.function.scss', 'constant.character.escape.scss']
+        expect(tokens[7]).toEqual value: '"', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.double.scss', 'punctuation.definition.string.end.scss']
+        expect(tokens[9]).toEqual value: '{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.begin.scss']
+
+      it 'can be single-quoted, containing escapes', ->
+        {tokens} = grammar.tokenizeLine "@keyframes '\\'foo\\27' {}"
+
+        expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+        expect(tokens[6]).toEqual value: '\\27', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.single.scss', 'entity.name.function.scss', 'constant.character.escape.scss']
+        expect(tokens[7]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'string.quoted.single.scss', 'punctuation.definition.string.end.scss']
+        expect(tokens[9]).toEqual value: '{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.begin.scss']
 
   describe 'media queries', ->
     it 'parses media types and features', ->
@@ -546,9 +565,9 @@ describe 'SCSS grammar', ->
     it 'is tokenized as a keyframe', ->
       {tokens} = grammar.tokenizeLine '@keyframes anim { #\{$keyframe} {} }'
 
-      expect(tokens[7]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.begin.bracket.curly.scss']
-      expect(tokens[8]).toEqual value: '$keyframe', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'variable.scss']
-      expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.keyframes.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.end.bracket.curly.scss']
+      expect(tokens[7]).toEqual value: '#{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.begin.bracket.curly.scss']
+      expect(tokens[8]).toEqual value: '$keyframe', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'variable.interpolation.scss', 'variable.scss']
+      expect(tokens[9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'variable.interpolation.scss', 'punctuation.definition.interpolation.end.bracket.curly.scss']
 
     it 'does not tokenize anything after the closing bracket as interpolation', ->
       {tokens} = grammar.tokenizeLine '#\{variable}hi'
@@ -601,3 +620,15 @@ describe 'SCSS grammar', ->
       '''
 
       expect(tokens[1][8]).toEqual value: '//url/goes/here', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.parameter.url.scss']
+
+    it 'tokenizes comments in @keyframes', ->
+      tokens = grammar.tokenizeLines '''
+        @keyframes foo {
+          // comment
+          /* comment */
+        }
+      '''
+
+      expect(tokens[1][1]).toEqual value: '//', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[2][1]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[2][3]).toEqual value: '*/', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
