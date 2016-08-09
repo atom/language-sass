@@ -608,26 +608,20 @@
       }
     ]
   'at_rule_supports':
-    'begin': '((@)supports)\\b'
+    'begin': '(?<=^|\\s)(@)supports\\b'
     'captures':
-      '1':
+      '0':
         'name': 'keyword.control.at-rule.supports.scss'
-      '2':
+      '1':
         'name': 'punctuation.definition.keyword.scss'
-    'end': '(?={|$)'
+    'end': '(?={)|$'
     'name': 'meta.at-rule.supports.scss'
     'patterns': [
       {
         'include': '#logical_operators'
       }
       {
-        'include': '#constant_property_value'
-      }
-      {
-        'include': '#property_names'
-      }
-      {
-        'include': '#property_values'
+        'include': '#properties'
       }
       {
         'match': '\\('
@@ -636,10 +630,6 @@
       {
         'match': '\\)'
         'name': 'punctuation.definition.condition.end.bracket.round.scss'
-      }
-      {
-        'match': ':'
-        'name': 'punctuation.separator.key-value.scss'
       }
     ]
   'at_rule_warn':
@@ -1066,7 +1056,7 @@
           '1':
             'name': 'punctuation.separator.key-value.scss'
         'comment': 'Kuroir: fixed nested elements for sass.'
-        'end': '\\s*(;|(?=}))'
+        'end': '\\s*(;|(?=}|\\)))'
         'endCaptures':
           '1':
             'name': 'punctuation.terminator.rule.scss'
