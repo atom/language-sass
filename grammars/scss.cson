@@ -139,7 +139,7 @@
     'name': 'meta.at-rule.else.scss'
     'patterns': [
       {
-        'include': '#logical_operators'
+        'include': '#conditional_operators'
       }
       {
         'include': '#variable'
@@ -254,7 +254,7 @@
     'name': 'meta.at-rule.if.scss'
     'patterns': [
       {
-        'include': '#logical_operators'
+        'include': '#conditional_operators'
       }
       {
         'include': '#variable'
@@ -443,7 +443,7 @@
             'include': '#variable'
           }
           {
-            'include': '#logical_operators'
+            'include': '#conditional_operators'
           }
           {
             'include': '#media_types'
@@ -673,7 +673,7 @@
     'name': 'meta.at-rule.while.scss'
     'patterns': [
       {
-        'include': '#logical_operators'
+        'include': '#conditional_operators'
       }
       {
         'include': '#variable'
@@ -918,9 +918,21 @@
         'include': '#variable'
       }
     ]
+  'conditional_operators':
+    'patterns': [
+      {
+        'include': '#comparison_operators'
+      }
+      {
+        'include': '#logical_operators'
+      }
+    ]
+  'comparison_operators':
+    'match': '==|!=|<=|>=|<|>'
+    'name': 'keyword.operator.comparison.scss'
   'logical_operators':
-    'match': '\\b(==|!=|<=|>=|<|>|not|or|and)\\b'
-    'name': 'keyword.control.operator'
+    'match': '\\b(not\\b|or\\b|and\\b)'
+    'name': 'keyword.operator.logical.scss'
   'map':
     'begin': '\\('
     'beginCaptures':
