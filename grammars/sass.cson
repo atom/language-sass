@@ -499,6 +499,14 @@
         'match': '!\\s*important'
         'name': 'keyword.other.important.sass'
       }
+      {
+        'match': '==|!=|<=|>=|<|>'
+        'name': 'keyword.operator.comparison.sass'
+      }
+      {
+        'match': '\\b(not\\b|or\\b|and\\b)'
+        'name': 'keyword.operator.logical.sass'
+      }
     ]
   'string-double':
     'begin': '"'
