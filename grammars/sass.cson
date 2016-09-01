@@ -26,6 +26,26 @@
     ]
   }
   {
+    'begin': '^((@)function\\b)\\s*([a-zA-Z0-9_-]+)'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.at-rule.function.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+      '3':
+        'name': 'support.function.misc.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.function.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
     'begin': '^(=|@mixin\\s+)([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':
