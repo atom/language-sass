@@ -536,6 +536,10 @@
         'name': 'keyword.other.important.sass'
       }
       {
+        'match': '(from|to|through|in)'
+        'name': 'keyword.operator.control.sass'
+      }
+      {
         'match': '==|!=|<=|>=|<|>'
         'name': 'keyword.operator.comparison.sass'
       }
