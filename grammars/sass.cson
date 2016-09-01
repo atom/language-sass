@@ -46,6 +46,24 @@
     ]
   }
   {
+    'begin': '\\s*((@)return\\b)\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.return.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.return.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
     'begin': '^(=|@mixin\\s+)([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':
