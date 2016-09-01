@@ -62,6 +62,24 @@
     ]
   }
   {
+    'begin': '\\s*((@)for\\b)\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.for.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.for.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
     'begin': '^((@)function\\b)\\s*([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':
