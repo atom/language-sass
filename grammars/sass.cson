@@ -156,14 +156,14 @@
     ]
   }
   {
-    'begin': '^\\s*(\\+|@include\\s+)([a-zA-Z0-9_-]+)'
+    'begin': '^\\s*(\\+(?!\\s+)|(?:(@)include(?=\\s+)))\\s*([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':
-        'name': 'keyword.control.at-rule.import.sass'
+        'name': 'keyword.control.at-rule.include.sass'
       '2':
-        'name': 'variable.other.sass'
-      '3':
         'name': 'punctuation.definition.entity.sass'
+      '3':
+        'name': 'variable.other.sass'
     'end': '(;)?$'
     'endCaptures':
       '1':
