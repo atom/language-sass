@@ -136,14 +136,14 @@
     ]
   }
   {
-    'begin': '^(=|@mixin\\s+)([a-zA-Z0-9_-]+)'
+    'begin': '^(=\\s*|(?:(@)mixin))\\s+([a-zA-Z0-9_-]+)' # Sass allows space after '='
     'beginCaptures':
       '1':
         'name': 'keyword.control.at-rule.mixin.sass'
       '2':
-        'name': 'variable.other.sass'
-      '3':
         'name': 'punctuation.definition.entity.sass'
+      '3':
+        'name': 'variable.other.sass'
     'end': '(;)?$'
     'endCaptures':
       '1':
