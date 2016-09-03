@@ -2,13 +2,13 @@
   'editor':
     'autoIndentOnPaste': false
     'increaseIndentPattern': '''(?x)
-      ^\\s* # Start of line
+      ^(?!\\s*$)\\s* # Start of non empty line
       (
-        [^:]+ # No colons (for regular selectors like body)
+        [^:@,]+ # No colons, commas and at signs (for regular selectors like body)
         |
         [}\\w&-]+::?[#\\w&-]+ # Pseudo-elements/classes (something::before)
         |
-        @.* # At-rule since some at-rules may contain colons (@media(max-width: 922px))
+        @(?!import|return).* # At-rule (except import and return) since some at-rules may contain colons (@media(max-width: 922px))
       )
       \\s*$ # End of line
     '''
