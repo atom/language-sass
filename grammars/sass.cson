@@ -44,6 +44,24 @@
     ]
   }
   {
+    'begin': '\\s*((@)(?:(?:else(?=\\s*$))|(?:else\\s+if\\s+(?=\\S+))))'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.else.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.else.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
     'begin': '\\s*((@)while\\b)\\s+'
     'beginCaptures':
       '1':
