@@ -226,6 +226,30 @@
     ]
   }
   {
+    'comment': 'Place for improvements after sass.cson refactor'
+    'begin': '^\\s*((@)at-root)(?!(?:\\s+[^.\\(])|(?:\\s+\\((?!with)))'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.at-root.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.at-root.sass'
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'support.function.misc.sass'
+          '2':
+            'name': '.entity.other.attribute-name'
+        'match': '(?:(\\((?:with(?:out)?)\\s*:\\s*[a-zA-Z ]+\\))|((?:[.*&#a][:*&#a-zA-Z]+)+))'
+      }
+    ]
+  }
+  {
     'begin': '^\\s*(\\+)([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':
