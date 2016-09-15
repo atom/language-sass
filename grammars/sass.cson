@@ -26,14 +26,142 @@
     ]
   }
   {
-    'begin': '^(=|@mixin\\s+)([a-zA-Z0-9_-]+)'
+    'begin': '\\s*((@)if\\b)\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.if.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.if.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '\\s*((@)(?:(?:else(?=\\s*$))|(?:else\\s+if\\s+(?=\\S+))))'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.else.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.else.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '\\s*((@)while\\b)\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.while.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.while.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '\\s*((@)for\\b)\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.for.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.for.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '\\s*((@)each\\b)\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.each.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.each.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '^((@)function\\b)\\s*([a-zA-Z0-9_-]+)'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.at-rule.function.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+      '3':
+        'name': 'support.function.misc.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.function.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '\\s*((@)return\\b)\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.return.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.return.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '^(=\\s*|(?:(@)mixin))\\s+([a-zA-Z0-9_-]+)' # Sass allows space after '='
     'beginCaptures':
       '1':
         'name': 'keyword.control.at-rule.mixin.sass'
       '2':
-        'name': 'variable.other.sass'
-      '3':
         'name': 'punctuation.definition.entity.sass'
+      '3':
+        'name': 'variable.other.sass'
     'end': '(;)?$'
     'endCaptures':
       '1':
@@ -46,14 +174,32 @@
     ]
   }
   {
-    'begin': '^\\s*(\\+|@include\\s+)([a-zA-Z0-9_-]+)'
+    'begin': '\\s*((@)content)\\s*$'
     'beginCaptures':
       '1':
-        'name': 'keyword.control.at-rule.import.sass'
+        'name': 'keyword.control.content.sass'
       '2':
-        'name': 'variable.other.sass'
-      '3':
         'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.content.sass'
+    'patterns': [
+      {
+        'include': '#property-value'
+      }
+    ]
+  }
+  {
+    'begin': '^\\s*(\\+(?!\\s+)|(?:(@)include(?=\\s+)))\\s*([a-zA-Z0-9_-]+)'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.at-rule.include.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+      '3':
+        'name': 'variable.other.sass'
     'end': '(;)?$'
     'endCaptures':
       '1':
@@ -75,6 +221,51 @@
         'name': 'invalid.illegal.punctuation.sass'
     'match': '^\\s*(@extend)\\s+([.*&#%a-zA-Z][-_:.*&#a-zA-Z]*)\\s*(;)?\\s*$'
     'name': 'meta.function.extend.sass'
+  }
+  {
+    'begin': '\\s*((@)(warn|debug|error)\\b)\\s*'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.warn.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.warn.sass'
+    'patterns': [
+      {
+        'include': '#string-single'
+      }
+      {
+        'include': '#string-double'
+      }
+    ]
+  }
+  {
+    'comment': 'Place for improvements after sass.cson refactor'
+    'begin': '^\\s*((@)at-root)(?!(?:\\s+[^.\\(])|(?:\\s+\\((?!with)))'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.at-root.sass'
+      '2':
+        'name': 'punctuation.definition.entity.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.at-root.sass'
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'support.function.misc.sass'
+          '2':
+            'name': '.entity.other.attribute-name'
+        'match': '(?:(\\((?:with(?:out)?)\\s*:\\s*[a-zA-Z ]+\\))|((?:[.*&#a][:*&#a-zA-Z]+)+))'
+      }
+    ]
   }
   {
     'begin': '^\\s*(\\+)([a-zA-Z0-9_-]+)'
@@ -360,10 +551,6 @@
         'name': 'keyword.operator.css'
       }
       {
-        'match': '='
-        'name': 'keyword.operator.assignment.css'
-      }
-      {
         'captures':
           '1':
             'name': 'punctuation.definition.entity.css'
@@ -373,7 +560,7 @@
         'name': 'meta.variable-usage.sass'
       }
       {
-        'match': '\\b(absolute|all-scroll|always|auto|baseline|below|bidi-override|block|bold|bolder|border-box|both|bottom|break-all|break-word|butt|capitalize|center|char|circle|col-resize|collapse|contain|content-box|cover|crosshair|dashed|decimal|default|disabled|disc|distribute-all-lines|distribute-letter|distribute-space|distribute|dotted|double|e-resize|ease-in-out|ease-in|ease-out|ease|ellipsis|fill|fixed|grid|groove|hand|help|hidden|horizontal|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline-flex|inline-grid|inline-table|inline|inset|inside|inter-ideograph|inter-word|italic|justify|keep-all|left|lighter|line-edge|line-through|linear|line|list-item|loose|lower-alpha|lower-roman|lowercase|lr-tb|ltr|manipulation|medium|middle|move|n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|oblique|outset|outside|overline|padding-box|pan-(x|y|left|right|up|down)|pointer|pre-wrap|pre-line|pre|preserve-3d|progress|relative|repeat-x|repeat-y|repeat|right|ridge|round|row-resize|rtl|ruby-base-container|ruby-base|ruby-text-container|ruby-text|ruby|s-resize|scale-down|scroll|se-resize|separate|small-caps|solid|square|static|step-end|step-start|strict|super|sw-resize|table-caption|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|table|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|underline|upper-alpha|upper-roman|uppercase|vertical-ideographic|vertical-text|visible|w-resize|wait|whitespace)\\b'
+        'match': '\\b(absolute|all-scroll|always|auto|baseline|below|bidi-override|block|bold|bolder|border-box|both|bottom|break-all|break-word|butt|capitalize|center|char|circle|col-resize|collapse|contain|content-box|cover|crosshair|dashed|decimal|default|disabled|disc|distribute-all-lines|distribute-letter|distribute-space|distribute|dotted|double|e-resize|ease-in-out|ease-in|ease-out|ease|ellipsis|false|fill|fixed|grid|groove|hand|help|hidden|horizontal|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline-flex|inline-grid|inline-table|inline|inset|inside|inter-ideograph|inter-word|italic|justify|keep-all|left|lighter|line-edge|line-through|linear|line|list-item|loose|lower-alpha|lower-roman|lowercase|lr-tb|ltr|manipulation|medium|middle|move|n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|oblique|outset|outside|overline|padding-box|pan-(x|y|left|right|up|down)|pointer|pre-wrap|pre-line|pre|preserve-3d|progress|relative|repeat-x|repeat-y|repeat|right|ridge|round|row-resize|rtl|ruby-base-container|ruby-base|ruby-text-container|ruby-text|ruby|s-resize|scale-down|scroll|se-resize|separate|small-caps|solid|square|static|step-end|step-start|strict|super|sw-resize|table-caption|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|table|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|true|underline|upper-alpha|upper-roman|uppercase|vertical-ideographic|vertical-text|visible|w-resize|wait|whitespace)\\b'
         'name': 'support.constant.property-value.css.sass'
       }
       {
@@ -442,6 +629,18 @@
       {
         'match': '!\\s*important'
         'name': 'keyword.other.important.sass'
+      }
+      {
+        'match': '(from|to|through|in)'
+        'name': 'keyword.operator.control.sass'
+      }
+      {
+        'match': '==|!=|<=|>=|<|>'
+        'name': 'keyword.operator.comparison.sass'
+      }
+      {
+        'match': '\\b(not\\b|or\\b|and\\b)'
+        'name': 'keyword.operator.logical.sass'
       }
     ]
   'string-double':
