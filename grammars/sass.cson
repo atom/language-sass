@@ -648,7 +648,7 @@
           justify|
           keep-all|
           left|lighter|line-edge|line-through|linear|line|list-item|loose|lower-alpha|lower-roman|lowercase|lr-tb|ltr|
-          manipulation|medium|middle|move|
+          manipulation|margin-box|medium|middle|move|
           n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|
           oblique|outset|outside|overline|
           padding-box|pan-(x|y|left|right|up|down)|pointer|pre-wrap|pre-line|pre|preserve-3d|progress|

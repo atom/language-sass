@@ -778,10 +778,10 @@
       justify|
       katakana-iroha|katakana|keep-all|
       landscape|left|lighter|line-edge|line-through|line|linear|list-item|loose|lower-alpha|lower-greek|lower-latin|lower-roman|lowercase|lr-tb|ltr|
-      manipulation|medium|middle|move|
+      manipulation|margin-box|medium|middle|move|
       n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|null|
       oblique|outset|outside|overline|
-      pan-(x|y|left|right|up|down)|pointer|portrait|preserve-3d|progress|
+      padding-box|pan-(x|y|left|right|up|down)|pointer|portrait|preserve-3d|progress|
       relative|repeat-x|repeat-y|repeat|right|ridge|round|row-resize|row-reverse|row|rtl|ruby-base-container|ruby-base|ruby-text-container|ruby-text|ruby|
       s-resize|scale-down|scroll|se-resize|separate|small-caps|solid|space-around|space-between|square|static|step-end|step-start|stretch|strict|super|sw-resize|
       table-caption|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|table|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|
