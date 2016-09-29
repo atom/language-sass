@@ -888,7 +888,7 @@
     'patterns': [
       {
         'match': ':'
-        'name': 'punctuation.separator.key-value.scss'
+        'name': 'punctuation.separator.key-value.css'
       }
       {
         'include': '#general'
@@ -995,7 +995,7 @@
           '1':
             'name': 'support.type.map.key.scss'
           '2':
-            'name': 'punctuation.separator.key-value.scss'
+            'name': 'punctuation.separator.key-value.css'
       }
       {
         'match': ','
@@ -1015,7 +1015,7 @@
     'patterns': [
       {
         'match': ':'
-        'name': 'punctuation.separator.key-value.scss'
+        'name': 'punctuation.separator.key-value.css'
       }
       {
         'include': '#general'
@@ -1526,7 +1526,7 @@
       '1':
         'name': 'variable.scss'
       '2':
-        'name': 'punctuation.separator.key-value.scss'
+        'name': 'punctuation.separator.key-value.css'
     'end': '\\s*(?=;)'
     'name': 'meta.set.variable.scss'
     'patterns': [
