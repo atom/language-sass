@@ -791,7 +791,7 @@
       zero|true|false|vertical|horizontal)
       \\b
     '''
-    'name': 'support.constant.property-value.scss'
+    'name': 'support.constant.property-value.css'
   'constant_rgb':
     'match': '''(?x)
                 (?<!scale3d\\(|translate3d\\(|rotate3d\\() # scale3d, translate3d, and rotate3d don't use RGB values
@@ -1089,7 +1089,7 @@
       {
         'begin': '(?<![-a-z])(?=[-a-z])'
         'end': '$|(?![-a-z])'
-        'name': 'meta.property-name.scss'
+        'name': 'meta.property-name.css'
         'patterns': [
           {
             'include': '#property_names'
@@ -1103,13 +1103,12 @@
         'begin': '(:)\\s*(?!(\\s*{))'
         'beginCaptures':
           '1':
-            'name': 'punctuation.separator.key-value.scss'
-        'comment': 'Kuroir: fixed nested elements for sass.'
+            'name': 'punctuation.separator.key-value.css'
         'end': '\\s*(;|(?=}|\\)))'
         'endCaptures':
           '1':
-            'name': 'punctuation.terminator.rule.scss'
-        'contentName': 'meta.property-value.scss'
+            'name': 'punctuation.terminator.rule.css'
+        'contentName': 'meta.property-value.css'
         'patterns': [
           {
             'include': '#general'
@@ -1124,12 +1123,12 @@
     'begin': '{'
     'beginCaptures':
       '0':
-        'name': 'punctuation.section.property-list.begin.bracket.curly.scss'
+        'name': 'punctuation.section.property-list.begin.bracket.curly.css'
     'end': '}'
     'endCaptures':
       '0':
-        'name': 'punctuation.section.property-list.end.bracket.curly.scss'
-    'name': 'meta.property-list.scss'
+        'name': 'punctuation.section.property-list.end.bracket.curly.css'
+    'name': 'meta.property-list.css'
     'patterns': [
       {
         'include': '#flow_control'
@@ -1177,7 +1176,7 @@
       azimuth|attachment|appearance|animation-timing-function|animation-play-state|animation-name|animation-iteration-count|animation-fill-mode|animation-duration|animation-direction|animation-delay|animation|alignment-baseline|alignment-adjust|alignment|align-self|align-last|align-items|align-content|align|after|adjust)
       \\b
     '''
-    'name': 'support.type.property-name.scss'
+    'name': 'support.type.property-name.css'
   'property_name_error':
     'match': '''(?x)
       (?<![a-z-])
