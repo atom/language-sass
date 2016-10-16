@@ -5,6 +5,7 @@
   'css.scss'
   'css.scss.erb'
   'scss.erb'
+  'scss.liquid'
 ]
 'patterns': [
   {
