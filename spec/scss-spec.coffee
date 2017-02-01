@@ -665,4 +665,3 @@ describe 'SCSS grammar', ->
       expect(tokens[1][1]).toEqual value: '//', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
       expect(tokens[2][1]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
       expect(tokens[2][3]).toEqual value: '*/', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
-
