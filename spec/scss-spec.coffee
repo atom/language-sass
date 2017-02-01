@@ -496,6 +496,23 @@ describe 'SCSS grammar', ->
       expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss']
       expect(tokens[3]).toEqual value: '$normal-font-size', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss']
 
+    it "parses css variables", ->
+      {tokens} = grammar.tokenizeLine(".foo { --spacing-unit: 6px; }")
+      expect(tokens).toHaveLength 13
+      expect(tokens[0]).toEqual value: ".", scopes: ['source.css.scss', 'entity.other.attribute-name.class.css', 'punctuation.definition.entity.css']
+      expect(tokens[1]).toEqual value: "foo", scopes: ['source.css.scss', 'entity.other.attribute-name.class.css']
+      expect(tokens[2]).toEqual value: " ", scopes: ['source.css.scss']
+      expect(tokens[3]).toEqual value: "{", scopes: [ 'source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss' ]
+      expect(tokens[4]).toEqual value: " ", scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(tokens[5]).toEqual value: "--spacing-unit", scopes: ['source.css.scss', 'meta.property-list.scss', 'variable.scss']
+      expect(tokens[6]).toEqual value: ":", scopes: [ 'source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss' ]
+      expect(tokens[7]).toEqual value: " ", scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(tokens[8]).toEqual value: "6", scopes: [ 'source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss' ]
+      expect(tokens[9]).toEqual value: "px", scopes: [ 'source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'keyword.other.unit.scss' ]
+      expect(tokens[10]).toEqual value: ";", scopes: [ 'source.css.scss', 'meta.property-list.scss', 'punctuation.terminator.rule.scss' ]
+      expect(tokens[11]).toEqual value: " ", scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(tokens[12]).toEqual value: "}", scopes: [ 'source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss' ]
+
     it 'tokenizes maps', ->
       {tokens} = grammar.tokenizeLine '$map: (medium: value, header-height: 10px);'
 
