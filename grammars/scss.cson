@@ -431,6 +431,12 @@
         'name': 'meta.at-rule.media.scss'
         'patterns': [
           {
+            'include': '#comment_block'
+          }
+          {
+            'include': '#comment_line'
+          }
+          {
             'match': '\\b(only)\\b'
             'name': 'keyword.control.operator'
           }
