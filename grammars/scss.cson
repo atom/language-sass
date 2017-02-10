@@ -1311,37 +1311,139 @@
       }
     ]
   'selector_attribute':
+    'match': '''(?xi)
+      (\\[)
+      \\s*
+      (
+        (?:
+          [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters
+          | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
+          | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\$                              # Possible start of interpolation variable
+          | }                                # Possible end of interpolation
+        )+
+      )
+      (?:
+        \\s*([~|^$*]?=)\\s*
+        (?:
+          (
+            (?:
+              [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters
+              | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
+              | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+              | \\$                              # Possible start of interpolation variable
+              | }                                # Possible end of interpolation
+            )+
+          )
+          |
+          (
+            ([\'"])
+            (
+              [^\\\\]|\\\\.
+            )*?
+            (\\6)
+          )
+        )
+      )?
+      \\s*
+      (\\])
+    '''
+    'name': 'meta.attribute-selector.scss'
     'captures':
       '1':
         'name': 'punctuation.definition.attribute-selector.begin.bracket.square.scss'
       '2':
         'name': 'entity.other.attribute-name.attribute.scss'
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.scss'
+          }
+        ]
       '3':
-        'name': 'punctuation.separator.operator.scss'
+        'name': 'keyword.operator.scss'
       '4':
         'name': 'string.unquoted.attribute-value.scss'
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.scss'
+          }
+        ]
       '5':
         'name': 'string.quoted.double.attribute-value.scss'
       '6':
         'name': 'punctuation.definition.string.begin.scss'
       '7':
-        'name': 'punctuation.definition.string.end.scss'
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.scss'
+          }
+        ]
       '8':
+        'name': 'punctuation.definition.string.end.scss'
+      '9':
         'name': 'punctuation.definition.attribute-selector.end.bracket.square.scss'
-    'match': '(?i)(\\[)\\s*(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)(?:\\s*([~|^$*]?=)\\s*(?:(-?[_a-z\\\\[[:^ascii:]]][-_a-z0-9\\\\[[:^ascii:]]]*)|((?>([\'"])(?:[^\\\\]|\\\\.)*?(\\6)))))?\\s*(])'
-    'name': 'meta.attribute-selector.scss'
   'selector_class':
-    'begin': '(\\.)(?=[\\w-]|#{)'
-    'beginCaptures':
+    'match': '''(?x)
+      (\\.)                                  # Valid class-name
+      (
+        (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
+          | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
+          | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\$                              # Possible start of interpolation variable
+          | }                                # Possible end of interpolation
+        )+
+      )                                      # Followed by either:
+      (?= $                                  # - End of the line
+        | [\\s,.\\#)\\[:{>+~|]               # - Another selector
+        | /\\*                               # - A block comment
+      )
+    '''
+    'name': 'entity.other.attribute-name.class.css'
+    'captures':
       '1':
         'name': 'punctuation.definition.entity.css'
-    'end': '(?![\\w-]|(#{))'
-    'name': 'entity.other.attribute-name.class.css'
-    'patterns': [
-      {
-        'include': '#interpolation'
-      }
-    ]
+      '2':
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.scss'
+          }
+        ]
   'selector_entities':
     'match': '''(?x)
       \\b
@@ -1374,20 +1476,110 @@
     'match': '\\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)+)(?=\\.|\\s++[^:]|\\s*[,{]|:(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-(child|last-child|of-type|last-of-type)|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?)'
     'name': 'entity.name.tag.custom.scss'
   'selector_id':
+    'match': '''(?x)
+      (\\#)                                  # Valid id-name
+      (
+        (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
+          | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
+          | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\$                              # Possible start of interpolation variable
+          | }                                # Possible end of interpolation
+        )+
+      )                                      # Followed by either:
+      (?= $                                  # - End of the line
+        | [\\s,.\\#)\\[:{>+~|]               # - Another selector
+        | /\\*                               # - A block comment
+      )
+    '''
+    'name': 'entity.other.attribute-name.id.css'
     'captures':
       '1':
         'name': 'punctuation.definition.entity.css'
-    'match': '(#)[a-zA-Z][a-zA-Z0-9_-]*'
-    'name': 'entity.other.attribute-name.id.css'
+      '2':
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.identifier.scss'
+          }
+        ]
   'selector_placeholder':
+    'match': '''(?x)
+      (%)                                    # Valid placeholder-name
+      (
+        (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
+          | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
+          | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\$                              # Possible start of interpolation variable
+          | }                                # Possible end of interpolation
+        )+
+      )                                      # Followed by either:
+      (?= $                                  # - End of the line
+        | [\\s,.\\#)\\[:{>+~|]               # - Another selector
+        | /\\*                               # - A block comment
+      )
+    '''
+    'name': 'entity.other.attribute-name.placeholder.css'
     'captures':
       '1':
-        'name': 'punctuation.definition.entity.scss'
-    'match': '(%)[a-zA-Z0-9_-]+'
-    'name': 'entity.other.attribute-name.placeholder.scss'
+        'name': 'punctuation.definition.entity.css'
+      '2':
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.identifier.scss'
+          }
+        ]
   'parent_selector_suffix':
-    'match': '(?<=&)[a-zA-Z0-9_-]+'
-    'name': 'entity.other.attribute-name.parent-selector-suffix.scss'
+    'match': '''(?x)
+      (?<=&)
+      (
+        (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
+          | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
+          | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\$                              # Possible start of interpolation variable
+          | }                                # Possible end of interpolation
+        )+
+      )                                      # Followed by either:
+      (?= $                                  # - End of the line
+        | [\\s,.\\#)\\[:{>+~|]               # - Another selector
+        | /\\*                               # - A block comment
+      )
+    '''
+    'name': 'entity.other.attribute-name.parent-selector-suffix.css'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.entity.css'
+      '2':
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.identifier.scss'
+          }
+        ]
   'selector_pseudo_class':
     'patterns': [
       {
@@ -1404,6 +1596,9 @@
           '0':
             'name': 'punctuation.definition.pseudo-class.end.bracket.round.css'
         'patterns': [
+          {
+            'include': '#interpolation'
+          }
           {
             'match': '\\d+'
             'name': 'constant.numeric.scss'
