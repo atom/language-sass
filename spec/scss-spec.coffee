@@ -433,7 +433,7 @@ describe 'SCSS grammar', ->
 
   describe 'media queries', ->
     it 'parses media types and features', ->
-      {tokens} = grammar.tokenizeLine '@media (orientation: landscape) and only screen and (min-width: 700px) {}'
+      {tokens} = grammar.tokenizeLine '@media (orientation: landscape) and only screen and (min-width: 700px) /* comment */ {}'
 
       expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.at-rule.media.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[1]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.at-rule.media.scss']
@@ -446,6 +446,8 @@ describe 'SCSS grammar', ->
       expect(tokens[16]).toEqual value: 'min-width', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'support.type.property-name.media.css']
       expect(tokens[18]).toEqual value: '700', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'constant.numeric.scss']
       expect(tokens[19]).toEqual value: 'px', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.other.unit.scss']
+      expect(tokens[21]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[25]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
 
   describe 'functions', ->
     it 'parses them', ->
