@@ -1336,13 +1336,9 @@
             )+
           )
           |
-          (
-            ([\'"])
-            (
-              [^\\\\]|\\\\.
-            )*?
-            (\\6)
-          )
+          ((")(.*)("))
+          |
+          ((')(.*)('))
         )
       )?
       \\s*
@@ -1408,6 +1404,27 @@
       '8':
         'name': 'punctuation.definition.string.end.scss'
       '9':
+        'name': 'string.quoted.single.attribute-value.scss'
+      '10':
+        'name': 'punctuation.definition.string.begin.scss'
+      '11':
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '\\\\([0-9a-fA-F]{1,6}|.)'
+            'name': 'constant.character.escape.scss'
+          }
+          {
+            # Catch anything that's invalid out of interpolation
+            'match': '\\$|}'
+            'name': 'invalid.illegal.scss'
+          }
+        ]
+      '12':
+        'name': 'punctuation.definition.string.end.scss'
+      '13':
         'name': 'punctuation.definition.attribute-selector.end.bracket.square.scss'
   'selector_class':
     'match': '''(?x)
@@ -1473,7 +1490,7 @@
     '''
     'name': 'entity.name.tag.scss'
   'selector_custom':
-    'match': '\\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)+)(?=\\.|\\s++[^:]|\\s*[,{]|:(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-(child|last-child|of-type|last-of-type)|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?)'
+    'match': '\\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)+)(?=\\.|\\s++[^:]|\\s*[,\\[{]|:(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-(child|last-child|of-type|last-of-type)|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?)'
     'name': 'entity.name.tag.custom.scss'
   'selector_id':
     'match': '''(?x)
