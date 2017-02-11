@@ -27,6 +27,12 @@ describe 'SCSS grammar', ->
 
       expect(tokens[8]).toEqual value: '.2', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
 
+      {tokens} = grammar.tokenizeLine '.something { color: rgba(0, 128, 0, 1) }'
+      expect(tokens[10]).toEqual value: '0', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[13]).toEqual value: '128', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[16]).toEqual value: '0', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+      expect(tokens[19]).toEqual value: '1', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
+
       {tokens} = grammar.tokenizeLine '$q: (color1:$dark-orange);'
 
       expect(tokens[4]).toEqual value: 'color1', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
@@ -471,23 +477,6 @@ describe 'SCSS grammar', ->
       expect(tokens[14]).toEqual value: '$b', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.scss']
       expect(tokens[15]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition.end.bracket.round.scss']
       expect(tokens[16]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']
-
-    it 'tokenizes RGB values in functions', ->
-      {tokens} = grammar.tokenizeLine '.a { color: rgba(0, 50, 200, 1) }'
-
-      expect(tokens[10]).toEqual value: '0', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.color.rgb-value.scss']
-      expect(tokens[11]).toEqual value: ',', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.delimiter.scss']
-      expect(tokens[12]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
-      expect(tokens[13]).toEqual value: '50', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.color.rgb-value.scss']
-      expect(tokens[14]).toEqual value: ',', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.delimiter.scss']
-      expect(tokens[15]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
-      expect(tokens[16]).toEqual value: '200', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.color.rgb-value.scss']
-      expect(tokens[17]).toEqual value: ',', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.delimiter.scss']
-      expect(tokens[18]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
-      expect(tokens[19]).toEqual value: '1', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
-
-      {tokens} = grammar.tokenizeLine '.a { color: translate3d(0, 50, 200) }'
-      expect(tokens[10]).not.toEqual value: '0', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.color.rgb-value.scss']
 
   describe 'variable setting', ->
     it 'parses all tokens', ->
