@@ -441,10 +441,50 @@
             'name': 'keyword.control.operator'
           }
           {
-            'include': '#media_features'
-          }
-          {
-            'include': '#property_values'
+            'begin': '\\('
+            'beginCaptures':
+              '0':
+                'name': 'punctuation.definition.media-query.begin.bracket.round.scss'
+            'end': '\\)'
+            'endCaptures':
+              '0':
+                'name': 'punctuation.definition.media-query.end.bracket.round.scss'
+            'name': 'meta.property-list.media-query.scss'
+            'patterns': [
+              {
+                'begin': '(?<![-a-z])(?=[-a-z])'
+                'end': '$|(?![-a-z])'
+                'name': 'meta.property-name.media-query.scss'
+                'patterns': [
+                  {
+                    'include': '#media_features'
+                  }
+                  {
+                    'include': '#property_names'
+                  }
+                ]
+              }
+              {
+                'begin': '(:)\\s*(?!(\\s*{))'
+                'beginCaptures':
+                  '1':
+                    'name': 'punctuation.separator.key-value.scss'
+                'comment': 'Kuroir: fixed nested elements for sass.'
+                'end': '\\s*(;|(?=}|\\)))'
+                'endCaptures':
+                  '1':
+                    'name': 'punctuation.terminator.rule.scss'
+                'contentName': 'meta.property-value.media-query.scss'
+                'patterns': [
+                  {
+                    'include': '#general'
+                  }
+                  {
+                    'include': '#property_values'
+                  }
+                ]
+              }
+            ]
           }
           {
             'include': '#variable'
@@ -454,9 +494,6 @@
           }
           {
             'include': '#media_types'
-          }
-          {
-            'include': '#property_names'
           }
         ]
       }
@@ -960,34 +997,13 @@
         'name': 'punctuation.separator.delimiter.scss'
       }
       {
+        'include': '#map'
+      }
+      {
         'include': '#property_values'
       }
       {
         'include': '#variable'
-      }
-      {
-        'include': '#map'
-      }
-    ]
-  'media_attributes':
-    'patterns': [
-      {
-        'match': ':'
-        'name': 'punctuation.separator.key-value.scss'
-      }
-      {
-        'include': '#general'
-      }
-      {
-        'include': '#property_name'
-      }
-      {
-        'include': '#property_values'
-      }
-      {
-        'comment': 'We even have error highlighting <3'
-        'match': '[={}\\?@]'
-        'name': 'invalid.illegal.scss'
       }
     ]
   'media_features':
@@ -1013,12 +1029,6 @@
         'include': '#variable'
       }
       {
-        'include': '#property_values'
-      }
-      {
-        'include': '#comment_block'
-      }
-      {
         'begin': '\\('
         'beginCaptures':
           '0':
@@ -1032,6 +1042,12 @@
             'include': '#function_attributes'
           }
         ]
+      }
+      {
+        'include': '#property_values'
+      }
+      {
+        'include': '#comment_block'
       }
       {
         'match': '[^\'",) \\t]+'
@@ -1232,6 +1248,24 @@
       }
       {
         'include': '#operators'
+      }
+      {
+        'begin': '\\('
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.begin.bracket.round.scss'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.end.bracket.round.scss'
+        'patterns': [
+          {
+            'include': '#general'
+          }
+          {
+            'include': '#property_values'
+          }
+        ]
       }
     ]
   'rules':
