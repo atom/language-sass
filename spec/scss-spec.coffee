@@ -3,6 +3,9 @@ describe 'SCSS grammar', ->
 
   beforeEach ->
     waitsForPromise ->
+      atom.packages.activatePackage('language-css')
+
+    waitsForPromise ->
       atom.packages.activatePackage('language-sass')
 
     runs ->
@@ -197,10 +200,10 @@ describe 'SCSS grammar', ->
       expect(tokens[0][0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[0][1]).toEqual value: 'page', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss']
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
       tokens = grammar.tokenizeLines '''
         @page :left {
@@ -213,10 +216,10 @@ describe 'SCSS grammar', ->
       expect(tokens[0][2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.page.scss']
       expect(tokens[0][3]).toEqual value: ':left', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'entity.name.function.scss']
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
       tokens = grammar.tokenizeLines '''
         @page:left {
@@ -228,10 +231,10 @@ describe 'SCSS grammar', ->
       expect(tokens[0][1]).toEqual value: 'page', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'keyword.control.at-rule.page.scss']
       expect(tokens[0][2]).toEqual value: ':left', scopes: ['source.css.scss', 'meta.at-rule.page.scss', 'entity.name.function.scss']
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
   describe '@supports', ->
     it 'tokenizes solitary @supports', ->
@@ -247,9 +250,9 @@ describe 'SCSS grammar', ->
       expect(tokens[1]).toEqual value: 'supports', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'keyword.control.at-rule.supports.scss']
       expect(tokens[3]).toEqual value: 'not', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'keyword.operator.logical.scss']
       expect(tokens[5]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'punctuation.definition.condition.begin.bracket.round.scss']
-      expect(tokens[7]).toEqual value: 'display', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[7]).toEqual value: 'display', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[8]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'punctuation.separator.key-value.scss']
-      expect(tokens[10]).toEqual value: 'flex', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[10]).toEqual value: 'flex', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
       expect(tokens[12]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'punctuation.definition.condition.end.bracket.round.scss']
       expect(tokens[13]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
 
@@ -259,12 +262,12 @@ describe 'SCSS grammar', ->
       expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'keyword.control.at-rule.supports.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[1]).toEqual value: 'supports', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'keyword.control.at-rule.supports.scss']
       expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'punctuation.definition.condition.begin.bracket.round.scss']
-      expect(tokens[4]).toEqual value: 'flex', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[4]).toEqual value: 'flex', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[5]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[6]).toEqual value: '2', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-value.scss', 'constant.numeric.scss']
       expect(tokens[9]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'punctuation.definition.condition.end.bracket.round.scss']
       expect(tokens[11]).toEqual value: 'or', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'keyword.operator.logical.scss']
-      expect(tokens[15]).toEqual value: '-webkit-flex', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[15]).toEqual value: '-webkit-flex', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-name.scss', 'support.type.vendored.property-name.css']
       expect(tokens[17]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[19]).toEqual value: '2', scopes: ['source.css.scss', 'meta.at-rule.supports.scss', 'meta.property-value.scss', 'constant.numeric.scss']
       expect(tokens[24]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
@@ -273,8 +276,8 @@ describe 'SCSS grammar', ->
     it 'tokenizes the property-name and property-value', ->
       {tokens} = grammar.tokenizeLine 'very-custom { color: inherit; }'
 
-      expect(tokens[4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
+      expect(tokens[7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
       expect(tokens[8]).toEqual value: ';', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.terminator.rule.scss']
       expect(tokens[10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
 
@@ -284,19 +287,19 @@ describe 'SCSS grammar', ->
       expect(tokens[2]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
       expect(tokens[4]).toEqual value: 'very-very-custom', scopes: ['source.css.scss', 'meta.property-list.scss', 'entity.name.tag.custom.scss']
       expect(tokens[6]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
-      expect(tokens[8]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[11]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[8]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
+      expect(tokens[11]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
       expect(tokens[12]).toEqual value: ';', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'punctuation.terminator.rule.scss']
       expect(tokens[14]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
-      expect(tokens[16]).toEqual value: 'margin', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[19]).toEqual value: 'top', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[16]).toEqual value: 'margin', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
+      expect(tokens[19]).toEqual value: 'top', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
       expect(tokens[22]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
 
     it 'tokenizes an incomplete inline property-list', ->
       {tokens} = grammar.tokenizeLine 'very-custom { color: inherit}'
 
-      expect(tokens[4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
+      expect(tokens[7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
       expect(tokens[8]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
 
     it 'tokenizes multiple lines of incomplete property-list', ->
@@ -306,8 +309,8 @@ describe 'SCSS grammar', ->
       '''
 
       expect(tokens[0][0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
-      expect(tokens[0][4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
-      expect(tokens[0][7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[0][4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
+      expect(tokens[0][7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
       expect(tokens[0][9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
       expect(tokens[1][0]).toEqual value: 'another-one', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
       expect(tokens[1][10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
@@ -340,12 +343,12 @@ describe 'SCSS grammar', ->
         }
       '''
 
-      expect(tokens[0][0]).toEqual value: 'text', scopes: ['source.css.scss', 'entity.name.tag.scss']
+      expect(tokens[0][0]).toEqual value: 'text', scopes: ['source.css.scss', 'entity.name.tag.css']
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][1]).toEqual value: 'text-align', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[1][4]).toEqual value: 'center', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
       tokens = grammar.tokenizeLines '''
         table {
@@ -353,19 +356,19 @@ describe 'SCSS grammar', ->
         }
       '''
 
-      expect(tokens[0][0]).toEqual value: 'table', scopes: ['source.css.scss', 'entity.name.tag.scss']
+      expect(tokens[0][0]).toEqual value: 'table', scopes: ['source.css.scss', 'entity.name.tag.css']
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][1]).toEqual value: 'table-layout', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][1]).toEqual value: 'table-layout', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][4]).toEqual value: 'fixed', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[1][4]).toEqual value: 'fixed', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
   describe 'vendor properties', ->
     it 'tokenizes the browser prefix', ->
       {tokens} = grammar.tokenizeLine 'body { -webkit-box-shadow: none; }'
 
-      expect(tokens[0]).toEqual value: 'body', scopes: ['source.css.scss', 'entity.name.tag.scss']
-      expect(tokens[4]).toEqual value: '-webkit-box-shadow', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[0]).toEqual value: 'body', scopes: ['source.css.scss', 'entity.name.tag.css']
+      expect(tokens[4]).toEqual value: '-webkit-box-shadow', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.vendored.property-name.css']
 
   describe 'custom elements', ->
     it 'tokenizes them as tags', ->
@@ -413,22 +416,22 @@ describe 'SCSS grammar', ->
       '''
 
       expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[1][1]).toEqual value: 'border-width', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][1]).toEqual value: 'border-width', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[1][4]).toEqual value: '2', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
       expect(tokens[2][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[2][1]).toEqual value: 'font-size', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[2][1]).toEqual value: 'font-size', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[2][2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[2][3]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[2][4]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[2][5]).toEqual value: '2', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
       expect(tokens[3][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[3][1]).toEqual value: 'background-image', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[3][1]).toEqual value: 'background-image', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[3][2]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[3][3]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[3][4]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
-      expect(tokens[3][5]).toEqual value: 'none', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.scss']
+      expect(tokens[3][5]).toEqual value: 'none', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
   describe 'pseudo classes', ->
     it 'tokenizes them', ->
@@ -511,10 +514,10 @@ describe 'SCSS grammar', ->
       expect(tokens[0][3]).toEqual value: 'anim', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.name.function.scss']
       expect(tokens[0][5]).toEqual value: '{', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.begin.scss']
       expect(tokens[1][1]).toEqual value: 'from', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
-      expect(tokens[1][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[1][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[1][8]).toEqual value: '0', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
       expect(tokens[2][1]).toEqual value: 'to', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'entity.other.attribute-name.scss']
-      expect(tokens[2][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.scss']
+      expect(tokens[2][5]).toEqual value: 'opacity', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[2][8]).toEqual value: '1', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'constant.numeric.scss']
       expect(tokens[3][0]).toEqual value: '}', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'punctuation.section.keyframes.end.scss']
 
@@ -546,7 +549,7 @@ describe 'SCSS grammar', ->
       expect(tokens[4]).toEqual value: 'orientation', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-name.media-query.scss', 'support.type.property-name.media.css']
       expect(tokens[5]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.separator.key-value.scss']
       expect(tokens[6]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss']
-      expect(tokens[7]).toEqual value: 'landscape', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-value.media-query.scss', 'support.constant.property-value.scss']
+      expect(tokens[7]).toEqual value: 'landscape', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-value.media-query.scss', 'support.constant.property-value.css']
       expect(tokens[8]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.definition.media-query.end.bracket.round.scss']
       expect(tokens[9]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.media.scss']
       expect(tokens[10]).toEqual value: 'and', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.operator.logical.scss']
