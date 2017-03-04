@@ -63,9 +63,9 @@
     'include': '#at_rule_supports'
   }
 ]
+# Note how all @rules are prefixed by "at_rule__".
 'repository':
-  'at_rule__':
-    'comment': 'Note how all @rules are prefixed.'
+  # Charset
   'at_rule_charset':
     'begin': '\\s*((@)charset\\b)\\s*'
     'captures':
@@ -73,7 +73,6 @@
         'name': 'keyword.control.at-rule.charset.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'comment': 'Charset'
     'end': '\\s*((?=;|$))'
     'name': 'meta.at-rule.charset.scss'
     'patterns': [
@@ -214,6 +213,7 @@
   'at_rule_function':
     'patterns': [
       {
+        # Function with attributes
         'begin': '\\s*((@)function\\b)\\s*'
         'captures':
           '1':
@@ -222,7 +222,6 @@
             'name': 'punctuation.definition.keyword.scss'
           '3':
             'name': 'entity.name.function.scss'
-        'comment': 'Function with Attributes'
         'end': '\\s*(?={)'
         'name': 'meta.at-rule.function.scss'
         'patterns': [
@@ -232,6 +231,7 @@
         ]
       }
       {
+        # Simple function
         'captures':
           '1':
             'name': 'keyword.control.at-rule.function.scss'
@@ -239,7 +239,6 @@
             'name': 'punctuation.definition.keyword.scss'
           '3':
             'name': 'entity.name.function.scss'
-        'comment': 'Simple Function'
         'match': '\\s*((@)function\\b)\\s*'
         'name': 'meta.at-rule.function.scss'
       }
@@ -465,11 +464,11 @@
                 ]
               }
               {
+                # Kuroir: fixed nested elements for sass.
                 'begin': '(:)\\s*(?!(\\s*{))'
                 'beginCaptures':
                   '1':
                     'name': 'punctuation.separator.key-value.scss'
-                'comment': 'Kuroir: fixed nested elements for sass.'
                 'end': '\\s*(;|(?=}|\\)))'
                 'endCaptures':
                   '1':
@@ -589,18 +588,19 @@
         'name': 'meta.at-rule.namespace.scss'
       }
     ]
+  # Option
   'at_rule_option':
     'captures':
       '1':
         'name': 'keyword.control.at-rule.charset.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
-    'comment': 'Option'
     'match': '^\\s*((@)option\\b)\\s*'
     'name': 'meta.at-rule.option.scss'
   'at_rule_page':
     'patterns': [
       {
+        # Page with attributes
         'begin': '^\\s*((@)page)(?=:|\\s)\\s*([-:\\w]*)'
         'captures':
           '1':
@@ -609,7 +609,6 @@
             'name': 'punctuation.definition.keyword.scss'
           '3':
             'name': 'entity.name.function.scss'
-        'comment': 'Page with Attributes'
         'end': '\\s*(?={)'
         'name': 'meta.at-rule.page.scss'
       }
@@ -829,7 +828,7 @@
         'include': '#property_values'
       }
       {
-        'comment': 'We even have error highlighting <3'
+        # We even have error highlighting <3
         'match': '[={}\\?;@]'
         'name': 'invalid.illegal.scss'
       }
@@ -858,8 +857,8 @@
         'name': 'support.function.misc.scss'
       }
     ]
+  # Stuff that should be everywhere
   'general':
-    'comment': 'Stuff that should be everywhere'
     'patterns': [
       {
         'include': '#variable'
@@ -997,11 +996,11 @@
         ]
       }
       {
+        # Kuroir: fixed nested elements for sass.
         'begin': '(:)\\s*(?!(\\s*{))'
         'beginCaptures':
           '1':
             'name': 'punctuation.separator.key-value.scss'
-        'comment': 'Kuroir: fixed nested elements for sass.'
         'end': '\\s*(;|(?=}|\\)))'
         'endCaptures':
           '1':
@@ -1041,8 +1040,8 @@
         'include': '$self'
       }
     ]
+  # Stuff that should only be available on values.
   'property_values':
-    'comment': 'Stuff that should only be available on values.'
     'patterns': [
       {
         'include': '#string_single'
@@ -1425,8 +1424,8 @@
         'include': 'source.css#pseudo-classes'
       }
     ]
+  # Stuff for selectors
   'selectors':
-    'comment': 'Stuff for Selectors.'
     'patterns': [
       {
         'include': 'source.css#tag-names'
