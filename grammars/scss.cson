@@ -63,7 +63,7 @@
     'include': '#at_rule_supports'
   }
 ]
-# Note how all @rules are prefixed by "at_rule__".
+# Note how all @rules are prefixed by "at_rule_".
 'repository':
   # Charset
   'at_rule_charset':
@@ -464,7 +464,6 @@
                 ]
               }
               {
-                # Kuroir: fixed nested elements for sass.
                 'begin': '(:)\\s*(?!(\\s*{))'
                 'beginCaptures':
                   '1':
@@ -828,7 +827,6 @@
         'include': '#property_values'
       }
       {
-        # We even have error highlighting <3
         'match': '[={}\\?;@]'
         'name': 'invalid.illegal.scss'
       }
@@ -996,7 +994,6 @@
         ]
       }
       {
-        # Kuroir: fixed nested elements for sass.
         'begin': '(:)\\s*(?!(\\s*{))'
         'beginCaptures':
           '1':
