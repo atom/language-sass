@@ -1,7 +1,10 @@
-describe 'SASS grammar', ->
+describe 'Sass grammar', ->
   grammar = null
 
   beforeEach ->
+    waitsForPromise ->
+      atom.packages.activatePackage('language-css')
+
     waitsForPromise ->
       atom.packages.activatePackage('language-sass')
 
@@ -19,7 +22,7 @@ describe 'SASS grammar', ->
           -webkit-mask-repeat: no-repeat
       '''
 
-      expect(tokens[1][1]).toEqual value: '-webkit-mask-repeat', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.property-name.css.sass']
+      expect(tokens[1][1]).toEqual value: '-webkit-mask-repeat', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.vendored.property-name.css']
 
   describe 'numbers', ->
     it 'tokenizes them', ->
