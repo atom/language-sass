@@ -464,7 +464,7 @@
   }
   {
     # :property-name property-value
-    'begin': '(?<!|\\$[-a-z])(:)(?=[-a-z])'
+    'begin': '^\\s+(:)(?=[-a-z])'
     'beginCaptures':
       '1':
         'name': 'punctuation.separator.key-value.css'
@@ -472,13 +472,19 @@
     'endCaptures':
       '1':
         'name': 'invalid.illegal.punctuation.sass'
-    'name': 'meta.property-name.sass'
     'patterns': [
       {
-        'include': 'source.css#property-names'
+        'include': '#property-name'
       }
       {
-        'include': '#property-value'
+        'begin': '\\s+'
+        'end': '(?=;?$)'
+        'name': 'meta.property-value.sass'
+        'patterns': [
+          {
+            'include': '#property-value'
+          }
+        ]
       }
     ]
   }

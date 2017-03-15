@@ -50,6 +50,32 @@ describe 'Sass grammar', ->
       expect(tokens[3][3]).toEqual value: ' ', scopes: ['source.sass', 'meta.property-value.sass']
       expect(tokens[3][4]).toEqual value: 'top', scopes: ['source.sass', 'meta.property-value.sass', 'support.constant.property-value.css']
 
+    it 'tokenizes colon-first property-list syntax', ->
+      tokens = grammar.tokenizeLines '''
+        very-custom
+          :color inherit
+      '''
+      expect(tokens[1][1]).toEqual value: ':', scopes: ['source.sass', 'punctuation.separator.key-value.css']
+      expect(tokens[1][2]).toEqual value: 'color', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.property-name.css']
+      expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.sass', 'meta.property-value.sass']
+      expect(tokens[1][4]).toEqual value: 'inherit', scopes: ['source.sass', 'meta.property-value.sass', 'support.constant.property-value.css']
+
+    it 'tokenizes nested colon-first property-list syntax', ->
+      tokens = grammar.tokenizeLines '''
+        very-custom
+          very-very-custom
+            :color inherit
+          :margin top
+      '''
+      expect(tokens[2][1]).toEqual value: ':', scopes: ['source.sass', 'punctuation.separator.key-value.css']
+      expect(tokens[2][2]).toEqual value: 'color', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.property-name.css']
+      expect(tokens[2][3]).toEqual value: ' ', scopes: ['source.sass', 'meta.property-value.sass']
+      expect(tokens[2][4]).toEqual value: 'inherit', scopes: ['source.sass', 'meta.property-value.sass', 'support.constant.property-value.css']
+      expect(tokens[3][1]).toEqual value: ':', scopes: ['source.sass', 'punctuation.separator.key-value.css']
+      expect(tokens[3][2]).toEqual value: 'margin', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.property-name.css']
+      expect(tokens[3][3]).toEqual value: ' ', scopes: ['source.sass', 'meta.property-value.sass']
+      expect(tokens[3][4]).toEqual value: 'top', scopes: ['source.sass', 'meta.property-value.sass', 'support.constant.property-value.css']
+
   describe 'pseudo-classes and pseudo-elements', ->
     it 'tokenizes pseudo-classes', ->
       tokens = grammar.tokenizeLines '''
