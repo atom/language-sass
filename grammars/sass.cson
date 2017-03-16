@@ -490,7 +490,7 @@
   }
   {
     # property-name: property-value
-    'begin': '^\\s+([-A-Za-z]+)\\s*(?=(\\|\\|)?=|:\\s+)'
+    'begin': '^\\s+([-A-Za-z]+)\\s*(?=(\\|\\|)?=|:[ \\t]+)'
     'beginCaptures':
       '1':
         'patterns': [
