@@ -490,6 +490,8 @@
   }
   {
     # property-name: property-value
+    # Note: this pattern is very specific. Make sure that
+    # autocomplete-css specs still pass if making changes here.
     'begin': '^\\s+([-A-Za-z]+)\\s*(?=(\\|\\|)?=|:[ \\t]+)'
     'beginCaptures':
       '1':
