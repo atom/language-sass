@@ -6,14 +6,14 @@
 ]
 'patterns': [
   {
-    'begin': '(!|\\$)([a-zA-Z0-9_-]+)\\s*((?:\\|\\|)?=|:)'
+    'begin': '(?:(!)|(\\$))([a-zA-Z0-9_-]+)\\s*(?=(\\|\\|)?=|:\\s+)'
     'beginCaptures':
       '1':
-        'name': 'punctuation.definition.entity.sass'
+        'name': 'invalid.illegal.deprecated.sass'
       '2':
-        'name': 'variable.other.sass'
+        'name': 'punctuation.definition.entity.sass'
       '3':
-        'name': 'punctuation.separator.operator.sass'
+        'name': 'variable.other.sass'
     'end': '(;)?$'
     'endCaptures':
       '1':
@@ -21,7 +21,19 @@
     'name': 'meta.variable-declaration.sass'
     'patterns': [
       {
-        'include': '#property-value'
+        'begin': '(?:(:)\\s+)|((\\|\\|)?=)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.separator.key-value.css'
+          '2':
+            'name': 'invalid.illegal.deprecated.sass'
+        'end': '(?=;?$)'
+        'name': 'meta.property-value.sass'
+        'patterns': [
+          {
+            'include': '#property-value'
+          }
+        ]
       }
     ]
   }
@@ -364,24 +376,6 @@
         'match': '(?<=&)[a-zA-Z0-9_-]+'
         'name': 'entity.other.attribute-name.parent-selector-suffix.css.sass'
       }
-      {
-        'match': '(?<!$)([a-zA-Z0-9_-]+)\\s*(:)(.*)$'
-        'captures':
-          '1':
-            'patterns': [
-              {
-                'include': 'source.css#property-names'
-              }
-            ]
-          '2':
-            'name': 'punctuation.separator.operator.sass'
-          '3':
-            'patterns': [
-              {
-                'include': '#property-value'
-              }
-            ]
-      }
     ]
   }
   {
@@ -469,48 +463,66 @@
     ]
   }
   {
-    'begin': '(?<!|\\$[-a-z])(:)(?=[-a-z])'
+    # :property-name property-value
+    'begin': '^\\s+(:)(?=[-a-z])'
     'beginCaptures':
       '1':
-        'name': 'punctuation.definition.entity.css.sass'
+        'name': 'punctuation.separator.key-value.css'
     'end': '(;)?$'
     'endCaptures':
       '1':
         'name': 'invalid.illegal.punctuation.sass'
-    'name': 'meta.property-name.sass'
     'patterns': [
       {
-        'include': 'source.css#property-names'
+        'include': '#property-name'
       }
       {
-        'include': '#property-value'
+        'begin': '\\s+'
+        'end': '(?=;?$)'
+        'name': 'meta.property-value.sass'
+        'patterns': [
+          {
+            'include': '#property-value'
+          }
+        ]
       }
     ]
   }
   {
-    'begin': '''(?x)
-      ^
-      \\s+
-      ([-A-Za-z]+)
-      (\\s*:|\\s?=)
-    '''
+    # property-name: property-value
+    # Note: this pattern is very specific. Make sure that
+    # autocomplete-css specs still pass if making changes here.
+    'begin': '^\\s+([-A-Za-z]+)\\s*(?=(\\|\\|)?=|:[ \\t]+)'
     'beginCaptures':
       '1':
         'patterns': [
           {
-            'include': 'source.css#property-names'
+            'include': '#property-name'
           }
         ]
       '2':
-        'name': 'punctuation.definition.entity.css.sass'
+        'name': 'punctuation.separator.key-value.css'
+      '3':
+        'name': 'invalid.illegal.deprecated.sass'
     'end': '(;)?$'
     'endCaptures':
       '1':
         'name': 'invalid.illegal.punctuation.sass'
-    'name': 'meta.property-name.sass'
     'patterns': [
       {
-        'include': '#property-value'
+        'begin': '(?:(:)\\s+)|((\\|\\|)?=)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.separator.key-value.css'
+          '2':
+            'name': 'invalid.illegal.deprecated.sass'
+        'end': '(?=;?$)'
+        'name': 'meta.property-value.sass'
+        'patterns': [
+          {
+            'include': '#property-value'
+          }
+        ]
       }
     ]
   }
@@ -544,16 +556,21 @@
         'name': 'comment.line.sass'
       }
     ]
+  'property-name':
+    'begin': '(?=[-A-Za-z]+)'
+    'end': '(?!\\G)'
+    'name': 'meta.property-name.sass'
+    'patterns': [
+      {
+        'include': 'source.css#property-names'
+      }
+    ]
   'property-value':
-    'begin': '(:)?\\s?+'
+    'begin': '(:)|\\G'
     'beginCaptures':
       '1':
         'name': 'invalid.illegal.punctuation.sass'
-    'end': '(;)?$'
-    'endCaptures':
-      '1':
-        'name': 'invalid.illegal.punctuation.sass'
-    'name': 'meta.property-value.sass'
+    'end': '(?=;?$)'
     'patterns': [
       {
         'match': '\\b[0-9]+(\\.[0-9]+)?'
