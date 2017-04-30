@@ -466,8 +466,8 @@
     ]
   }
   {
-    'begin': '^\\s*((@)media)\\s+(((all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\\s*,?\\s*)+)\\s*{'
-    'captures':
+    'begin': '\\s*((@)media\\b)\\s+'
+    'beginCaptures':
       '1':
         'name': 'keyword.control.at-rule.media.sass'
       '2':
@@ -475,6 +475,9 @@
       '3':
         'name': 'support.constant.media.sass'
     'end': '\\s*((?=;|}))'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
     'name': 'meta.at-rule.media.sass'
     'patterns': [
       {
