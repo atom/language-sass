@@ -3,7 +3,7 @@ describe 'SASS grammar', ->
 
   beforeEach ->
     waitsForPromise ->
-      atom.packages.activatePackage('language-sass')
+      atom.packages.activatePackage('imp-language-sass')
 
     runs ->
       grammar = atom.grammars.grammarForScopeName('source.sass')
