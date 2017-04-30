@@ -516,7 +516,7 @@
           indent|image-resolution|image-orientation|image|
           hyphens|hyphenate-character|height|hanging-punctuation|
           grid|
-          font-weight|font-variant|font-style|font-stretch|font-size-adjust|font-size|font-family|font|float|flex-wrap|flex-shrink|flex-grow|flex-flow|flex-direction|flex-basis|flex|filter|family|
+          font-weight|font-variant|font-style|font-stretch|font-size-adjust|font-size|font-family|font|float|column|row|space-around|space-between|flex|flex-start|flex-end|flex-wrap|flex-shrink|flex-grow|flex-flow|flex-direction|flex-basis|flex|filter|family|
           empty-cells|elevation|
           dominant-baseline|display|direction|decoration|
           cursor|cue-before|cue-after|cue|counter-reset|counter-increment|content|columns|column-width|column-span|column-rule-width|column-rule-style|column-rule-color|column-rule|column-gap|column-fill|column-count|color|clip|clear|caption-side|break-inside|
@@ -650,7 +650,7 @@
           ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline-flex|inline-grid|inline-table|inline|inset|inside|inter-ideograph|inter-word|italic|
           justify|
           keep-all|
-          left|lighter|line-edge|line-through|linear|line|list-item|loose|lower-alpha|lower-roman|lowercase|lr-tb|ltr|
+          left|lighter|line-edge|line-through|linear|linear-gradient|line|list-item|loose|lower-alpha|lower-roman|lowercase|lr-tb|ltr|
           manipulation|margin-box|medium|middle|move|
           n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|
           oblique|outset|outside|overline|
