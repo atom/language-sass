@@ -1,6 +1,6 @@
 {
   "name": "imp-language-sass",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Sass/SCSS language support in Atom",
   "license": "MIT",
   "engines": {
