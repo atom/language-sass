@@ -38,7 +38,7 @@ describe 'SCSS grammar', ->
 
       {tokens} = grammar.tokenizeLine '$q: (color1:$dark-orange);'
 
-      expect(tokens[4]).toEqual value: 'color1', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[4]).toEqual value: 'color1', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'support.type.map.key.scss']
 
     it 'tokenizes number operations', ->
       {tokens} = grammar.tokenizeLine '.something { top: +50%; }'
@@ -591,10 +591,22 @@ describe 'SCSS grammar', ->
     it 'parses all tokens', ->
       {tokens} = grammar.tokenizeLine '$font-size: $normal-font-size;'
 
-      expect(tokens[0]).toEqual value: '$font-size', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss']
-      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'punctuation.separator.key-value.scss']
-      expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss']
-      expect(tokens[3]).toEqual value: '$normal-font-size', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss']
+      expect(tokens[0]).toEqual value: '$font-size', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'variable.scss']
+      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.definition.variable.scss']
+      expect(tokens[3]).toEqual value: '$normal-font-size', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'variable.scss']
+      expect(tokens[4]).toEqual value: ';', scopes: ['source.css.scss', 'punctuation.terminator.rule.scss']
+
+      {tokens} = grammar.tokenizeLine ' $font-family-sans-serif: "Helvetica Neue", Roboto, Arial, sans-serif;'
+
+      expect(tokens[0]).toEqual value: ' ', scopes: ['source.css.scss']
+      expect(tokens[1]).toEqual value: '$font-family-sans-serif', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'variable.scss']
+      expect(tokens[4]).toEqual value: '"', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'string.quoted.double.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[7]).toEqual value: ',', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'punctuation.separator.delimiter.scss']
+      expect(tokens[8]).toEqual value: ' Roboto', scopes: ['source.css.scss', 'meta.definition.variable.scss']
+      expect(tokens[9]).toEqual value: ',', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'punctuation.separator.delimiter.scss']
+      expect(tokens[14]).toEqual value: 'sans-serif', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'support.constant.font-name.css']
+      expect(tokens[15]).toEqual value: ';', scopes: ['source.css.scss', 'punctuation.terminator.rule.scss']
 
     it "parses css variables", ->
       {tokens} = grammar.tokenizeLine(".foo { --spacing-unit: 6px; }")
@@ -616,25 +628,25 @@ describe 'SCSS grammar', ->
     it 'tokenizes maps', ->
       {tokens} = grammar.tokenizeLine '$map: (medium: value, header-height: 10px);'
 
-      expect(tokens[0]).toEqual value: '$map', scopes: ['source.css.scss', 'meta.set.variable.scss', 'variable.scss']
-      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'punctuation.separator.key-value.scss']
-      expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss']
-      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.definition.map.begin.bracket.round.scss']
-      expect(tokens[4]).toEqual value: 'medium', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
-      expect(tokens[5]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.separator.key-value.scss']
-      expect(tokens[6]).toEqual value: ' value', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss']
-      expect(tokens[7]).toEqual value: ',', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.separator.delimiter.scss']
-      expect(tokens[8]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss']
-      expect(tokens[9]).toEqual value: 'header-height', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
-      expect(tokens[10]).toEqual value: ':', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.separator.key-value.scss']
-      expect(tokens[11]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss']
-      expect(tokens[12]).toEqual value: '10', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'constant.numeric.css']
-      expect(tokens[14]).toEqual value: ')', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'punctuation.definition.map.end.bracket.round.scss']
+      expect(tokens[0]).toEqual value: '$map', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'variable.scss']
+      expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.definition.variable.scss']
+      expect(tokens[3]).toEqual value: '(', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'punctuation.definition.map.begin.bracket.round.scss']
+      expect(tokens[4]).toEqual value: 'medium', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[5]).toEqual value: ':', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[6]).toEqual value: ' value', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss']
+      expect(tokens[7]).toEqual value: ',', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'punctuation.separator.delimiter.scss']
+      expect(tokens[8]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss']
+      expect(tokens[9]).toEqual value: 'header-height', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[10]).toEqual value: ':', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[11]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss']
+      expect(tokens[12]).toEqual value: '10', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'constant.numeric.css']
+      expect(tokens[14]).toEqual value: ')', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'punctuation.definition.map.end.bracket.round.scss']
 
     it 'tokenizes variables in maps', ->
       {tokens} = grammar.tokenizeLine '$map: (gutters: $grid-content-gutters)'
 
-      expect(tokens[7]).toEqual value: '$grid-content-gutters', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'variable.scss']
+      expect(tokens[7]).toEqual value: '$grid-content-gutters', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'variable.scss']
 
     it 'tokenizes maps inside maps', ->
       tokens = grammar.tokenizeLines '''
@@ -647,24 +659,24 @@ describe 'SCSS grammar', ->
         );
       '''
 
-      expect(tokens[1][1]).toEqual value: 'alr', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
-      expect(tokens[2][1]).toEqual value: 'alr-blue', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
-      expect(tokens[3][1]).toEqual value: 'x-light', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'meta.set.variable.map.scss', 'meta.set.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[1][1]).toEqual value: 'alr', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[2][1]).toEqual value: 'alr-blue', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'meta.definition.variable.map.scss', 'support.type.map.key.scss']
+      expect(tokens[3][1]).toEqual value: 'x-light', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'meta.definition.variable.map.scss', 'meta.definition.variable.map.scss', 'support.type.map.key.scss']
 
     it 'tokenizes comments', ->
       {tokens} = grammar.tokenizeLine '$font-size: // comment'
 
-      expect(tokens[3]).toEqual value: '//', scopes: ['source.css.scss', 'meta.set.variable.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[3]).toEqual value: '//', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
 
       {tokens} = grammar.tokenizeLine '$font-size: /* comment */'
 
-      expect(tokens[3]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.set.variable.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[3]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
 
     it 'tokenizes comments in maps', ->
       {tokens} = grammar.tokenizeLine '$map: (/* comment */ key: // comment)'
 
-      expect(tokens[4]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
-      expect(tokens[11]).toEqual value: '//', scopes: ['source.css.scss', 'meta.set.variable.scss', 'meta.set.variable.map.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[4]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[11]).toEqual value: '//', scopes: ['source.css.scss', 'meta.definition.variable.scss', 'meta.definition.variable.map.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
 
   describe 'interpolation', ->
     it 'is tokenized within single quotes', ->
