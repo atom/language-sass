@@ -129,8 +129,7 @@ describe 'Sass grammar', ->
         .something
           top: +50%
       '''
-      expect(tokens[1][4]).toEqual value: '+', scopes: ['source.sass', 'meta.property-value.sass', 'keyword.operator.css']
-      expect(tokens[1][5]).toEqual value: '50', scopes: ['source.sass', 'meta.property-value.sass', 'constant.numeric.css']
+      expect(tokens[1][4]).toEqual value: '+50', scopes: ['source.sass', 'meta.property-value.sass', 'constant.numeric.css']
 
       tokens = grammar.tokenizeLines '''
         .something
