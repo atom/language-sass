@@ -86,6 +86,13 @@ describe 'SCSS grammar', ->
         expect(tokens[10]).toEqual value: "\\@", scopes: ["source.css.scss", "entity.other.attribute-name.#{scope}.css", "constant.character.escape.scss"]
         expect(tokens[11]).toEqual value: "sm", scopes: ["source.css.scss", "entity.other.attribute-name.#{scope}.css"]
 
+      it "tokenizes placeholder selectors in at-rules", ->
+        {tokens} = grammar.tokenizeLine '@extend %placeholder;'
+
+        expect(tokens[3]).toEqual value: '%', scopes: ['source.css.scss', 'meta.at-rule.extend.scss', 'entity.other.attribute-name.placeholder.css', 'punctuation.definition.entity.css']
+        expect(tokens[4]).toEqual value: 'placeholder', scopes: ['source.css.scss', 'meta.at-rule.extend.scss', 'entity.other.attribute-name.placeholder.css']
+        expect(tokens[5]).toEqual value: ';', scopes: ['source.css.scss', 'punctuation.terminator.rule.css']
+
   describe "attribute selectors", ->
     it "tokenizes them correctly", ->
       {tokens} = grammar.tokenizeLine '[something="1"]'
