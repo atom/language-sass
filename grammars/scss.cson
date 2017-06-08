@@ -62,6 +62,10 @@
   {
     'include': '#at_rule_supports'
   }
+  {
+    'match': ';'
+    'name': 'punctuation.terminator.rule.css'
+  }
 ]
 # Note how all @rules are prefixed by "at_rule_".
 'repository':
@@ -152,11 +156,11 @@
     'begin': '\\s*((@)extend\\b)\\s*'
     'captures':
       '1':
-        'name': 'keyword.control.at-rule.import.scss'
+        'name': 'keyword.control.at-rule.extend.scss'
       '2':
         'name': 'punctuation.definition.keyword.scss'
     'end': '\\s*(?=;)'
-    'name': 'meta.at-rule.import.scss'
+    'name': 'meta.at-rule.extend.scss'
     'patterns': [
       {
         'include': '#variable'
@@ -1307,7 +1311,8 @@
           | }                                # Possible end of interpolation
         )+
       )                                      # Followed by either:
-      (?= $                                  # - End of the line
+      (?= ;                                  # - End of statement
+        | $                                  # - End of the line
         | [\\s,.\\#)\\[:{>+~|]               # - Another selector
         | /\\*                               # - A block comment
       )
