@@ -129,6 +129,37 @@ describe 'Sass grammar', ->
       expect(tokens[1][2]).toEqual value: '::', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.pseudo-element.css', 'punctuation.definition.entity.css']
       expect(tokens[1][3]).toEqual value: 'before', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.pseudo-element.css']
 
+  describe 'selectors', ->
+    describe 'attribute selectors', ->
+      it 'tokenizes a single attribute selector', ->
+        {tokens} = grammar.tokenizeLine '[something="1"]'
+
+        expect(tokens[0]).toEqual value: '[', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'punctuation.definition.attribute-selector.begin.bracket.square.sass']
+        expect(tokens[1]).toEqual value: 'something', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'entity.other.attribute-name.attribute.sass']
+        expect(tokens[2]).toEqual value: '=', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'keyword.operator.sass']
+        expect(tokens[3]).toEqual value: '"', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass', 'punctuation.definition.string.begin.sass']
+        expect(tokens[4]).toEqual value: '1', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass']
+        expect(tokens[5]).toEqual value: '"', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass', 'punctuation.definition.string.end.sass']
+        expect(tokens[6]).toEqual value: ']', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'punctuation.definition.attribute-selector.end.bracket.square.sass']
+
+      it "tokenizes multiple attribute selectors", ->
+        {tokens} = grammar.tokenizeLine '[data-name="text-color"][data-value="null"]'
+
+        expect(tokens[0]).toEqual value: '[', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'punctuation.definition.attribute-selector.begin.bracket.square.sass']
+        expect(tokens[1]).toEqual value: 'data-name', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'entity.other.attribute-name.attribute.sass']
+        expect(tokens[2]).toEqual value: '=', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'keyword.operator.sass']
+        expect(tokens[3]).toEqual value: '"', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass', 'punctuation.definition.string.begin.sass']
+        expect(tokens[4]).toEqual value: 'text-color', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass']
+        expect(tokens[5]).toEqual value: '"', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass', 'punctuation.definition.string.end.sass']
+        expect(tokens[6]).toEqual value: ']', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'punctuation.definition.attribute-selector.end.bracket.square.sass']
+        expect(tokens[7]).toEqual value: '[', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'punctuation.definition.attribute-selector.begin.bracket.square.sass']
+        expect(tokens[8]).toEqual value: 'data-value', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'entity.other.attribute-name.attribute.sass']
+        expect(tokens[9]).toEqual value: '=', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'keyword.operator.sass']
+        expect(tokens[10]).toEqual value: '"', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass', 'punctuation.definition.string.begin.sass']
+        expect(tokens[11]).toEqual value: 'null', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass']
+        expect(tokens[12]).toEqual value: '"', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'string.quoted.double.attribute-value.sass', 'punctuation.definition.string.end.sass']
+        expect(tokens[13]).toEqual value: ']', scopes: ['source.sass', 'meta.selector.css', 'meta.attribute-selector.css.sass', 'punctuation.definition.attribute-selector.end.bracket.square.sass']
+
   describe 'numbers', ->
     it 'tokenizes them', ->
       tokens = grammar.tokenizeLines '''

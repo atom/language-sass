@@ -121,6 +121,24 @@ describe 'SCSS grammar', ->
       expect(tokens[10]).toEqual value: "e", scopes: ["source.css.scss", "meta.attribute-selector.scss", "string.unquoted.attribute-value.scss"]
       expect(tokens[11]).toEqual value: "]", scopes: ["source.css.scss", "meta.attribute-selector.scss", "punctuation.definition.attribute-selector.end.bracket.square.scss"]
 
+    it "tokenizes multiple attribute selectors", ->
+      {tokens} = grammar.tokenizeLine '[data-name="text-color"][data-value="null"]'
+
+      expect(tokens[0]).toEqual value: '[', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.begin.bracket.square.scss']
+      expect(tokens[1]).toEqual value: 'data-name', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'entity.other.attribute-name.attribute.scss']
+      expect(tokens[2]).toEqual value: '=', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'keyword.operator.scss']
+      expect(tokens[3]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'text-color', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss']
+      expect(tokens[5]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.end.scss']
+      expect(tokens[6]).toEqual value: ']', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.end.bracket.square.scss']
+      expect(tokens[7]).toEqual value: '[', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.begin.bracket.square.scss']
+      expect(tokens[8]).toEqual value: 'data-value', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'entity.other.attribute-name.attribute.scss']
+      expect(tokens[9]).toEqual value: '=', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'keyword.operator.scss']
+      expect(tokens[10]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[11]).toEqual value: 'null', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss']
+      expect(tokens[12]).toEqual value: '"', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'string.quoted.double.attribute-value.scss', 'punctuation.definition.string.end.scss']
+      expect(tokens[13]).toEqual value: ']', scopes: ['source.css.scss', 'meta.attribute-selector.scss', 'punctuation.definition.attribute-selector.end.bracket.square.scss']
+
   describe '@at-root', ->
     it 'tokenizes it correctly', ->
       {tokens} = grammar.tokenizeLine '@at-root (without: media) .btn { color: red; }'
