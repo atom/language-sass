@@ -8,6 +8,8 @@
         |
         [}\\w&-]+::?[#\\w&-]+ # Pseudo-elements/classes (something::before)
         |
+        [}\\w&-]+:[\\w-]+\\(.*\\) # Functional pseudo-classes (something:not(.checked))
+        |
         @(?!import|return).* # At-rule (except import and return) since some at-rules may contain colons (@media(max-width: 922px))
       )
       \\s*$ # End of line
