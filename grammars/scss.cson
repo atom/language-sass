@@ -1407,6 +1407,12 @@
       {
         'include': 'source.css#pseudo-classes'
       }
+      {
+        'include': 'source.css#pseudo-elements'
+      }
+      {
+        'include': 'source.css#functional-pseudo-classes'
+      }
     ]
   # Stuff for selectors
   'selectors':
