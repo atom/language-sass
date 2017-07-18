@@ -505,6 +505,24 @@ describe 'SCSS grammar', ->
       expect(tokens[6]).toEqual value: "}", scopes: ["source.css.scss", "variable.interpolation.scss", "punctuation.definition.interpolation.end.bracket.curly.scss"]
       expect(tokens[7]).toEqual value: ")", scopes: ["source.css.scss", "punctuation.definition.pseudo-class.end.bracket.round.css"]
 
+  describe 'pseudo elements', ->
+    it 'inherits the matching from language-css', ->
+      {tokens} = grammar.tokenizeLine "&::after"
+
+      expect(tokens[1]).toEqual value: "::", scopes: ["source.css.scss", "entity.other.attribute-name.pseudo-element.css", "punctuation.definition.entity.css"]
+      expect(tokens[2]).toEqual value: "after", scopes: ["source.css.scss", "entity.other.attribute-name.pseudo-element.css"]
+
+  describe 'functional pseudo classes', ->
+    it 'inherits the matching from language-css', ->
+      {tokens} = grammar.tokenizeLine "&:not(.selected)"
+
+      expect(tokens[1]).toEqual value: ":", scopes: ["source.css.scss", "entity.other.attribute-name.pseudo-class.css", "punctuation.definition.entity.css"]
+      expect(tokens[2]).toEqual value: "not", scopes: ["source.css.scss", "entity.other.attribute-name.pseudo-class.css"]
+      expect(tokens[3]).toEqual value: "(", scopes: ["source.css.scss", "punctuation.section.function.begin.bracket.round.css"]
+      expect(tokens[4]).toEqual value: ".", scopes: ["source.css.scss", "entity.other.attribute-name.class.css", "punctuation.definition.entity.css"]
+      expect(tokens[5]).toEqual value: "selected", scopes: ["source.css.scss", "entity.other.attribute-name.class.css"]
+      expect(tokens[6]).toEqual value: ")", scopes: ["source.css.scss", "punctuation.section.function.end.bracket.round.css"]
+
   describe '@keyframes', ->
     it 'parses the from and to properties', ->
       tokens = grammar.tokenizeLines '''

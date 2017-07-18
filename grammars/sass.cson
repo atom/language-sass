@@ -348,10 +348,13 @@
         'name': 'entity.name.tag.wildcard.sass'
       }
       {
+        'include': 'source.css#pseudo-classes'
+      }
+      {
         'include': 'source.css#pseudo-elements'
       }
       {
-        'include': 'source.css#pseudo-classes'
+        'include': 'source.css#functional-pseudo-classes'
       }
       {
         'captures':

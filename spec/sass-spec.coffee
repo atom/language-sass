@@ -96,6 +96,19 @@ describe 'Sass grammar', ->
       expect(tokens[0][1]).toEqual value: '::', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.pseudo-element.css', 'punctuation.definition.entity.css']
       expect(tokens[0][2]).toEqual value: 'before', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.pseudo-element.css']
 
+    it 'tokenizes functional pseudo-classes', ->
+      tokens = grammar.tokenizeLines '''
+        &:not(.selected)
+          display: none
+      '''
+
+      expect(tokens[0][1]).toEqual value: ':', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.pseudo-class.css', 'punctuation.definition.entity.css']
+      expect(tokens[0][2]).toEqual value: 'not', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.pseudo-class.css']
+      expect(tokens[0][3]).toEqual value: '(', scopes: ['source.sass', 'meta.selector.css', 'punctuation.section.function.begin.bracket.round.css']
+      expect(tokens[0][4]).toEqual value: '.', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.class.css', 'punctuation.definition.entity.css']
+      expect(tokens[0][5]).toEqual value: 'selected', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.class.css']
+      expect(tokens[0][6]).toEqual value: ')', scopes: ['source.sass', 'meta.selector.css', 'punctuation.section.function.end.bracket.round.css']
+
     it 'tokenizes nested pseudo-classes', ->
       tokens = grammar.tokenizeLines '''
         body
