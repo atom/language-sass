@@ -424,13 +424,13 @@
   'at_rule_media':
     'patterns': [
       {
-        'begin': '^\\s*((@)media\\b)\\s*'
-        'end': '\\s*(?={)'
-        'captures':
+        'begin': '^\\s*((@)media)\\b'
+        'beginCaptures':
           '1':
             'name': 'keyword.control.at-rule.media.scss'
           '2':
             'name': 'punctuation.definition.keyword.scss'
+        'end': '\\s*(?={)'
         'name': 'meta.at-rule.media.scss'
         'patterns': [
           {
@@ -441,7 +441,7 @@
           }
           {
             'match': '\\b(only)\\b'
-            'name': 'keyword.control.operator'
+            'name': 'keyword.control.operator.css.scss'
           }
           {
             'begin': '\\('

@@ -451,19 +451,66 @@
     ]
   }
   {
-    'begin': '^\\s*((@)media)\\s+(((all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\\s*,?\\s*)+)\\s*{'
-    'captures':
+    'begin': '^\\s*((@)media)\\b'
+    'beginCaptures':
       '1':
         'name': 'keyword.control.at-rule.media.sass'
       '2':
         'name': 'punctuation.definition.keyword.sass'
-      '3':
-        'name': 'support.constant.media.sass'
-    'end': '\\s*((?=;|}))'
+    'end': '$'
     'name': 'meta.at-rule.media.sass'
     'patterns': [
       {
-        'include': '$self'
+        'match': '\\b(only)\\b'
+        'name': 'keyword.control.operator.css.sass'
+      }
+      {
+        'begin': '\\('
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.media-query.begin.bracket.round.sass'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.media-query.end.bracket.round.sass'
+        'name': 'meta.property-list.media-query.sass'
+        'patterns': [
+          {
+            'begin': '(?<![-a-z])(?=[-a-z])'
+            'end': '$|(?![-a-z])'
+            'name': 'meta.property-name.media-query.scss'
+            'patterns': [
+              {
+                'include': 'source.css#media-features'
+              }
+              {
+                'include': 'source.css#property-names'
+              }
+            ]
+          }
+          {
+            'begin': ':'
+            'beginCaptures':
+              '0':
+                'name': 'punctuation.separator.key-value.scss'
+            'end': '\\s*(?=\\))'
+            'contentName': 'meta.property-value.media-query.scss'
+            'patterns': [
+              {
+                'include': '#property-value'
+              }
+            ]
+          }
+        ]
+      }
+      {
+        'include': '#variable-usage'
+      }
+      {
+        'include': '#conditional-operators'
+      }
+      {
+        'include': 'source.css#media-types'
       }
     ]
   }
@@ -561,6 +608,17 @@
         'name': 'comment.line.sass'
       }
     ]
+  'conditional-operators':
+    'patterns': [
+      {
+        'match': '==|!=|<=|>=|<|>'
+        'name': 'keyword.operator.comparison.sass'
+      }
+      {
+        'match': '\\b(not\\b|or\\b|and\\b)'
+        'name': 'keyword.operator.logical.sass'
+      }
+    ]
   'property-name':
     'begin': '(?=[-A-Za-z]+)'
     'end': '(?!\\G)'
@@ -571,11 +629,6 @@
       }
     ]
   'property-value':
-    'begin': '(:)|\\G'
-    'beginCaptures':
-      '1':
-        'name': 'invalid.illegal.punctuation.sass'
-    'end': '(?=;?$)'
     'patterns': [
       {
         'include': 'source.css#numeric-values'
@@ -585,13 +638,7 @@
         'name': 'keyword.operator.css'
       }
       {
-        'captures':
-          '1':
-            'name': 'punctuation.definition.entity.css'
-          '2':
-            'name': 'variable.other.sass'
-        'match': '(!|\\$)([a-zA-Z0-9_-]+)'
-        'name': 'meta.variable-usage.sass'
+        'include': '#variable-usage'
       }
       {
         'match': '\\b(true|false)\\b'
@@ -657,12 +704,7 @@
         'name': 'keyword.operator.control.sass'
       }
       {
-        'match': '==|!=|<=|>=|<|>'
-        'name': 'keyword.operator.comparison.sass'
-      }
-      {
-        'match': '\\b(not\\b|or\\b|and\\b)'
-        'name': 'keyword.operator.logical.sass'
+        'include': '#conditional-operators'
       }
     ]
   'string-double':
@@ -697,3 +739,11 @@
         'name': 'constant.character.escape.sass'
       }
     ]
+  'variable-usage':
+    'match': '(!|\\$)([a-zA-Z0-9_-]+)'
+    'name': 'meta.variable-usage.sass'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.entity.css'
+      '2':
+        'name': 'variable.other.sass'
