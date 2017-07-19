@@ -255,24 +255,28 @@ describe 'Sass grammar', ->
     it 'correctly tokenizes block comments based on indentation', ->
       tokens = grammar.tokenizeLines '''
         /* hi1
-          hi2
-        hi3
+         hi2
+          hi3
+        hi4
       '''
       expect(tokens[0][0]).toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
       expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.block.sass']
-      expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.block.sass']
-      expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[1][0]).toEqual value: ' hi2', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[2][0]).toEqual value: '  hi3', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[3][0]).toEqual value: 'hi4', scopes: ['source.sass', 'meta.selector.css']
 
     it 'correctly tokenizes line comments based on indentation', ->
       tokens = grammar.tokenizeLines '''
         // hi1
-          hi2
-        hi3
+         hi2
+          hi3
+        hi4
       '''
       expect(tokens[0][0]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
       expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.line.sass']
-      expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.line.sass']
-      expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[1][0]).toEqual value: ' hi2', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[2][0]).toEqual value: '  hi3', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[3][0]).toEqual value: 'hi4', scopes: ['source.sass', 'meta.selector.css']
 
   describe 'at-rules and directives', ->
     it 'tokenizes @function', ->

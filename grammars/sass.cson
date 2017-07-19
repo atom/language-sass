@@ -593,7 +593,7 @@
         'beginCaptures':
           '2':
             'name': 'punctuation.definition.comment.sass'
-        'end': '(\\*/)|^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because /* is two characters
+        'end': '(\\*/)|^(?!\\s\\1)' # Must be indented by at least one space
         'endCaptures':
           '1':
             'name': 'punctuation.definition.comment.sass'
@@ -604,7 +604,7 @@
         'beginCaptures':
           '2':
             'name': 'punctuation.definition.comment.sass'
-        'end': '^(?!\\s{2}\\1)' # Include two explicit whitespace characters here because // is two characters
+        'end': '^(?!\\s\\1)' # Must be indented by at least one space
         'name': 'comment.line.sass'
       }
     ]
