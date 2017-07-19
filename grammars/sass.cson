@@ -615,7 +615,7 @@
         'name': 'keyword.operator.comparison.sass'
       }
       {
-        'match': '\\b(not\\b|or\\b|and\\b)'
+        'match': '\\b(not|or|and)\\b'
         'name': 'keyword.operator.logical.sass'
       }
     ]

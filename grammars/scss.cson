@@ -891,7 +891,7 @@
     'match': '==|!=|<=|>=|<|>'
     'name': 'keyword.operator.comparison.scss'
   'logical_operators':
-    'match': '\\b(not\\b|or\\b|and\\b)'
+    'match': '\\b(not|or|and)\\b'
     'name': 'keyword.operator.logical.scss'
   'map':
     'begin': '\\('
