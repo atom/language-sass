@@ -478,7 +478,7 @@
           {
             'begin': '(?<![-a-z])(?=[-a-z])'
             'end': '$|(?![-a-z])'
-            'name': 'meta.property-name.media-query.scss'
+            'name': 'meta.property-name.media-query.sass'
             'patterns': [
               {
                 'include': 'source.css#media-features'
@@ -489,12 +489,12 @@
             ]
           }
           {
-            'begin': ':'
+            'begin': '(:)\\s*'
             'beginCaptures':
-              '0':
-                'name': 'punctuation.separator.key-value.scss'
+              '1':
+                'name': 'punctuation.separator.key-value.sass'
             'end': '\\s*(?=\\))'
-            'contentName': 'meta.property-value.media-query.scss'
+            'contentName': 'meta.property-value.media-query.sass'
             'patterns': [
               {
                 'include': '#property-value'
