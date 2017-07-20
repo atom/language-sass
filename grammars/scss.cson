@@ -18,13 +18,13 @@
     'include': '#at_rule_import'
   }
   {
+    'include': '#rules'
+  }
+  {
     'include': '#general'
   }
   {
     'include': '#flow_control'
-  }
-  {
-    'include': '#rules'
   }
   {
     'include': '#property_list'
@@ -1093,9 +1093,6 @@
   'rules':
     'patterns': [
       {
-        'include': '#general'
-      }
-      {
         'include': '#at_rule_extend'
       }
       {
@@ -1109,6 +1106,9 @@
       }
       {
         'include': '#selectors'
+      }
+      {
+        'include': '#general'
       }
     ]
   'selector_attribute':
@@ -1263,8 +1263,35 @@
           }
         ]
   'selector_custom':
-    'match': '\\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)+)(?=\\.|\\s++[^:]|\\s*[,\\[{]|:(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-(child|last-child|of-type|last-of-type)|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?)'
-    'name': 'entity.name.tag.custom.scss'
+    'match': '''(?x) (?<![@\\w-])
+      ([a-z]|\\#\\{) # Custom element names must start with a lowercase letter or interpolation
+      (
+        [\\w&-]      # Allow any word character, &, or dash
+        | \\#\\{     # Interpolation (escaped to avoid Coffeelint errors)
+        | \\$        # Possible start of interpolation variable
+        | }          # Possible end of interpolation
+      )+
+      (?=            # Followed by one of:
+        [.\\#\\[]    # Start of class, id, or attribute selector
+        | \\s*[,{]   # Start of another selector or property-list
+        | \\s++[^:]  # Whitespace followed by anything but :
+        | :(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|
+            nth-(child|last-child|of-type|last-of-type)|first-child|last-child|first-of-type|
+            last-of-type|only-child|only-of-type|empty|not|valid|invalid)
+          (\\([0-9A-Za-z]*\\))?) # pseudo-class/element
+    '''
+    'name': 'entity.name.tag.custom.css'
+    'captures':
+      '0':
+        'patterns': [
+          {
+            'include': '#interpolation'
+          }
+          {
+            'match': '[A-Z]'
+            'name': 'invalid.illegal.identifier.css'
+          }
+        ]
   'selector_id':
     'match': '''(?x)
       (\\#)                                  # Valid id-name
