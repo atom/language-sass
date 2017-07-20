@@ -582,7 +582,16 @@ describe 'SCSS grammar', ->
 
   describe 'media queries', ->
     it 'parses media types and features', ->
-      {tokens} = grammar.tokenizeLine '@media (orientation: landscape) and only screen and (min-width: 700px) /* comment */ {}'
+      {tokens} = grammar.tokenizeLine '@media screen {}'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.at-rule.media.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.at-rule.media.scss']
+      expect(tokens[2]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.media.scss']
+      expect(tokens[3]).toEqual value: 'screen', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'support.constant.media.css']
+      expect(tokens[4]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.media.scss']
+      expect(tokens[5]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+
+      {tokens} = grammar.tokenizeLine '@media (orientation: landscape) and (min-width: 700px) /* comment */ {}'
 
       expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.at-rule.media.scss', 'punctuation.definition.keyword.scss']
       expect(tokens[1]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.at-rule.media.scss']
@@ -595,17 +604,14 @@ describe 'SCSS grammar', ->
       expect(tokens[8]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.definition.media-query.end.bracket.round.scss']
       expect(tokens[9]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.at-rule.media.scss']
       expect(tokens[10]).toEqual value: 'and', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.operator.logical.scss']
-      expect(tokens[12]).toEqual value: 'only', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.control.operator']
-      expect(tokens[14]).toEqual value: 'screen', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'support.constant.media.css']
-      expect(tokens[16]).toEqual value: 'and', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'keyword.operator.logical.scss']
-      expect(tokens[18]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.definition.media-query.begin.bracket.round.scss']
-      expect(tokens[19]).toEqual value: 'min-width', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-name.media-query.scss', 'support.type.property-name.media.css']
-      expect(tokens[20]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.separator.key-value.scss']
-      expect(tokens[22]).toEqual value: '700', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-value.media-query.scss', 'constant.numeric.css']
-      expect(tokens[23]).toEqual value: 'px', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-value.media-query.scss', 'constant.numeric.css', 'keyword.other.unit.px.css']
-      expect(tokens[24]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.definition.media-query.end.bracket.round.scss']
-      expect(tokens[26]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
-      expect(tokens[30]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+      expect(tokens[12]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.definition.media-query.begin.bracket.round.scss']
+      expect(tokens[13]).toEqual value: 'min-width', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-name.media-query.scss', 'support.type.property-name.media.css']
+      expect(tokens[14]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[16]).toEqual value: '700', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-value.media-query.scss', 'constant.numeric.css']
+      expect(tokens[17]).toEqual value: 'px', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'meta.property-value.media-query.scss', 'constant.numeric.css', 'keyword.other.unit.px.css']
+      expect(tokens[18]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'meta.property-list.media-query.scss', 'punctuation.definition.media-query.end.bracket.round.scss']
+      expect(tokens[20]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.at-rule.media.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+      expect(tokens[24]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
 
   describe 'functions', ->
     it 'parses them', ->

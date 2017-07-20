@@ -255,26 +255,66 @@ describe 'Sass grammar', ->
     it 'correctly tokenizes block comments based on indentation', ->
       tokens = grammar.tokenizeLines '''
         /* hi1
-          hi2
-        hi3
+         hi2
+          hi3
+        hi4
       '''
       expect(tokens[0][0]).toEqual value: '/*', scopes: ['source.sass', 'comment.block.sass', 'punctuation.definition.comment.sass']
       expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.block.sass']
-      expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.block.sass']
-      expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[1][0]).toEqual value: ' hi2', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[2][0]).toEqual value: '  hi3', scopes: ['source.sass', 'comment.block.sass']
+      expect(tokens[3][0]).toEqual value: 'hi4', scopes: ['source.sass', 'meta.selector.css']
 
     it 'correctly tokenizes line comments based on indentation', ->
       tokens = grammar.tokenizeLines '''
         // hi1
-          hi2
-        hi3
+         hi2
+          hi3
+        hi4
       '''
       expect(tokens[0][0]).toEqual value: '//', scopes: ['source.sass', 'comment.line.sass', 'punctuation.definition.comment.sass']
       expect(tokens[0][1]).toEqual value: ' hi1', scopes: ['source.sass', 'comment.line.sass']
-      expect(tokens[1][0]).toEqual value: '  hi2', scopes: ['source.sass', 'comment.line.sass']
-      expect(tokens[2][0]).not.toEqual value: 'hi3', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[1][0]).toEqual value: ' hi2', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[2][0]).toEqual value: '  hi3', scopes: ['source.sass', 'comment.line.sass']
+      expect(tokens[3][0]).toEqual value: 'hi4', scopes: ['source.sass', 'meta.selector.css']
 
   describe 'at-rules and directives', ->
+    it 'tokenizes @media', ->
+      tokens = grammar.tokenizeLines '''
+        @media screen
+          background: none
+      '''
+
+      expect(tokens[0][0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.media.sass', 'keyword.control.at-rule.media.sass', 'punctuation.definition.keyword.sass']
+      expect(tokens[0][1]).toEqual value: 'media', scopes: ['source.sass', 'meta.at-rule.media.sass', 'keyword.control.at-rule.media.sass']
+      expect(tokens[0][2]).toEqual value: ' ', scopes: ['source.sass', 'meta.at-rule.media.sass']
+      expect(tokens[0][3]).toEqual value: 'screen', scopes: ['source.sass', 'meta.at-rule.media.sass', 'support.constant.media.css']
+      expect(tokens[1][1]).toEqual value: 'background', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.property-name.css']
+
+      tokens = grammar.tokenizeLines '''
+        @media (orientation: landscape) and (min-width: 700px)
+          background: none
+      '''
+
+      expect(tokens[0][0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.media.sass', 'keyword.control.at-rule.media.sass', 'punctuation.definition.keyword.sass']
+      expect(tokens[0][1]).toEqual value: 'media', scopes: ['source.sass', 'meta.at-rule.media.sass', 'keyword.control.at-rule.media.sass']
+      expect(tokens[0][2]).toEqual value: ' ', scopes: ['source.sass', 'meta.at-rule.media.sass']
+      expect(tokens[0][3]).toEqual value: '(', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'punctuation.definition.media-query.begin.bracket.round.sass']
+      expect(tokens[0][4]).toEqual value: 'orientation', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'meta.property-name.media-query.sass', 'support.type.property-name.media.css']
+      expect(tokens[0][5]).toEqual value: ':', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'punctuation.separator.key-value.sass']
+      expect(tokens[0][6]).toEqual value: ' ', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass']
+      expect(tokens[0][7]).toEqual value: 'landscape', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'meta.property-value.media-query.sass', 'support.constant.property-value.css']
+      expect(tokens[0][8]).toEqual value: ')', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'punctuation.definition.media-query.end.bracket.round.sass']
+      expect(tokens[0][9]).toEqual value: ' ', scopes: ['source.sass', 'meta.at-rule.media.sass']
+      expect(tokens[0][10]).toEqual value: 'and', scopes: ['source.sass', 'meta.at-rule.media.sass', 'keyword.operator.logical.sass']
+      expect(tokens[0][12]).toEqual value: '(', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'punctuation.definition.media-query.begin.bracket.round.sass']
+      expect(tokens[0][13]).toEqual value: 'min-width', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'meta.property-name.media-query.sass', 'support.type.property-name.media.css']
+      expect(tokens[0][14]).toEqual value: ':', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'punctuation.separator.key-value.sass']
+      expect(tokens[0][16]).toEqual value: '700', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'meta.property-value.media-query.sass', 'constant.numeric.css']
+      expect(tokens[0][17]).toEqual value: 'px', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'meta.property-value.media-query.sass', 'constant.numeric.css', 'keyword.other.unit.px.css']
+      expect(tokens[0][18]).toEqual value: ')', scopes: ['source.sass', 'meta.at-rule.media.sass', 'meta.property-list.media-query.sass', 'punctuation.definition.media-query.end.bracket.round.sass']
+      expect(tokens[1][1]).toEqual value: 'background', scopes: ['source.sass', 'meta.property-name.sass', 'support.type.property-name.css']
+
     it 'tokenizes @function', ->
       {tokens} = grammar.tokenizeLine '@function function_name($p1, $p2)'
       expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.function.sass', 'keyword.control.at-rule.function.sass', 'punctuation.definition.entity.sass']
