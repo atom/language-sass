@@ -121,6 +121,15 @@ describe 'SCSS grammar', ->
       expect(tokens[10]).toEqual value: "e", scopes: ["source.css.scss", "meta.attribute-selector.scss", "string.unquoted.attribute-value.scss"]
       expect(tokens[11]).toEqual value: "]", scopes: ["source.css.scss", "meta.attribute-selector.scss", "punctuation.definition.attribute-selector.end.bracket.square.scss"]
 
+    it "tokenizes the $= selector", ->
+      {tokens} = grammar.tokenizeLine "[class$=test]"
+
+      expect(tokens[0]).toEqual value: "[", scopes: ["source.css.scss", "meta.attribute-selector.scss", "punctuation.definition.attribute-selector.begin.bracket.square.scss"]
+      expect(tokens[1]).toEqual value: "class", scopes: ["source.css.scss", "meta.attribute-selector.scss", "entity.other.attribute-name.attribute.scss"]
+      expect(tokens[2]).toEqual value: "$=", scopes: ["source.css.scss", "meta.attribute-selector.scss", "keyword.operator.scss"]
+      expect(tokens[3]).toEqual value: "test", scopes: ["source.css.scss", "meta.attribute-selector.scss", "string.unquoted.attribute-value.scss"]
+      expect(tokens[4]).toEqual value: "]", scopes: ["source.css.scss", "meta.attribute-selector.scss", "punctuation.definition.attribute-selector.end.bracket.square.scss"]
+
     it "tokenizes multiple attribute selectors", ->
       {tokens} = grammar.tokenizeLine '[data-name="text-color"][data-value="null"]'
 
