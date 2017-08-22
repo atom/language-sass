@@ -1122,7 +1122,7 @@
           | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
           | \\$                              # Possible start of interpolation variable
           | }                                # Possible end of interpolation
-        )+
+        )+?
       )
       (?:
         \\s*([~|^$*]?=)\\s*
