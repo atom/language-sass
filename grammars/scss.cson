@@ -1020,10 +1020,10 @@
         'include': '#flow_control'
       }
       {
-        'include': '#rules'
+        'include': '#properties'
       }
       {
-        'include': '#properties'
+        'include': '#rules'
       }
       {
         'include': '$self'
