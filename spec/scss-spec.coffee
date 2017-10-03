@@ -396,6 +396,28 @@ describe 'SCSS grammar', ->
       expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
       expect(tokens[1][4]).toEqual value: 'fixed', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
+  describe 'property names that match element names', ->
+    it 'does not confuse them with properties', ->
+      tokens = grammar.tokenizeLines '''
+        content {
+          content: 'foo';
+        }
+      '''
+
+      expect(tokens[0][0]).toEqual value: 'content', scopes: ['source.css.scss', 'entity.name.tag.css']
+      expect(tokens[0][1]).toEqual value: ' ', scopes: ['source.css.scss']
+      expect(tokens[0][2]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+      expect(tokens[1][0]).toEqual value: '  ', scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(tokens[1][1]).toEqual value: 'content', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
+      expect(tokens[1][2]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[1][3]).toEqual value: ' ', scopes: ['source.css.scss', 'meta.property-list.scss']
+      expect(tokens[1][4]).toEqual value: '\'', scopes : ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[1][5]).toEqual value: 'foo', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss']
+      expect(tokens[1][6]).toEqual value: '\'', scopes : ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'string.quoted.single.scss', 'punctuation.definition.string.end.scss']
+      expect(tokens[1][7]).toEqual value: ';', scopes : ['source.css.scss', 'meta.property-list.scss',  'punctuation.terminator.rule.scss']
+      expect(tokens[1][7]).toEqual value: ';', scopes : ['source.css.scss', 'meta.property-list.scss',  'punctuation.terminator.rule.scss']
+      expect(tokens[2][0]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
+
   describe 'vendor properties', ->
     it 'tokenizes the browser prefix', ->
       {tokens} = grammar.tokenizeLine 'body { -webkit-box-shadow: none; }'
