@@ -369,7 +369,7 @@ describe 'SCSS grammar', ->
         expect(tokens[32]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition.end.bracket.round.scss']
 
   describe 'property names with a prefix that matches an element name', ->
-    it 'does not confuse them with properties', ->
+    it 'does not confuse them with selectors', ->
       tokens = grammar.tokenizeLines '''
         text {
           text-align: center;
@@ -397,7 +397,7 @@ describe 'SCSS grammar', ->
       expect(tokens[1][4]).toEqual value: 'fixed', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
 
   describe 'property names that match element names', ->
-    it 'does not confuse them with properties', ->
+    it 'does not confuse them with selectors', ->
       tokens = grammar.tokenizeLines '''
         content {
           content: 'foo';
