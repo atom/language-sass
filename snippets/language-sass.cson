@@ -2,7 +2,6 @@
   '!important':
     'prefix': '!'
     'body': '!important${1:;}$0'
-'.source.sass':
   '@import':
     'prefix': 'import'
     'body': '@import "$0"'
