@@ -27,9 +27,6 @@
     'include': '#rules'
   }
   {
-    'include': '#selectors'
-  }
-  {
     'include': '#property_list'
   }
   {
@@ -419,9 +416,6 @@
             }
             {
               'include': '#rules'
-            }
-            {
-              'include': "#selectors"
             }
           ]
         }
@@ -979,7 +973,7 @@
   'properties':
     'patterns': [
       {
-        'begin': '(?<![-a-z])(?!--)(?=[-a-z])'
+        'begin': '(?<![-a-z])(?=[-a-z])'
         'end': '$|(?![-a-z])'
         'name': 'meta.property-name.scss'
         'patterns': [
@@ -1029,13 +1023,7 @@
         'include': '#rules'
       }
       {
-        'include': '#selector_custom'
-      }
-      {
         'include': '#properties'
-      }
-      {
-        'include': 'selectors'
       }
       {
         'include': '$self'
@@ -1118,6 +1106,9 @@
       }
       {
         'include': '#at_rule_media'
+      }
+      {
+        'include': '#selectors'
       }
     ]
   'selector_attribute':
