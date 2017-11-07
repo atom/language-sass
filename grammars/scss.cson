@@ -973,8 +973,13 @@
   'properties':
     'patterns': [
       {
-        'begin': '(?<![-a-z])(?=[-a-z])'
-        'end': '$|(?![-a-z])'
+        # NOTE: This is different from language-css's implementation.
+        # While both CSS and SCSS allow the colon to be on a different line,
+        # we are limited to matching the colon on the same line in SCSS
+        # so that property names that are also tag names are matched properly.
+        # https://github.com/atom/language-sass/issues/226
+        'begin': '(?<![-a-z])(?!--)(?=[-a-z]+\\s*:)'
+        'end': '(?=\\s*:)'
         'name': 'meta.property-name.scss'
         'patterns': [
           {
@@ -1020,10 +1025,10 @@
         'include': '#flow_control'
       }
       {
-        'include': '#rules'
+        'include': '#properties'
       }
       {
-        'include': '#properties'
+        'include': '#rules'
       }
       {
         'include': '$self'
