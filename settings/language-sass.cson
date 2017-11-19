@@ -22,6 +22,7 @@
 
 '.source.sass, .source.css.scss':
   'editor':
+    'nonWordCharacters': '/\\()"\':,.;<>~!@#$%^&*|+=[]{}`?…'
     'commentStart': '// '
   'autocomplete':
     'symbols':
