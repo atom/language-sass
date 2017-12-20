@@ -1,6 +1,6 @@
 {
   "name": "language-sass",
-  "version": "0.61.3",
+  "version": "0.61.4",
   "description": "Sass/SCSS language support in Atom",
   "license": "MIT",
   "engines": {
