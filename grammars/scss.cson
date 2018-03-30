@@ -721,6 +721,18 @@
         'include': '$self'
       }
     ]
+  'comment_docblock':
+    'name': 'comment.block.documentation.scss'
+    'begin': '///'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.scss'
+    'end': '(?=$)'
+    'patterns': [
+      {
+        'include': 'source.sassdoc'
+      }
+    ]
   'comment_block':
     'begin': '/\\*'
     'beginCaptures':
