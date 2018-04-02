@@ -434,6 +434,9 @@
         'name': 'meta.at-rule.media.scss'
         'patterns': [
           {
+            'include': '#comment_docblock'
+          }
+          {
             'include': '#comment_block'
           }
           {
@@ -866,6 +869,9 @@
         'include': '#variable'
       }
       {
+        'include': '#comment_docblock'
+      }
+      {
         'include': '#comment_block'
       }
       {
@@ -916,6 +922,9 @@
         'name': 'punctuation.definition.map.end.bracket.round.scss'
     'name': 'meta.definition.variable.map.scss'
     'patterns': [
+      {
+        'include': '#comment_docblock'
+      }
       {
         'include': '#comment_block'
       }
@@ -1535,6 +1544,9 @@
             'name': 'punctuation.separator.key-value.scss'
         'end': '(?=;)'
         'patterns': [
+          {
+            'include': '#comment_docblock'
+          }
           {
             'include': '#comment_block'
           }
