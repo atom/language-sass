@@ -49,37 +49,93 @@
   }
   {
     # @example text();
-    'name': 'meta.example.sassdoc'
-    'begin': '((@)example)\\s+'
+    'name': 'meta.example.css.scss.sassdoc'
+    'begin': '''(?x)
+      ((@)example)
+      \\s+
+      (css|scss)
+    '''
     'end': '(?=@|///$)'
     'beginCaptures':
       '1':
         'name': 'storage.type.class.sassdoc'
       '2':
         'name': 'punctuation.definition.block.tag.sassdoc'
+      '3':
+        'name': 'variable.other.sassdoc'
     'patterns': [
       {
         'match': '^///\\s+'
       }
       {
-        # Leading <caption>…</caption> before example
-        'contentName': 'constant.other.description.sassdoc'
-        'begin': '\\G(<)caption(>)'
-        'beginCaptures':
+        # Highlighted (S)CSS example
+        'match': '[^\\s@*](?:[^*]|\\*[^/])*'
+        'captures':
           '0':
-            'name': 'entity.name.tag.inline.sassdoc'
-          '1':
-            'name': 'punctuation.definition.bracket.angle.begin.sassdoc'
-          '2':
-            'name': 'punctuation.definition.bracket.angle.end.sassdoc'
-        'end': '(</)caption(>)|(?=///$)'
-        'endCaptures':
+            'name': 'source.embedded.css.scss'
+            'patterns': [
+              {
+                'include': 'source.css.scss'
+              }
+            ]
+      }
+    ]
+  }
+  {
+    # @example Markup
+    # There must be a better way to do this.
+    'name': 'meta.example.html.sassdoc'
+    'begin': '''(?x)
+      ((@)example)
+      \\s+
+      (markup)
+    '''
+    'end': '(?=@|///$)'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.class.sassdoc'
+      '2':
+        'name': 'punctuation.definition.block.tag.sassdoc'
+      '3':
+        'name': 'variable.other.sassdoc'
+    'patterns': [
+      {
+        'match': '^///\\s+'
+      }
+      {
+        # Highlighted markup example
+        'match': '[^\\s@*](?:[^*]|\\*[^/])*'
+        'captures':
           '0':
-            'name': 'entity.name.tag.inline.sassdoc'
-          '1':
-            'name': 'punctuation.definition.bracket.angle.begin.sassdoc'
-          '2':
-            'name': 'punctuation.definition.bracket.angle.end.sassdoc'
+            'name': 'source.embedded.html'
+            'patterns': [
+              {
+                'include': 'source.html'
+              }
+            ]
+      }
+    ]
+  }
+  {
+    # @example JavaScript
+    # Again, hopefully a better way can be found.
+    'name': 'meta.example.js.sassdoc'
+    'begin': '''(?x)
+      ((@)example)
+      \\s+
+      (javascript)
+    '''
+    'end': '(?=@|///$)'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.class.sassdoc'
+      '2':
+        'name': 'punctuation.definition.block.tag.sassdoc'
+      '3':
+        'name': 'variable.other.sassdoc'
+    'patterns': [
+      {
+        'match': '^///\\s+'
       }
       {
         # Highlighted JavaScript example
@@ -94,7 +150,7 @@
             ]
       }
     ]
-  },
+  }
   {
     # @see namepathOrURL
     'match': '''(?x)
