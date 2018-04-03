@@ -250,9 +250,6 @@
             'name': 'source.embedded.js'
             'patterns': [
               {
-                'include': '#inline-tags'
-              }
-              {
                 'include': 'source.js'
               }
             ]
@@ -321,9 +318,6 @@
       '1':
         'name': 'punctuation.definition.block.tag.sassdoc'
   }
-  {
-    'include': '#inline-tags'
-  }
 ]
 
 'repository':
@@ -345,54 +339,6 @@
         'patterns': [
           {
             'include': '#brackets'
-          }
-        ]
-      }
-    ]
-
-  'inline-tags':
-    'patterns': [
-      {
-        # Description preceding {@inline tag}
-        'captures':
-          '1':
-            'name': 'punctuation.definition.bracket.square.begin.sassdoc'
-          '2':
-            'name': 'punctuation.definition.bracket.square.end.sassdoc'
-        'match': '(\\[)[^\\]]+(\\])(?={@(?:link))'
-        'name': 'constant.other.description.sassdoc'
-      }
-      {
-        # {@link …}
-        'begin': '({)((@)(?:link))\\s*'
-        'beginCaptures':
-          '1':
-            'name': 'punctuation.definition.bracket.curly.begin.sassdoc'
-          '2':
-            'name': 'storage.type.class.sassdoc'
-          '3':
-            'name': 'punctuation.definition.inline.tag.sassdoc'
-        'end': '}|(?=$)'
-        'endCaptures':
-          '0':
-            'name': 'punctuation.definition.bracket.curly.end.sassdoc'
-        'name': 'entity.name.type.instance.sassdoc'
-        'patterns': [
-          {
-            'captures':
-              '1':
-                'name': 'variable.other.link.underline.sassdoc'
-              '2':
-                'name': 'punctuation.separator.pipe.sassdoc'
-            'match': '\\G((?=https?://)(?:[^|}\\s*]|\\*[/])+)(\\|)?'
-          }
-          {
-            'captures':
-              '1':
-                'name': 'variable.other.description.sassdoc'
-              '2':
-                'name': 'punctuation.separator.pipe.sassdoc'
-            'match': '\\G((?:[^{}@\\s|*]|\\*[^/])+)(\\|)?'
           }
         ]
       }
