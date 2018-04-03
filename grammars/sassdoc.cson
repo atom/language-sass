@@ -175,53 +175,16 @@
         'name': 'entity.name.type.instance.sassdoc'
   }
   {
-    # @see namepathOrURL
-    'match': '''(?x)
-      ((@)see)
-      \\s+
-      (?:
-        # URL
-        (
-          (?=https?://)
-          (?:[^\\s*]|\\*[^/])+
-        )
-        |
-        # JSDoc namepath
-        (
-          (?!
-            # Avoid matching bare URIs (also acceptable as links)
-            https?://
-            |
-            # Avoid matching {@inline tags}; we match those below
-            (?:\\[[^\\[\\]]*\\])? # Possible description [preceding]{@tag}
-            {@(?:link|linkcode|linkplain|tutorial)\\b
-          )
-          # Matched namepath
-          (?:[^@\\s*/]|\\*[^/])+
-        )
-      )
-    '''
-    'captures':
-      '1':
-        'name': 'storage.type.class.sassdoc'
-      '2':
-        'name': 'punctuation.definition.block.tag.sassdoc'
-      '3':
-        'name': 'variable.other.link.underline.sassdoc'
-      '4':
-        'name': 'entity.name.type.instance.sassdoc'
-  }
-  {
     # Tags followed by an identifier token
     # - @<tag> identifier
     'match': '''(?x)
       (
         (@)
-        (?:arg|argument|param|parameter)
+        (?:arg|argument|param|parameter|requires?|see)
       )
       \\s+
       (
-        [A-Za-z_$]
+        [A-Za-z_$%]
         [\\w$.\\[\\]]*
       )
     '''
@@ -236,7 +199,7 @@
   {
     # Tags followed by a type expression, then an identifier
     # -  @<tag> {type} identifier
-    'begin': '((@)(?:arg|argument|param|parameter|prop|property))\\s+(?={)'
+    'begin': '((@)(?:arg|argument|param|parameter|prop|property|requires?|see))\\s+(?={)'
     'beginCaptures':
       '1':
         'name': 'storage.type.class.sassdoc'
@@ -248,7 +211,7 @@
         'include': '#sassdoctype'
       }
       {
-        'match': '([A-Za-z_$][\\w$.\\[\\]]*)'
+        'match': '([A-Za-z_$%][\\-\\w$.\\[\\]]*)'
         'name': 'variable.other.sassdoc'
       }
       {
