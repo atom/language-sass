@@ -152,6 +152,29 @@
     ]
   }
   {
+    # @link URL [Caption]
+    'match': '''(?x)
+      ((@)link)
+      \\s+
+      (?:
+        # URL
+        (
+          (?=https?://)
+          (?:[^\\s*]|\\*[^/])+
+        )
+      )
+    '''
+    'captures':
+      '1':
+        'name': 'storage.type.class.sassdoc'
+      '2':
+        'name': 'punctuation.definition.block.tag.sassdoc'
+      '3':
+        'name': 'variable.other.link.underline.sassdoc'
+      '4':
+        'name': 'entity.name.type.instance.sassdoc'
+  }
+  {
     # @see namepathOrURL
     'match': '''(?x)
       ((@)see)
