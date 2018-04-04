@@ -180,12 +180,12 @@
     'match': '''(?x)
       (
         (@)
-        (?:arg|argument|param|parameter|requires?|see)
+        (?:arg|argument|param|parameter|requires?|see|colors?|fonts?|ratios?|sizes?)
       )
       \\s+
       (
         [A-Za-z_$%]
-        [\\w$.\\[\\]]*
+        [\\-\\w$.\\[\\]]*
       )
     '''
     'captures':
@@ -199,7 +199,7 @@
   {
     # Tags followed by a type expression, then an identifier
     # -  @<tag> {type} identifier
-    'begin': '((@)(?:arg|argument|param|parameter|prop|property|requires?|see))\\s+(?={)'
+    'begin': '((@)(?:arg|argument|param|parameter|prop|property|requires?|see|sizes?))\\s+(?={)'
     'beginCaptures':
       '1':
         'name': 'storage.type.class.sassdoc'
@@ -288,7 +288,7 @@
     'match': '''(?x)
       (
         (@)
-        (?:alias|group|name|requires?|see)
+        (?:alias|group|name|requires?|see|icons?)
       )
       \\s+
       (
