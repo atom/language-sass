@@ -589,6 +589,19 @@
             'name': 'invalid.illegal.sass'
       }
       {
+        'name': 'comment.block.documentation.sass'
+        'begin': '^(\\s*)(///)'
+        'beginCaptures':
+          '2':
+            'name': 'punctuation.definition.comment.sass'
+        'end': '^(?!\\s\\1)' # Must be indented by at least one space
+        'patterns': [
+          {
+            'include': 'source.sassdoc'
+          }
+        ]
+      }
+      {
         'begin': '^(\\s*)(/\\*)'
         'beginCaptures':
           '2':
