@@ -434,6 +434,9 @@
         'name': 'meta.at-rule.media.scss'
         'patterns': [
           {
+            'include': '#comment_docblock'
+          }
+          {
             'include': '#comment_block'
           }
           {
@@ -721,6 +724,18 @@
         'include': '$self'
       }
     ]
+  'comment_docblock':
+    'name': 'comment.block.documentation.scss'
+    'begin': '///'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.scss'
+    'end': '(?=$)'
+    'patterns': [
+      {
+        'include': 'source.sassdoc'
+      }
+    ]
   'comment_block':
     'begin': '/\\*'
     'beginCaptures':
@@ -854,6 +869,9 @@
         'include': '#variable'
       }
       {
+        'include': '#comment_docblock'
+      }
+      {
         'include': '#comment_block'
       }
       {
@@ -904,6 +922,9 @@
         'name': 'punctuation.definition.map.end.bracket.round.scss'
     'name': 'meta.definition.variable.map.scss'
     'patterns': [
+      {
+        'include': '#comment_docblock'
+      }
       {
         'include': '#comment_block'
       }
@@ -1523,6 +1544,9 @@
             'name': 'punctuation.separator.key-value.scss'
         'end': '(?=;)'
         'patterns': [
+          {
+            'include': '#comment_docblock'
+          }
           {
             'include': '#comment_block'
           }
