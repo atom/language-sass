@@ -266,7 +266,7 @@
     'begin': '''(?x)
       (
         (@)
-        (?:returns?|throws?|exception|type|outputs?)
+        (?:returns?|throws?|exception|outputs?)
       )
       \\s+(?={)
     '''
@@ -281,6 +281,34 @@
         'include': '#sassdoctype'
       }
     ]
+  }
+  {
+    # Type annotation blocks
+    # -  @type type|othertype
+    'match': '''(?x)
+      (
+        (@)
+        (?:type)
+      )
+      \\s+
+      (
+        (?:
+          [A-Za-z |]+
+        )
+      )
+    '''
+    'captures':
+      '1':
+        'name': 'storage.type.class.sassdoc'
+      '2':
+        'name': 'punctuation.definition.block.tag.sassdoc'
+      '3':
+        'name': 'entity.name.type.instance.sassdoc'
+        'patterns': [
+          {
+            'include': '#sassdoctypedelimiter'
+          }
+        ]
   }
   {
     # Tags followed by a namepath
@@ -306,7 +334,7 @@
         'name': 'entity.name.type.instance.sassdoc'
   }
   {
-    'name': 'storage.type.class.sassdoc',
+    'name': 'storage.type.class.sassdoc'
     'match': '''(?x)
       (@)
       (?:access|alias|author|content|deprecated|example|exception|group
@@ -343,6 +371,12 @@
         ]
       }
     ]
+
+  'sassdoctypedelimiter':
+    'match': '(\\|)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.delimiter.sassdoc'
 
   # {type}
   'sassdoctype':
