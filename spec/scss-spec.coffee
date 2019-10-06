@@ -835,4 +835,49 @@ describe 'SCSS grammar', ->
 
       expect(tokens[1][1]).toEqual value: '//', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.line.scss', 'punctuation.definition.comment.scss']
       expect(tokens[2][1]).toEqual value: '/*', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
-      expect(tokens[2][3]).toEqual value: '*/', scopes: ['source.css.scss', 'meta.at-rule.keyframes.scss', 'comment.block.scss', 'punctuation.definition.comment.scss']
+
+  describe '@use', ->
+    it 'tokenizes solitary @use correctly', ->
+      {tokens} = grammar.tokenizeLine '@use'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'use', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss']
+
+    it 'tokenizes @use with path correctly', ->
+      {tokens} = grammar.tokenizeLine "@use 'module';"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'use', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss']
+
+    it 'tokenizes @use with explicit namespace correctly', ->
+      {tokens} = grammar.tokenizeLine "@use 'module' as m-_;"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'use', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss']
+      expect(tokens[7]).toEqual value: 'as', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.operator']
+      expect(tokens[9]).toEqual value: 'm-_', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'variable.scss']
+
+    it 'tokenizes @use with expanded namespace correctly', ->
+      {tokens} = grammar.tokenizeLine "@use 'module' as *;"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'use', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss']
+      expect(tokens[7]).toEqual value: 'as', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.operator']
+      expect(tokens[9]).toEqual value: '*', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'variable.language.expanded-namespace.scss']
+
+    it 'tokenizes @use with configuration correctly', ->
+      {tokens} = grammar.tokenizeLine "@use 'module' with ($black: #222, $border-radius: 0.1rem)"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'use', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.at-rule.use.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'string.quoted.single.scss']
+      expect(tokens[7]).toEqual value: 'with', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.operator']
+      expect(tokens[9]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'punctuation.definition.parameters.begin.bracket.round.scss']
+      expect(tokens[10]).toEqual value: '$black', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'variable.scss']
