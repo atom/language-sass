@@ -645,6 +645,20 @@ describe 'SCSS grammar', ->
       expect(tokens[15]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition.end.bracket.round.scss']
       expect(tokens[16]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']
 
+    it 'tokenizes functions from module imports', ->
+      {tokens} = grammar.tokenizeLine '.a { hello: foo.something((a: $b)) }'
+
+      expect(tokens[8]).toEqual value: 'foo', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.scss']
+      expect(tokens[9]).toEqual value: '.', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.acess.module.scss']
+      expect(tokens[10]).toEqual value: 'something', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.function.misc.scss']
+      expect(tokens[11]).toEqual value: '(', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']
+      expect(tokens[12]).toEqual value: '(', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition.begin.bracket.round.scss']
+      expect(tokens[13]).toEqual value: 'a', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss']
+      expect(tokens[14]).toEqual value: ':', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[16]).toEqual value: '$b', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'variable.scss']
+      expect(tokens[17]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.definition.end.bracket.round.scss']
+      expect(tokens[18]).toEqual value: ')', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'punctuation.section.function.scss']
+
   describe 'variable setting', ->
     it 'parses all tokens', ->
       {tokens} = grammar.tokenizeLine '$font-size: $normal-font-size;'

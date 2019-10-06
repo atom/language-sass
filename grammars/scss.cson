@@ -813,19 +813,44 @@
     'match': '!default'
     'name': 'keyword.other.default.scss'
   'constant_functions':
-    'begin': '([\\w-]+)(\\()'
-    'beginCaptures':
-      '1':
-        'name': 'support.function.misc.scss'
-      '2':
-        'name': 'punctuation.section.function.scss'
-    'end': '(\\))'
-    'endCaptures':
-      '1':
-        'name': 'punctuation.section.function.scss'
     'patterns': [
       {
-        'include': '#parameters'
+        'begin': '([\\w-]+)(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'support.function.misc.scss'
+          '2':
+            'name': 'punctuation.section.function.scss'
+        'end': '(\\))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.section.function.scss'
+        'patterns': [
+          {
+            'include': '#parameters'
+          }
+        ]
+      }
+      {
+        'begin': '([\\w-]+)\\s*(\\.)\\s*([\\w-]+)(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'variable.scss'
+          '2':
+            'name': 'punctuation.acess.module.scss'
+          '3':
+            'name': 'support.function.misc.scss'
+          '4':
+            'name': 'punctuation.section.function.scss'
+        'end': '(\\))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.section.function.scss'
+        'patterns': [
+          {
+            'include': '#parameters'
+          }
+        ]
       }
     ]
   'constant_important':
