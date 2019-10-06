@@ -177,6 +177,26 @@ describe 'SCSS grammar', ->
       expect(tokens[10]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.definition.parameters.end.bracket.round.scss']
       expect(tokens[11]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
 
+    it "tokenizes correctly for includes from a module", ->
+      {tokens} = grammar.tokenizeLine '@include media.breakpoint{}'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'keyword.control.at-rule.include.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'include', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'keyword.control.at-rule.include.scss']
+      expect(tokens[3]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'variable.scss']
+      expect(tokens[4]).toEqual value: '.', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.acess.module.scss']
+      expect(tokens[5]).toEqual value: 'breakpoint', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'entity.name.function.scss']
+      expect(tokens[6]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+
+      {tokens} = grammar.tokenizeLine '@include media.breakpoint($width: 100px){}'
+
+      expect(tokens[3]).toEqual value: 'media', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'variable.scss']
+      expect(tokens[4]).toEqual value: '.', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.acess.module.scss']
+      expect(tokens[5]).toEqual value: 'breakpoint', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'entity.name.function.scss']
+      expect(tokens[6]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.definition.parameters.begin.bracket.round.scss']
+      expect(tokens[8]).toEqual value: ':', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.separator.key-value.scss']
+      expect(tokens[12]).toEqual value: ')', scopes: ['source.css.scss', 'meta.at-rule.include.scss', 'punctuation.definition.parameters.end.bracket.round.scss']
+      expect(tokens[13]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
+
   describe '@mixin', ->
     it 'tokenizes solitary @mixin correctly', ->
       {tokens} = grammar.tokenizeLine '@mixin'

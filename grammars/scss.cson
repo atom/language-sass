@@ -299,6 +299,40 @@
   'at_rule_include':
     'patterns': [
       {
+        'begin': '(?<=@include)\\s+([\\w-]+)\\s*(\\.)\\s*([\\w-]+)\\s*(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'variable.scss'
+          '2':
+            'name': 'punctuation.acess.module.scss'
+          '3':
+            'name': 'entity.name.function.scss'
+          '4':
+            'name': 'punctuation.definition.parameters.begin.bracket.round.scss'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.parameters.end.bracket.round.scss'
+        'name': 'meta.at-rule.include.scss'
+        'patterns': [
+          {
+            'include': '#function_attributes'
+          }
+        ]
+      }
+      {
+        'match': '(?<=@include)\\s+([\\w-]+)\\s*(\\.)\\s*([\\w-]+)'
+        'captures':
+          '0':
+            'name': 'meta.at-rule.include.scss'
+          '1':
+            'name': 'variable.scss'
+          '2':
+            'name': 'punctuation.acess.module.scss'
+          '3':
+            'name': 'entity.name.function.scss'
+      }
+      {
         'begin': '(?<=@include)\\s+([\\w-]+)\\s*(\\()'
         'beginCaptures':
           '1':
