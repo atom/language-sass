@@ -1005,10 +1005,10 @@
     'name': 'variable.interpolation.scss'
     'patterns': [
       {
-        'include': '#property_values'
+        'include': '#variable'
       }
       {
-        'include': '#variable'
+        'include': '#property_values'
       }
     ]
   'conditional_operators':
@@ -1062,10 +1062,10 @@
         'include': '#map'
       }
       {
-        'include': '#property_values'
+        'include': '#variable'
       }
       {
-        'include': '#variable'
+        'include': '#property_values'
       }
     ]
   'operators':
@@ -1256,7 +1256,7 @@
           [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters
           | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
           | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
-          | \\$                              # Possible start of interpolation variable
+          | \\.?\\$                          # Possible start of interpolation variable
           | }                                # Possible end of interpolation
         )+?
       )
@@ -1268,7 +1268,7 @@
               [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters
               | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
               | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
-              | \\$                              # Possible start of interpolation variable
+              | \\.?\\$                          # Possible start of interpolation variable
               | }                                # Possible end of interpolation
             )+
           )
@@ -1370,12 +1370,13 @@
         (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
           | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
           | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
-          | \\$                              # Possible start of interpolation variable
+          | \\.?\\$                          # Possible start of interpolation variable
           | }                                # Possible end of interpolation
         )+
       )                                      # Followed by either:
       (?= $                                  # - End of the line
-        | [\\s,.\\#)\\[:{>+~|]               # - Another selector
+        | [\\s,\\#)\\[:{>+~|]                # - Another selector
+        | \\.[^$]                            # - Class selector, negating module variable
         | /\\*                               # - A block comment
       )
     '''
@@ -1408,12 +1409,13 @@
         (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
           | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
           | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
-          | \\$                              # Possible start of interpolation variable
+          | \\.?\\$                          # Possible start of interpolation variable
           | }                                # Possible end of interpolation
         )+
       )                                      # Followed by either:
       (?= $                                  # - End of the line
-        | [\\s,.\\#)\\[:{>+~|]               # - Another selector
+        | [\\s,\\#)\\[:{>+~|]                # - Another selector
+        | \\.[^$]                            # - Class selector, negating module variable
         | /\\*                               # - A block comment
       )
     '''
@@ -1443,13 +1445,15 @@
         (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
           | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
           | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\.\\$                           # Possible start of interpolation module scope variable
           | \\$                              # Possible start of interpolation variable
           | }                                # Possible end of interpolation
         )+
       )                                      # Followed by either:
       (?= ;                                  # - End of statement
         | $                                  # - End of the line
-        | [\\s,.\\#)\\[:{>+~|]               # - Another selector
+        | [\\s,\\#)\\[:{>+~|]                # - Another selector
+        | \\.[^$]                            # - Class selector, negating module variable
         | /\\*                               # - A block comment
       )
     '''
@@ -1685,5 +1689,19 @@
       }
     ]
   'variables':
-    'match': '(\\$|\\-\\-)[A-Za-z0-9_-]+\\b'
-    'name': 'variable.scss'
+    'patterns': [
+      {
+        'match': '\\b([\\w-]+)(\\.)(\\$[\\w-]+)\\b'
+        'captures':
+          '1':
+            'name': 'variable.scss'
+          '2':
+            'name': 'punctuation.acess.module.scss'
+          '3':
+            'name': 'variable.scss'
+      }
+      {
+        'match': '(\\$|\\-\\-)[A-Za-z0-9_-]+\\b'
+        'name': 'variable.scss'
+      }
+    ]
