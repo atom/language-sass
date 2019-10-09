@@ -1076,3 +1076,51 @@ describe 'SCSS grammar', ->
       expect(tokens[7]).toEqual value: 'with', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'keyword.control.operator']
       expect(tokens[9]).toEqual value: '(', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'punctuation.definition.parameters.begin.bracket.round.scss']
       expect(tokens[10]).toEqual value: '$black', scopes: ['source.css.scss', 'meta.at-rule.use.scss', 'variable.scss']
+
+  describe '@forward', ->
+    it 'tokenizes solitary @forward correctly', ->
+      {tokens} = grammar.tokenizeLine '@forward'
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'forward', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss']
+
+    it 'tokenizes @forward with path correctly', ->
+      {tokens} = grammar.tokenizeLine "@forward 'module'"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'forward', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss']
+
+    it 'tokenizes @forward with prefix correctly', ->
+      {tokens} = grammar.tokenizeLine "@forward 'module' as prefix*"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'forward', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss']
+      expect(tokens[7]).toEqual value: 'as', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.operator']
+      expect(tokens[9]).toEqual value: 'prefix', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'entity.other.attribute-name.module.scss']
+      expect(tokens[10]).toEqual value: '*', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'punctuation.definition.wildcard.scss']
+
+    it 'tokenizes @forward with hide correctly', ->
+      {tokens} = grammar.tokenizeLine "@forward 'module' hide a-mixin $private-variable"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'forward', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss']
+      expect(tokens[7]).toEqual value: 'hide', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.operator']
+      expect(tokens[9]).toEqual value: 'a-mixin', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']
+      expect(tokens[11]).toEqual value: '$private-variable', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']
+
+    it 'tokenizes @forward with show correctly', ->
+      {tokens} = grammar.tokenizeLine "@forward 'module' show public-mixin $public-variable"
+
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss', 'punctuation.definition.keyword.scss']
+      expect(tokens[1]).toEqual value: 'forward', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.at-rule.forward.scss']
+      expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
+      expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss']
+      expect(tokens[7]).toEqual value: 'show', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.operator']
+      expect(tokens[9]).toEqual value: 'public-mixin', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']
+      expect(tokens[11]).toEqual value: '$public-variable', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']

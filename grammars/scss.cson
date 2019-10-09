@@ -12,6 +12,9 @@
     'include': '#variable_setting'
   }
   {
+    'include': '#at_rule_forward'
+  }
+  {
     'include': '#at_rule_use'
   }
   {
@@ -215,6 +218,48 @@
       }
       {
         'include': '$self'
+      }
+    ]
+  'at_rule_forward':
+    'begin': '\\s*((@)forward\\b)\\s*'
+    'captures':
+      '1':
+        'name': 'keyword.control.at-rule.forward.scss'
+      '2':
+        'name': 'punctuation.definition.keyword.scss'
+    'end': '\\s*(?=;)'
+    'name': 'meta.at-rule.forward.scss'
+    'patterns': [
+      {
+        'match': '\\b(as|hide|show)\\b'
+        'name': 'keyword.control.operator'
+      }
+      {
+        'match': '\\b([\\w-]+)(\\*)'
+        'captures':
+          '1':
+            'name': 'entity.other.attribute-name.module.scss'
+          '2':
+            'name': 'punctuation.definition.wildcard.scss'
+      }
+      {
+        'match': '\\b[\\w-]+(?!\\*)'
+        'name': 'variable.scss'
+      }
+      {
+        'include': '#variable'
+      }
+      {
+        'include': '#string_single'
+      }
+      {
+        'include': '#string_double'
+      }
+      {
+        'include': '#comment_line'
+      }
+      {
+        'include': '#comment_block'
       }
     ]
   'at_rule_function':

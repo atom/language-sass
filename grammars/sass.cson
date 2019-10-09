@@ -335,6 +335,46 @@
     ]
   }
   {
+    'begin': '\\s*((@)forward\\b)\\s*'
+    'captures':
+      '1':
+        'name': 'keyword.control.at-rule.forward.sass'
+      '2':
+        'name': 'punctuation.definition.keyword.sass'
+    'end': '\\s*(?=;)'
+    'name': 'meta.at-rule.forward.sass'
+    'patterns': [
+      {
+        'match': '\\b(as|hide|show)\\b'
+        'name': 'keyword.control.operator'
+      }
+      {
+        'match': '\\b([\\w-]+)(\\*)'
+        'captures':
+          '1':
+            'name': 'entity.other.attribute-name.module.sass'
+          '2':
+            'name': 'punctuation.definition.wildcard.sass'
+      }
+      {
+        'match': '\\b[\\w-]+(?!\\*)'
+        'name': 'variable.sass'
+      }
+      {
+        'include': '#variable-usage'
+      }
+      {
+        'include': '#string-single'
+      }
+      {
+        'include': '#string-double'
+      }
+      {
+        'include': '#comments'
+      }
+    ]
+  }
+  {
     'begin': '^\\s*(\\+)([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':
