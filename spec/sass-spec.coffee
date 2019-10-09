@@ -376,14 +376,29 @@ describe 'Sass grammar', ->
       expect(tokens[9]).toEqual value: 'list', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'variable.other.sass']
       # 'in' tested in operators
 
-    it 'tokenizes @include or \'+\'', ->
+    it 'tokenizes @include', ->
       {tokens} = grammar.tokenizeLine '@include mixin-name'
       expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.function.include.sass', 'keyword.control.at-rule.include.sass', 'punctuation.definition.entity.sass']
       expect(tokens[1]).toEqual value: 'include', scopes: ['source.sass', 'meta.function.include.sass', 'keyword.control.at-rule.include.sass']
+      expect(tokens[3]).toEqual value: 'mixin-name', scopes: ['source.sass', 'meta.function.include.sass', 'variable.other.sass']
 
+      {tokens} = grammar.tokenizeLine '@include mixin.name'
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.function.include.sass', 'keyword.control.at-rule.include.sass', 'punctuation.definition.entity.sass']
+      expect(tokens[1]).toEqual value: 'include', scopes: ['source.sass', 'meta.function.include.sass', 'keyword.control.at-rule.include.sass']
+      expect(tokens[3]).toEqual value: 'mixin', scopes: ['source.sass', 'meta.function.include.sass', 'variable.sass']
+      expect(tokens[4]).toEqual value: '.', scopes: ['source.sass', 'meta.function.include.sass', 'punctuation.acess.module.sass']
+      expect(tokens[5]).toEqual value: 'name', scopes: ['source.sass', 'meta.function.include.sass', 'variable.other.sass']
+
+    it 'tokenizes \'+\'', ->
       {tokens} = grammar.tokenizeLine '+mixin-name'
       expect(tokens[0]).toEqual value: '+', scopes: ['source.sass', 'meta.function.include.sass', 'keyword.control.at-rule.include.sass']
       expect(tokens[1]).toEqual value: 'mixin-name', scopes: ['source.sass', 'meta.function.include.sass', 'variable.other.sass']
+
+      {tokens} = grammar.tokenizeLine '+mixin.name'
+      expect(tokens[0]).toEqual value: '+', scopes: ['source.sass', 'meta.function.include.sass', 'keyword.control.at-rule.include.sass']
+      expect(tokens[1]).toEqual value: 'mixin', scopes: ['source.sass', 'meta.function.include.sass', 'variable.sass']
+      expect(tokens[2]).toEqual value: '.', scopes: ['source.sass', 'meta.function.include.sass', 'punctuation.acess.module.sass']
+      expect(tokens[3]).toEqual value: 'name', scopes: ['source.sass', 'meta.function.include.sass', 'variable.other.sass']
 
     it 'tokenizes @mixin or \'=\'', ->
       {tokens} = grammar.tokenizeLine '@mixin mixin-name($p)'

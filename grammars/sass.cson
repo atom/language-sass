@@ -204,13 +204,17 @@
     ]
   }
   {
-    'begin': '^\\s*(\\+(?!\\s+)|(?:(@)include(?=\\s+)))\\s*([a-zA-Z0-9_-]+)'
+    'begin': '^\\s*(\\+(?!\\s+)|(?:(@)include(?=\\s+)))\\s*(?:([\\w-]+)(\\.))?([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':
         'name': 'keyword.control.at-rule.include.sass'
       '2':
         'name': 'punctuation.definition.entity.sass'
       '3':
+        'name': 'variable.sass'
+      '4':
+        'name': 'punctuation.acess.module.sass'
+      '5':
         'name': 'variable.other.sass'
     'end': '(;)?$'
     'endCaptures':
