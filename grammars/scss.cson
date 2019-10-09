@@ -753,9 +753,6 @@
         'include': '#comment_block'
       }
       {
-        'include': '#comment_block'
-      }
-      {
         'begin': '\\(',
         'beginCaptures':
           '0':
