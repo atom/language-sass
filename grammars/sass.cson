@@ -280,6 +280,57 @@
     ]
   }
   {
+    'begin': '^\\s*((@)use\\b)\\s*'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.at-rule.use.sass'
+      '2':
+        'name': 'punctuation.definition.keyword.sass'
+    'end': '(;)?$'
+    'endCaptures':
+      '1':
+        'name': 'invalid.illegal.punctuation.sass'
+    'name': 'meta.at-rule.use.sass'
+    'patterns': [
+      {
+        'match': '\\b(as|with)\\b'
+        'name': 'keyword.control.operator'
+      }
+      {
+        'match': '\\b[\\w-]+\\b'
+        'name': 'variable.sass'
+      }
+      {
+        'match': '\\*'
+        'name': 'variable.language.expanded-namespace.sass'
+      }
+      {
+        'include': '#string-single'
+      }
+      {
+        'include': '#string-double'
+      }
+      {
+        'include': '#comments'
+      }
+      {
+        'begin': '\\(',
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.module.begin.bracket.round.sass'
+        'end': '\\)',
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.module.end.bracket.round.sass'
+        'patterns': [
+          {
+            'include': '#property-value'
+          }
+        ]
+      }
+    ]
+  }
+  {
     'begin': '^\\s*(\\+)([a-zA-Z0-9_-]+)'
     'beginCaptures':
       '1':

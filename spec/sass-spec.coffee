@@ -434,6 +434,39 @@ describe 'Sass grammar', ->
       expect(tokens[2][1]).toEqual value: '#', scopes: [ 'source.sass', 'meta.selector.css', 'entity.other.attribute-name.id.css.sass', 'punctuation.definition.entity.sass']
       expect(tokens[2][2]).toEqual value: 'id', scopes: ['source.sass', 'meta.selector.css', 'entity.other.attribute-name.id.css.sass']
 
+    describe '@use', ->
+      it 'tokenizes @use with explicit namespace correctly', ->
+        {tokens} = grammar.tokenizeLine "@use 'module' as _mod-ule"
+
+        expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.at-rule.use.sass', 'punctuation.definition.keyword.sass']
+        expect(tokens[1]).toEqual value: 'use', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.at-rule.use.sass']
+        expect(tokens[3]).toEqual value: "'", scopes: ['source.sass', 'meta.at-rule.use.sass', 'string.quoted.single.sass', 'punctuation.definition.string.begin.sass']
+        expect(tokens[4]).toEqual value: 'module', scopes: ['source.sass', 'meta.at-rule.use.sass', 'string.quoted.single.sass']
+        expect(tokens[7]).toEqual value: 'as', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.operator']
+        expect(tokens[9]).toEqual value: '_mod-ule', scopes: ['source.sass', 'meta.at-rule.use.sass', 'variable.sass']
+
+      it 'tokenizes @use with wildcard correctly', ->
+        {tokens} = grammar.tokenizeLine "@use 'module' as *;"
+
+        expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.at-rule.use.sass', 'punctuation.definition.keyword.sass']
+        expect(tokens[1]).toEqual value: 'use', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.at-rule.use.sass']
+        expect(tokens[3]).toEqual value: "'", scopes: ['source.sass', 'meta.at-rule.use.sass', 'string.quoted.single.sass', 'punctuation.definition.string.begin.sass']
+        expect(tokens[4]).toEqual value: 'module', scopes: ['source.sass', 'meta.at-rule.use.sass', 'string.quoted.single.sass']
+        expect(tokens[7]).toEqual value: 'as', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.operator']
+        expect(tokens[9]).toEqual value: '*', scopes: ['source.sass', 'meta.at-rule.use.sass', 'variable.language.expanded-namespace.sass']
+
+      it 'tokenizes @use with configuration correctly', ->
+        {tokens} = grammar.tokenizeLine "@use 'module' with ($black: #222, $border-radius: 0.1rem)"
+
+        expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.at-rule.use.sass', 'punctuation.definition.keyword.sass']
+        expect(tokens[1]).toEqual value: 'use', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.at-rule.use.sass']
+        expect(tokens[3]).toEqual value: "'", scopes: ['source.sass', 'meta.at-rule.use.sass', 'string.quoted.single.sass', 'punctuation.definition.string.begin.sass']
+        expect(tokens[4]).toEqual value: 'module', scopes: ['source.sass', 'meta.at-rule.use.sass', 'string.quoted.single.sass']
+        expect(tokens[7]).toEqual value: 'with', scopes: ['source.sass', 'meta.at-rule.use.sass', 'keyword.control.operator']
+        expect(tokens[9]).toEqual value: '(', scopes: ['source.sass', 'meta.at-rule.use.sass', 'punctuation.definition.module.begin.bracket.round.sass']
+        expect(tokens[10]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.use.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
+        expect(tokens[11]).toEqual value: 'black', scopes: ['source.sass', 'meta.at-rule.use.sass', 'meta.variable-usage.sass', 'variable.other.sass']
+
   describe 'operators', ->
     it 'correctly tokenizes comparison and logical operators', ->
       {tokens} = grammar.tokenizeLine '@if 1 == 1'
