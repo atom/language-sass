@@ -341,6 +341,16 @@ describe 'Sass grammar', ->
       expect(tokens[6]).toEqual value: '==', scopes: ['source.sass', 'meta.at-rule.if.sass', 'keyword.operator.comparison.sass']
       expect(tokens[8]).toEqual value: 'true', scopes: ['source.sass', 'meta.at-rule.if.sass', 'support.constant.property-value.css.sass']
 
+      {tokens} = grammar.tokenizeLine '@if config.$setting == true'
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.if.sass', 'keyword.control.if.sass', 'punctuation.definition.entity.sass']
+      expect(tokens[1]).toEqual value: 'if', scopes: ['source.sass', 'meta.at-rule.if.sass', 'keyword.control.if.sass']
+      expect(tokens[3]).toEqual value: 'config', scopes: ['source.sass', 'meta.at-rule.if.sass', 'meta.variable-usage.sass', 'variable.sass']
+      expect(tokens[4]).toEqual value: '.', scopes: ['source.sass', 'meta.at-rule.if.sass', 'meta.variable-usage.sass', 'punctuation.acess.module.sass']
+      expect(tokens[5]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.if.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
+      expect(tokens[6]).toEqual value: 'setting', scopes: ['source.sass', 'meta.at-rule.if.sass', 'meta.variable-usage.sass', 'variable.other.sass']
+      expect(tokens[8]).toEqual value: '==', scopes: ['source.sass', 'meta.at-rule.if.sass', 'keyword.operator.comparison.sass']
+      expect(tokens[10]).toEqual value: 'true', scopes: ['source.sass', 'meta.at-rule.if.sass', 'support.constant.property-value.css.sass']
+
     it 'tokenizes @else if', ->
       {tokens} = grammar.tokenizeLine '@else if $var == false'
       expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.else.sass', 'keyword.control.else.sass', 'punctuation.definition.entity.sass']
@@ -349,6 +359,17 @@ describe 'Sass grammar', ->
       expect(tokens[3]).toEqual value: 'var', scopes: ['source.sass', 'meta.at-rule.else.sass', 'meta.variable-usage.sass', 'variable.other.sass']
       expect(tokens[5]).toEqual value: '==', scopes: ['source.sass', 'meta.at-rule.else.sass', 'keyword.operator.comparison.sass']
       expect(tokens[7]).toEqual value: 'false', scopes: ['source.sass', 'meta.at-rule.else.sass', 'support.constant.property-value.css.sass']
+
+      {tokens} = grammar.tokenizeLine '@else if config.$setting == false'
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.else.sass', 'keyword.control.else.sass', 'punctuation.definition.entity.sass']
+      expect(tokens[1]).toEqual value: 'else if ', scopes: ['source.sass', 'meta.at-rule.else.sass', 'keyword.control.else.sass']
+      expect(tokens[2]).toEqual value: 'config', scopes: ['source.sass', 'meta.at-rule.else.sass', 'meta.variable-usage.sass', 'variable.sass']
+      expect(tokens[3]).toEqual value: '.', scopes: ['source.sass', 'meta.at-rule.else.sass', 'meta.variable-usage.sass', 'punctuation.acess.module.sass']
+      expect(tokens[4]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.else.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
+      expect(tokens[5]).toEqual value: 'setting', scopes: ['source.sass', 'meta.at-rule.else.sass', 'meta.variable-usage.sass', 'variable.other.sass']
+      expect(tokens[7]).toEqual value: '==', scopes: ['source.sass', 'meta.at-rule.else.sass', 'keyword.operator.comparison.sass']
+      expect(tokens[9]).toEqual value: 'false', scopes: ['source.sass', 'meta.at-rule.else.sass', 'support.constant.property-value.css.sass']
+
 
     it 'tokenizes @while', ->
       {tokens} = grammar.tokenizeLine '@while 1'
@@ -364,6 +385,7 @@ describe 'Sass grammar', ->
       expect(tokens[4]).toEqual value: 'i', scopes: ['source.sass', 'meta.at-rule.for.sass', 'meta.variable-usage.sass', 'variable.other.sass']
       expect(tokens[8]).toEqual value: '1', scopes: ['source.sass', 'meta.at-rule.for.sass', 'constant.numeric.css']
       expect(tokens[12]).toEqual value: '100', scopes: ['source.sass', 'meta.at-rule.for.sass', 'constant.numeric.css']
+
       # 'from' and 'thorugh' tested in operators
 
     it 'tokenizes @each', ->
@@ -374,6 +396,16 @@ describe 'Sass grammar', ->
       expect(tokens[4]).toEqual value: 'item', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'variable.other.sass']
       expect(tokens[8]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
       expect(tokens[9]).toEqual value: 'list', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'variable.other.sass']
+
+      {tokens} = grammar.tokenizeLine '@each $item in module.$list'
+      expect(tokens[0]).toEqual value: '@', scopes: ['source.sass', 'meta.at-rule.each.sass', 'keyword.control.each.sass', 'punctuation.definition.entity.sass']
+      expect(tokens[1]).toEqual value: 'each', scopes: ['source.sass', 'meta.at-rule.each.sass', 'keyword.control.each.sass']
+      expect(tokens[3]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
+      expect(tokens[4]).toEqual value: 'item', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'variable.other.sass']
+      expect(tokens[8]).toEqual value: 'module', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'variable.sass']
+      expect(tokens[9]).toEqual value: '.', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'punctuation.acess.module.sass']
+      expect(tokens[10]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
+      expect(tokens[11]).toEqual value: 'list', scopes: ['source.sass', 'meta.at-rule.each.sass', 'meta.variable-usage.sass', 'variable.other.sass']
       # 'in' tested in operators
 
     it 'tokenizes @include', ->

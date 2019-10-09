@@ -808,10 +808,14 @@
       }
     ]
   'variable-usage':
-    'match': '(!|\\$)([a-zA-Z0-9_-]+)'
+    'match': '(?:([\\w-]+)(\\.)(?=\\$))?(!|\\$)([a-zA-Z0-9_-]+)'
     'name': 'meta.variable-usage.sass'
     'captures':
       '1':
-        'name': 'punctuation.definition.entity.css'
+        'name': 'variable.sass'
       '2':
+        'name': 'punctuation.acess.module.sass'
+      '3':
+        'name': 'punctuation.definition.entity.css'
+      '4':
         'name': 'variable.other.sass'
