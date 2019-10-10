@@ -17,8 +17,8 @@
 
 '.source.css.scss':
   'editor':
-    'increaseIndentPattern': '(^.*\\{[^}]*$)'
-    'decreaseIndentPattern': '^\\s*\\}'
+    'increaseIndentPattern': '(^.*[\\{\\(][(^})(^))]*$)'
+    'decreaseIndentPattern': '^\\s*[\\}\\)]'
 
 '.source.sass, .source.css.scss':
   'editor':
