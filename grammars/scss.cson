@@ -18,6 +18,9 @@
     'include': '#at_rule_import'
   }
   {
+    'include': '#at_rule_use'
+  }
+  {
     'include': '#general'
   }
   {
@@ -37,6 +40,9 @@
   }
   {
     'include': '#at_rule_function'
+  }
+  {
+    'include': '#at_rule_forward'
   }
   {
     'include': '#at_rule_charset'
@@ -214,6 +220,45 @@
         'include': '$self'
       }
     ]
+  'at_rule_forward':
+    'begin': '\\s*((@)forward\\b)\\s*'
+    'captures':
+      '1':
+        'name': 'keyword.control.at-rule.forward.scss'
+      '2':
+        'name': 'punctuation.definition.keyword.scss'
+    'end': '\\s*((?=;)|(?=}))'
+    'name': 'meta.at-rule.forward.scss'
+    'patterns': [
+      {
+        'include': '#variable'
+      }
+      {
+        'include': '#string_single'
+      }
+      {
+        'include': '#string_double'
+      }
+      {
+        'include': '#comment_line'
+      }
+      {
+        'match': '\\s*(\\b(as)\\b)\\s*'
+        'name': 'keyword.control.scss'
+      }
+      {
+        'match': '\\s*(\\b(show)\\b)\\s*'
+        'name': 'entity.name.function.scss'
+      }
+      {
+        'match': '\\s*(\\b(hide)\\b)\\s*'
+        'name': 'entity.name.function.scss'
+      }
+      {
+        'match': '\\*'
+        'name': 'variable.language.scss'
+      }
+    ]
   'at_rule_function':
     'patterns': [
       {
@@ -308,6 +353,10 @@
             'name': 'punctuation.definition.parameters.end.bracket.round.scss'
         'name': 'meta.at-rule.include.scss'
         'patterns': [
+          {
+            'match': '(.*?)\\.'
+            'name': 'variable.scss'
+          }
           {
             'include': '#function_attributes'
           }
@@ -699,6 +748,41 @@
       }
       {
         'include': '#string_single'
+      }
+    ]
+  'at_rule_use':
+    'begin': '\\s*((@)use\\b)\\s*'
+    'captures':
+      '1':
+        'name': 'keyword.control.at-rule.use.scss'
+      '2':
+        'name': 'punctuation.definition.keyword.scss'
+    'end': '\\s*((?=;)|(?=}))'
+    'name': 'meta.at-rule.use.scss'
+    'patterns': [
+      {
+        'include': '#variable'
+      }
+      {
+        'include': '#string_single'
+      }
+      {
+        'include': '#string_double'
+      }
+      {
+        'include': '#comment_line'
+      }
+      {
+        'match': '\\s*(\\b(as)\\b)\\s*'
+        'name': 'keyword.control.scss'
+      }
+      {
+        'match': '\\s*(\\b(with)\\b)\\s*'
+        'name': 'keyword.control.scss'
+      }
+      {
+        'match': '\\*'
+        'name': 'variable.language.no-namespace.scss'
       }
     ]
   'at_rule_while':
@@ -1110,6 +1194,10 @@
           }
         ]
       }
+      {
+        'match': '(.*?)\\.(?=[(\\w\\$)])'
+        'name': 'variable.scss'
+      }
     ]
   'rules':
     'patterns': [
@@ -1255,6 +1343,8 @@
         (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
           | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
           | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\.\\$                           # Interpolation variable with namespace
+          | \\.(.*?)\\)                      # Interpolation function with namespace
           | \\$                              # Possible start of interpolation variable
           | }                                # Possible end of interpolation
         )+
@@ -1293,6 +1383,8 @@
         (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters
           | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence
           | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)
+          | \\.\\$                           # Interpolation variable with namespace
+          | \\.(.*?)\\)                      # Interpolation function with namespace
           | \\$                              # Possible start of interpolation variable
           | }                                # Possible end of interpolation
         )+
