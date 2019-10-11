@@ -4,7 +4,7 @@
     'body': '!important${1:;}$0'
   '!debug':
     'prefix': '!d'
-    'body': '!debug${1:;}$0'
+    'body': '!default'
   '@import':
     'prefix': 'import'
     'body': '@import "$0"'
@@ -46,7 +46,7 @@
 '.source.css.scss':
   '!debug':
     'prefix': '!d'
-    'body': '!debug${1:;}$0'
+    'body': '!default'
   '@Include':
     'prefix': 'include'
     'body': '@include ${0};'
