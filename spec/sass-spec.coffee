@@ -548,7 +548,7 @@ describe 'Sass grammar', ->
         expect(tokens[3]).toEqual value: "'", scopes: ['source.sass', 'meta.at-rule.forward.sass', 'string.quoted.single.sass', 'punctuation.definition.string.begin.sass']
         expect(tokens[4]).toEqual value: 'module', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'string.quoted.single.sass']
         expect(tokens[7]).toEqual value: 'hide', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'keyword.control.operator']
-        expect(tokens[9]).toEqual value: 'a-mixin', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'variable.sass']
+        expect(tokens[9]).toEqual value: 'a-mixin', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'entity.name.function.scss']
         expect(tokens[11]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
         expect(tokens[12]).toEqual value: 'private-variable', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'meta.variable-usage.sass', 'variable.other.sass']
 
@@ -560,7 +560,7 @@ describe 'Sass grammar', ->
         expect(tokens[3]).toEqual value: "'", scopes: ['source.sass', 'meta.at-rule.forward.sass', 'string.quoted.single.sass', 'punctuation.definition.string.begin.sass']
         expect(tokens[4]).toEqual value: 'module', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'string.quoted.single.sass']
         expect(tokens[7]).toEqual value: 'show', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'keyword.control.operator']
-        expect(tokens[9]).toEqual value: 'public-mixin', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'variable.sass']
+        expect(tokens[9]).toEqual value: 'public-mixin', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'entity.name.function.scss']
         expect(tokens[11]).toEqual value: '$', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
         expect(tokens[12]).toEqual value: 'public-variable', scopes: ['source.sass', 'meta.at-rule.forward.sass', 'meta.variable-usage.sass', 'variable.other.sass']
 

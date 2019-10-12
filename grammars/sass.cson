@@ -357,8 +357,8 @@
             'name': 'punctuation.definition.wildcard.sass'
       }
       {
-        'match': '\\b[\\w-]+(?!\\*)'
-        'name': 'variable.sass'
+        'match': '\\b[\\w-]+\\b'
+        'name': 'entity.name.function.scss'
       }
       {
         'include': '#variable-usage'

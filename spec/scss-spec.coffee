@@ -1111,7 +1111,7 @@ describe 'SCSS grammar', ->
       expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
       expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss']
       expect(tokens[7]).toEqual value: 'hide', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.operator']
-      expect(tokens[9]).toEqual value: 'a-mixin', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']
+      expect(tokens[9]).toEqual value: 'a-mixin', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'entity.name.function.scss']
       expect(tokens[11]).toEqual value: '$private-variable', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']
 
     it 'tokenizes @forward with show correctly', ->
@@ -1122,5 +1122,5 @@ describe 'SCSS grammar', ->
       expect(tokens[3]).toEqual value: "'", scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss', 'punctuation.definition.string.begin.scss']
       expect(tokens[4]).toEqual value: 'module', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'string.quoted.single.scss']
       expect(tokens[7]).toEqual value: 'show', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'keyword.control.operator']
-      expect(tokens[9]).toEqual value: 'public-mixin', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']
+      expect(tokens[9]).toEqual value: 'public-mixin', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'entity.name.function.scss']
       expect(tokens[11]).toEqual value: '$public-variable', scopes: ['source.css.scss', 'meta.at-rule.forward.scss', 'variable.scss']

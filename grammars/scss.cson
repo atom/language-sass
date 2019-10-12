@@ -243,8 +243,8 @@
             'name': 'punctuation.definition.wildcard.scss'
       }
       {
-        'match': '\\b[\\w-]+(?!\\*)'
-        'name': 'variable.scss'
+        'match': '\\b[\\w-]+\\b'
+        'name': 'entity.name.function.scss'
       }
       {
         'include': '#variable'
