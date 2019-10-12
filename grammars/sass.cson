@@ -213,7 +213,7 @@
       '3':
         'name': 'variable.sass'
       '4':
-        'name': 'punctuation.acess.module.sass'
+        'name': 'punctuation.access.module.sass'
       '5':
         'name': 'variable.other.sass'
     'end': '(;)?$'
@@ -854,7 +854,7 @@
       '1':
         'name': 'variable.sass'
       '2':
-        'name': 'punctuation.acess.module.sass'
+        'name': 'punctuation.access.module.sass'
       '3':
         'name': 'punctuation.definition.entity.css'
       '4':

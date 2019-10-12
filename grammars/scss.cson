@@ -349,7 +349,7 @@
           '1':
             'name': 'variable.scss'
           '2':
-            'name': 'punctuation.acess.module.scss'
+            'name': 'punctuation.access.module.scss'
           '3':
             'name': 'entity.name.function.scss'
           '4':
@@ -373,7 +373,7 @@
           '1':
             'name': 'variable.scss'
           '2':
-            'name': 'punctuation.acess.module.scss'
+            'name': 'punctuation.access.module.scss'
           '3':
             'name': 'entity.name.function.scss'
       }
@@ -868,7 +868,7 @@
       '1':
         'name': 'variable.scss'
       '2':
-        'name': 'punctuation.acess.module.scss'
+        'name': 'punctuation.access.module.scss'
       '3':
         'name': 'support.function.misc.scss'
       '4':
@@ -1692,7 +1692,7 @@
           '1':
             'name': 'variable.scss'
           '2':
-            'name': 'punctuation.acess.module.scss'
+            'name': 'punctuation.access.module.scss'
           '3':
             'name': 'variable.scss'
       }
