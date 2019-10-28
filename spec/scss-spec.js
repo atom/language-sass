@@ -6,7 +6,7 @@ describe('Language sass', () => {
     await atom.packages.activatePackage('language-sass')
   })
 
-  fit('Should tokenize - as selector', async () => {
+  it('Should tokenize - as selector', async () => {
     const editor = await atom.workspace.open("foo.scss")
 
     editor.setText(dedent`@extend .foo-bar-baz;`)
