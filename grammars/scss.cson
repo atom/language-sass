@@ -1262,6 +1262,7 @@
       (?= $                                  # - End of the line
         | [\\s,.\\#)\\[:{>+~|]               # - Another selector
         | /\\*                               # - A block comment
+        | ;                                  # - A semicolon
       )
     '''
     'name': 'entity.other.attribute-name.class.css'
