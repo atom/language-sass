@@ -358,7 +358,7 @@
       }
       {
         'match': '\\b[\\w-]+\\b'
-        'name': 'entity.name.function.scss'
+        'name': 'entity.name.function.sass'
       }
       {
         'include': '#variable-usage'
