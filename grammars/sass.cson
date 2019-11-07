@@ -772,6 +772,36 @@
         'include': '#string-single'
       }
       {
+        'begin': '([\\w-]+)(\\.)([\\w-]+)(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'variable.sass'
+          '2':
+            'name': 'punctuation.access.module.sass'
+          '3':
+            'name': 'support.function.misc.sass'
+          '4':
+            'name': 'punctuation.section.function.sass'
+        'end': '(\\))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.section.function.sass'
+        'patterns': [
+          {
+            'include': '#string-double'
+          }
+          {
+            'include': '#string-single'
+          }
+          {
+            'include': '#variable-usage'
+          }
+          {
+            'include': 'source.css#numeric-values'
+          }
+        ]
+      }
+      {
         'begin': '(rgb|url|attr|counter|counters|local|format)\\s*(\\()'
         'beginCaptures':
           '1':

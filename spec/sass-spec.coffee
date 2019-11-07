@@ -603,3 +603,16 @@ describe 'Sass grammar', ->
 
       {tokens} = grammar.tokenizeLine '@each $item in $list'
       expect(tokens[6]).toEqual value: 'in', scopes: ['source.sass', 'meta.at-rule.each.sass', 'keyword.operator.control.sass']
+
+    describe 'module usage syntax', ->
+      it 'correctly tokenizes module functions', ->
+        tokens = grammar.tokenizeLines '''
+          body
+            font-size: fonts.size(normal)
+        '''
+        expect(tokens[1][4]).toEqual value: 'fonts', scopes: ['source.sass', 'meta.property-value.sass', 'variable.sass']
+        expect(tokens[1][5]).toEqual value: '.', scopes: ['source.sass', 'meta.property-value.sass', 'punctuation.access.module.sass']
+        expect(tokens[1][6]).toEqual value: 'size', scopes: ['source.sass', 'meta.property-value.sass', 'support.function.misc.sass']
+        expect(tokens[1][7]).toEqual value: '(', scopes: ['source.sass', 'meta.property-value.sass', 'punctuation.section.function.sass']
+        expect(tokens[1][9]).toEqual value: ')', scopes: ['source.sass', 'meta.property-value.sass', 'punctuation.section.function.sass']
+
