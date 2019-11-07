@@ -616,3 +616,12 @@ describe 'Sass grammar', ->
         expect(tokens[1][7]).toEqual value: '(', scopes: ['source.sass', 'meta.property-value.sass', 'punctuation.section.function.sass']
         expect(tokens[1][9]).toEqual value: ')', scopes: ['source.sass', 'meta.property-value.sass', 'punctuation.section.function.sass']
 
+      it 'correctly tokenizes module variables', ->
+        tokens = grammar.tokenizeLines '''
+          body
+            font-size: fonts.$size
+        '''
+        expect(tokens[1][4]).toEqual value: 'fonts', scopes: ['source.sass', 'meta.property-value.sass', 'meta.variable-usage.sass', 'variable.sass']
+        expect(tokens[1][5]).toEqual value: '.', scopes: ['source.sass', 'meta.property-value.sass', 'meta.variable-usage.sass', 'punctuation.access.module.sass']
+        expect(tokens[1][6]).toEqual value: '$', scopes: ['source.sass', 'meta.property-value.sass', 'meta.variable-usage.sass', 'punctuation.definition.entity.css']
+        expect(tokens[1][7]).toEqual value: 'size', scopes: ['source.sass', 'meta.property-value.sass', 'meta.variable-usage.sass', 'variable.other.sass']
