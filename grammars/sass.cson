@@ -513,6 +513,9 @@
     'name': 'meta.at-rule.import.sass'
     'patterns': [
       {
+        'include': '#string-single'
+      }
+      {
         'include': '#string-double'
       }
       {
