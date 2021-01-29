@@ -1105,6 +1105,10 @@
   'properties':
     'patterns': [
       {
+        'match': '(content|cursor|filter|font|mask)(?![-a-z])',
+        'name': 'entity.name.tag.css'
+      },
+      {
         'begin': '(?<![-a-z])(?=[-a-z])'
         'end': '$|(?![-a-z])'
         'name': 'meta.property-name.scss'
@@ -1554,6 +1558,10 @@
   # Stuff for selectors
   'selectors':
     'patterns': [
+      {
+        'match': '(?xi)(content|cursor|filter|font|mask)(?![-a-z])(?!(:+)(?: after|before|first-letter|first-line|backdrop|content|grammar-error|marker|placeholder|selection|shadow|spelling-error|active|any-link|checked|default|disabled|empty|enabled|first|(?:nth|nth-last|first|last|only)-(?: child|of-type)|focus|focus-within|fullscreen|host|hover|in-range|indeterminate|invalid|left|link|optional|out-of-range|read-only|read-write|required|right|root|scope|target|unresolved|valid|visited)|\\s*{)'
+        'name': 'support.type.property-name.css'
+      },
       {
         'include': 'source.css#tag-names'
       }
