@@ -1,7 +1,5 @@
 # Sass/SCSS language support in Atom
-[![macOS Build Status](https://travis-ci.org/atom/language-sass.svg?branch=master)](https://travis-ci.org/atom/language-sass)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/g7p16vainm4iuoot/branch/master?svg=true)](https://ci.appveyor.com/project/Atom/language-sass/branch/master)
-[![Dependency Status](https://david-dm.org/atom/language-sass.svg)](https://david-dm.org/atom/language-sass)
+![CI Status](https://github.com/atom/language-sass/actions/workflows/main.yml/badge.svg)
 
 Adds syntax highlighting and snippets to Sass/SCSS files in Atom.
 
