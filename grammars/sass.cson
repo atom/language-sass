@@ -749,8 +749,8 @@
         'include': '#variable-usage'
       }
       {
-        'match': '\\b(true|false)\\b'
-        'name': 'support.constant.property-value.css.sass'
+        'match': '\\b(true|false|null)\\b'
+        'name': 'support.constant.property-value.sass'
       }
       {
         'include': 'source.css#property-keywords'
