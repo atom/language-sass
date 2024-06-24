@@ -400,7 +400,7 @@ describe 'SCSS grammar', ->
       {tokens} = grammar.tokenizeLine 'very-custom { very-very-custom { color: inherit; } margin: top; }'
 
       expect(tokens[2]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
-      expect(tokens[4]).toEqual value: 'very-very-custom', scopes: ['source.css.scss', 'meta.property-list.scss', 'entity.name.tag.custom.scss']
+      expect(tokens[4]).toEqual value: 'very-very-custom', scopes: ['source.css.scss', 'meta.property-list.scss', 'entity.name.tag.custom.css']
       expect(tokens[6]).toEqual value: '{', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'punctuation.section.property-list.begin.bracket.curly.scss']
       expect(tokens[8]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[11]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
@@ -423,11 +423,11 @@ describe 'SCSS grammar', ->
         another-one { display: none; }
       '''
 
-      expect(tokens[0][0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(tokens[0][0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.css']
       expect(tokens[0][4]).toEqual value: 'color', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-name.scss', 'support.type.property-name.css']
       expect(tokens[0][7]).toEqual value: 'inherit', scopes: ['source.css.scss', 'meta.property-list.scss', 'meta.property-value.scss', 'support.constant.property-value.css']
       expect(tokens[0][9]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
-      expect(tokens[1][0]).toEqual value: 'another-one', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(tokens[1][0]).toEqual value: 'another-one', scopes: ['source.css.scss', 'entity.name.tag.custom.css']
       expect(tokens[1][10]).toEqual value: '}', scopes: ['source.css.scss', 'meta.property-list.scss', 'punctuation.section.property-list.end.bracket.curly.scss']
 
     describe 'property values', ->
@@ -491,30 +491,30 @@ describe 'SCSS grammar', ->
     it 'tokenizes them as tags', ->
       {tokens} = grammar.tokenizeLine 'very-custom { color: red; }'
 
-      expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.css']
 
       {tokens} = grammar.tokenizeLine 'very-very-custom { color: red; }'
 
-      expect(tokens[0]).toEqual value: 'very-very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(tokens[0]).toEqual value: 'very-very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.css']
 
     it 'tokenizes them with pseudo selectors', ->
       {tokens} = grammar.tokenizeLine 'very-custom:hover { color: red; }'
 
-      expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.css']
       expect(tokens[1]).toEqual value: ':', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css', 'punctuation.definition.entity.css']
       expect(tokens[2]).toEqual value: 'hover', scopes: ['source.css.scss', 'entity.other.attribute-name.pseudo-class.css']
 
     it 'tokenizes them with class selectors', ->
       {tokens} = grammar.tokenizeLine 'very-custom.class { color: red; }'
 
-      expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.scss']
+      expect(tokens[0]).toEqual value: 'very-custom', scopes: ['source.css.scss', 'entity.name.tag.custom.css']
       expect(tokens[1]).toEqual value: '.', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css', 'punctuation.definition.entity.css']
       expect(tokens[2]).toEqual value: 'class', scopes: ['source.css.scss', 'entity.other.attribute-name.class.css']
 
     it "tokenizes them with attribute selectors", ->
       {tokens} = grammar.tokenizeLine "md-toolbar[color='primary']"
 
-      expect(tokens[0]).toEqual value: "md-toolbar", scopes: ["source.css.scss", "entity.name.tag.custom.scss"]
+      expect(tokens[0]).toEqual value: "md-toolbar", scopes: ["source.css.scss", "entity.name.tag.custom.css"]
       expect(tokens[1]).toEqual value: "[", scopes: ["source.css.scss", "meta.attribute-selector.scss", "punctuation.definition.attribute-selector.begin.bracket.square.scss"]
       expect(tokens[2]).toEqual value: "color", scopes: ["source.css.scss", "meta.attribute-selector.scss", "entity.other.attribute-name.attribute.scss"]
       expect(tokens[3]).toEqual value: "=", scopes: ["source.css.scss", "meta.attribute-selector.scss", "keyword.operator.scss"]
@@ -522,6 +522,14 @@ describe 'SCSS grammar', ->
       expect(tokens[5]).toEqual value: "primary", scopes: ["source.css.scss", "meta.attribute-selector.scss", "string.quoted.single.attribute-value.scss"]
       expect(tokens[6]).toEqual value: "'", scopes: ["source.css.scss", "meta.attribute-selector.scss", "string.quoted.single.attribute-value.scss", "punctuation.definition.string.end.scss"]
       expect(tokens[7]).toEqual value: ']', scopes: ["source.css.scss", "meta.attribute-selector.scss", "punctuation.definition.attribute-selector.end.bracket.square.scss"]
+
+    it "tokenizes them with interpolation", ->
+      {tokens} = grammar.tokenizeLine "#\{&}__foo { color: red }"
+
+      expect(tokens[0]).toEqual value: "#\{", scopes: ["source.css.scss", "entity.name.tag.custom.css", "variable.interpolation.scss", "punctuation.definition.interpolation.begin.bracket.curly.scss"]
+      expect(tokens[1]).toEqual value: "&", scopes: ["source.css.scss", "entity.name.tag.custom.css", "variable.interpolation.scss"]
+      expect(tokens[2]).toEqual value: "}", scopes: ["source.css.scss", "entity.name.tag.custom.css", "variable.interpolation.scss", "punctuation.definition.interpolation.end.bracket.curly.scss"]
+      expect(tokens[3]).toEqual value: "__foo", scopes: ["source.css.scss", "entity.name.tag.custom.css"]
 
     it 'does not confuse them with properties', ->
       tokens = grammar.tokenizeLines '''
